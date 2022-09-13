@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import Header from "./Component/Header/Header";
 import Dashboard from "./Component/Dashboard/Dashboard";
@@ -7,8 +7,15 @@ import ProductDetail from "./Component/ProductDetails/ProductDetail";
 import Footer from "./Component/Footer/Footer";
 import Checkout from "./Component/Checkout/Checkout";
 import AllProducts from "./Component/AllProducts/AllProducts";
+import { useEffect } from "react";
 
 function App() {
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div>
       <Header />
