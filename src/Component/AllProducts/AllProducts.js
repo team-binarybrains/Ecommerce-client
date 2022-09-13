@@ -11,8 +11,8 @@ const AllProducts = () => {
 
   return (
     <div>
-      <div className=" mt-20">
-        <form className="ml-5 lg:ml-0">
+      <div className=" mt-10 ">
+        <form className="ml-5 lg:mx-auto">
           <label
             for="default-search"
             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"

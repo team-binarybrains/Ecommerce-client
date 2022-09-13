@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <Header />
-      <section className="max-w-7xl mx-auto">
+      <section className="max-w-7xl mx-auto min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
