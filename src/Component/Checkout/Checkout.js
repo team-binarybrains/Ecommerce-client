@@ -166,7 +166,7 @@ const Checkout = () => {
                 <input
                   className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                   type="text"
-                  placeholder="  আপনার ঠিকানা"
+                  placeholder="আপনার ঠিকানা"
                 />
               </div>
               <label className="mt-8 text-base leading-4 text-gray-800">
