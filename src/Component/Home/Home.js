@@ -1,5 +1,6 @@
 import React from "react";
 import Checkout from "../Checkout/Checkout";
+import ProductDetail from "../ProductDetails/ProductDetail";
 import HomePageProducts from "./HomepageProducts/HomePageProducts";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <div>
       <HomePageProducts />
       <Checkout />
+      <ProductDetail />
     </div>
   );
 };
