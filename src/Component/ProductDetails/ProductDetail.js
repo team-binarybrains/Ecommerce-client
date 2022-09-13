@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const [count, setCount] = useState(0);
-
+  const { productId } = useParams();
   const addCount = () => {
     setCount((prev) => prev + 1);
   };
@@ -12,6 +13,7 @@ const ProductDetail = () => {
       setCount((prev) => prev - 1);
     }
   };
+
   return (
     <div className="h-full lg:mb-96 ">
       <div className="2xl:container 2xl:mx-auto lg:py-16  md:py-12 md:px-6 py-9 px-1 ">
@@ -76,7 +78,7 @@ const ProductDetail = () => {
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-2 sm:gap-6 gap-4">
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
-                className="lg:h-[395px]  "
+                className="lg:h-[395px]  object-cover"
                 src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
                 alt="image"
               />
