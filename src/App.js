@@ -10,15 +10,18 @@ import AllProducts from "./Component/AllProducts/AllProducts";
 
 function App() {
   return (
-    <div className="max-w-7xl mx-auto">
+    <div>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/productDetail" element={<ProductDetail />}></Route>
-        <Route path="/allProducts" element={<AllProducts />}></Route>
-      </Routes>
+      <section className="max-w-7xl mx-auto">
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/productDetail" element={<ProductDetail />}></Route>
+          <Route path="/allProducts" element={<AllProducts />}></Route>
+        </Routes>
+      </section>
+
       <Footer />
     </div>
   );
