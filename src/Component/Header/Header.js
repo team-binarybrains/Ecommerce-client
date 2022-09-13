@@ -12,9 +12,9 @@ const Header = () => {
     const [menu,setMenu] = useState(false);
 
     return (
-        <div className='fixed top-0 left-0 right-0 border-b bg-white z-[99]'>
+        <div className='fixed top-0 left-0 right-0 border-b bg-clr z-[99]'>
             
-            <section className='bg-gray-200'>
+            <section className='bg-white'>
                 
                 <div className='h-10 cont px-5 hidden lg:flex justify-between items-center'>
                     <MailAndMssg className='flex justify-center items-center' />
@@ -26,7 +26,7 @@ const Header = () => {
 
             <section className='h-14 cont px-5 flex justify-between items-center'>
 
-                <NavLink onClick={() => setMenu(false)} to={'/'} className='satisfy font-extrabold text-3xl cursor-pointer'><span className='text-clr'>Cloud</span> Bazar</NavLink>
+                <NavLink onClick={() => setMenu(false)} to={'/'} className='satisfy text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
                 
                 <Nav className='hidden lg:flex items-center justify-center gap-8'/>
                 

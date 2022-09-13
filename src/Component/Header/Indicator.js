@@ -8,16 +8,14 @@ const Indicator = ({ className }) => {
     return (
         <div className={className}>
             <div className="indicator">
-                <span className="indicator-item badge border-0 bg-clr text-white font-bold">0</span>
-                <BsFillBookmarkHeartFill className='w-6 h-6 relative' />
+                <BsFillBookmarkHeartFill className='w-6 h-6 text-gray-100 cursor-pointer' />
             </div>
 
             <div className="indicator">
-                <span className="indicator-item badge border-0 bg-clr text-white font-bold">0</span>
-                <MdShoppingCart className='w-7 h-7' />
+                <MdShoppingCart className='w-7 h-7 text-gray-100 cursor-pointer' />
             </div>
 
-            <p className='font-semibold text-zinc-600'>Item: <span className='font-extrabold text-zinc-900'>$ 0</span></p>
+            <p className='font-semibold text-dark'>Item: <span className='font-extrabold text-white'>$ 0</span></p>
         </div>
     );
 };
