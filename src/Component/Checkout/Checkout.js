@@ -52,7 +52,7 @@ const Checkout = () => {
               </Link>
             </button>
             <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
-              Checkout
+              আপনার অর্ডার
             </p>
           </div>
 
@@ -60,8 +60,8 @@ const Checkout = () => {
             <div className=" flex flex-col sm:flex-row xl:flex-col  bg-gray-100 sm:py-0 xl:py-10 px-10 xl:w-full">
               <div className="">
                 <div className="flex justify-between ">
-                  <p className="text-2xl font-bold">Product:</p>
-                  <p className="text-2xl font-bold"> Price:</p>
+                  <p className="text-2xl font-bold">পণ্য :</p>
+                  <p className="text-2xl font-bold">দাম :</p>
                 </div>
                 <div className="flex justify-between mt-7 mb-5">
                   <p>Product</p>
@@ -74,7 +74,7 @@ const Checkout = () => {
               <hr />
               <div>
                 <div className="flex justify-between mt-7 mb-5">
-                  <p className="text-xl ">Subtotal</p>
+                  <p className="text-xl ">মোট =</p>
                   <p className="text-xl ">
                     {" "}
                     <span className="text-xl font-bold">৳</span> 3000
@@ -125,7 +125,7 @@ const Checkout = () => {
 
                 <div>
                   <div className="flex justify-between mt-7 mb-5">
-                    <p className="text-xl ">Subtotal</p>
+                    <p className="text-xl ">সর্বমোট =</p>
                     <p className="text-xl font-bold">
                       {" "}
                       <span className="text-2xl font-bold">৳</span> 3000
@@ -139,7 +139,7 @@ const Checkout = () => {
               <div className="flex flex-row justify-center items-center mt-6">
                 <hr className="border w-full" />
                 <p className="flex flex-shrink-0 px-4  leading-4 text-gray-600 text-3xl">
-                  আপনার অর্ডার
+                  ডেলিভারির ঠিকানা
                 </p>
                 <hr className="border w-full" />
               </div>
@@ -166,7 +166,7 @@ const Checkout = () => {
                 <input
                   className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                   type="text"
-                  placeholder="  আপনার ঠিকানা"
+                  placeholder="আপনার ঠিকানা"
                 />
               </div>
               <label className="mt-8 text-base leading-4 text-gray-800">

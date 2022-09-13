@@ -3,12 +3,13 @@ import useAllProducts from "../Hooks/useAllProducts";
 import SingleProducts from "./SingleProducts";
 
 import { BsSearch } from "react-icons/bs";
+import Loading from "../Share/Loading";
 
 const AllProducts = () => {
-  const [products] = useAllProducts();
+  const [products, loading] = useAllProducts();
   console.log(products);
   const [sesrch, setSesrch] = useState("");
-  //   onChange={(e) => setSesrch(e.target.value)}
+  //
   return (
     <div>
       <div className=" mt-10 ">
@@ -32,16 +33,18 @@ const AllProducts = () => {
               </svg>
             </div>
             <input
+              onChange={(e) => setSesrch(e.target.value)}
               type="search"
               id="default-search"
               class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border   "
-              placeholder="Search Mockups, Logos..."
+              placeholder="আপনার পণ্য অনুসন্ধান করুন"
               required=""
             />
           </div>
         </form>
       </div>
       <div className="grid grid-cols-1 p-4 lg:p-0 lg:grid-cols-3 gap-8 mt-16 mb-20">
+        {loading && <Loading />}
         {products
           .filter((val) => val.name.toLowerCase().includes(sesrch))
           ?.map((value) => (

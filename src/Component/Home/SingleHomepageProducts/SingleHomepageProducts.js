@@ -2,15 +2,15 @@ import React from "react";
 import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 const SingleHomepageProducts = ({ value }) => {
-  //   const [image, name, details, price] = value;
   const navigate = useNavigate();
-  const handleDetail = () => {
-    navigate("/productDetail");
+  const handleDetail = (id) => {
+    navigate("/productDetail/" + id);
   };
+
   return (
     <div className="bg-white border relative  shadow-lg p-5 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
       <img
-        onClick={handleDetail}
+        onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
         src={value.image}
         alt=""
