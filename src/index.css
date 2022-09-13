@@ -1,16 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cairo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-clr;
+  border-radius: 2px;
+}
 
 /* fonts */
 .cairo {
-    font-family: 'Cairo', sans-serif !important;
+  font-family: "Cairo", sans-serif !important;
 }
 
 .satisfy {
-    font-family: 'Satisfy', cursive !important;
+  font-family: "Satisfy", cursive !important;
 }
