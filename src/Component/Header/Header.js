@@ -26,7 +26,7 @@ const Header = () => {
 
             <section className='h-16 cont px-5 flex justify-between items-center'>
 
-                <NavLink onClick={() => setMenu(false)} to={'/'} className='satisfy text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
+                <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
                 
                 <Nav className='hidden lg:flex items-center justify-center gap-8'/>
                 
