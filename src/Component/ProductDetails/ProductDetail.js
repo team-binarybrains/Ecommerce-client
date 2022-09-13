@@ -25,7 +25,7 @@ const ProductDetail = () => {
               {/* {detail.productname} */}
               পণ্যের নাম : productname
             </h2>
-            <p className="mt-10 font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 lg:mt-5 ">
+            <p className="mt-10 font-semibold lg:text-xl text-xl lg:leading-6 leading-5 lg:mt-9 ">
               পণ্য বিবরণী :
             </p>
             <p className="  h-[120px] overflow-y-auto font-normal text-base leading-6 text-gray-600 mt-4">
@@ -85,7 +85,7 @@ const ProductDetail = () => {
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-2 sm:gap-6 gap-4">
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
-                className="lg:h-[395px]  object-cover"
+                className="lg:h-[495px]  object-cover"
                 src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
                 alt="image"
               />
