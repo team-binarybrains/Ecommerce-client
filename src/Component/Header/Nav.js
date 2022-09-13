@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 const Nav = ({ className, hideMenuFn }) => {
   const navStyle = ({ isActive }) => {
     return isActive
-      ? "font-extrabold text-clr tracking-wider"
-      : "font-extrabold text-zinc-900 tracking-wider";
+      ? "font-extrabold text-dark tracking-wider"
+      : "font-extrabold text-white tracking-wider";
   };
 
   return (
