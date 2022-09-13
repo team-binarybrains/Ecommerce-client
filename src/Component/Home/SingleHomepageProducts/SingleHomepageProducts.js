@@ -11,7 +11,7 @@ const SingleHomepageProducts = ({ value }) => {
     <div className="bg-white border relative  shadow-lg p-5 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
       <img
         onClick={handleDetail}
-        className="mb-2 rounded-tl-[80px] "
+        className="mb-2 rounded-tl-[80px] h-[250px] "
         src={value.image}
         alt=""
       />
@@ -29,7 +29,7 @@ const SingleHomepageProducts = ({ value }) => {
         </h1>
       </div>
       <div className="mt-20 ">
-        <button className="w-full lg:w-[370px] mx-auto p-5 absolute bottom-0 lg:bottom-4 left-0 right-0 tracking-wider rounded-xl rounded-t-none bg-clr font-bold   mt-5 text-white hover:text-dark transition duration-300">
+        <button className="  mx-auto p-5 absolute bottom-0 lg:bottom-2 left-2 right-2 tracking-wider rounded-xl rounded-t-none bg-clr font-bold   mt-5 text-white hover:text-dark transition duration-300">
           অর্ডার করুন
         </button>
       </div>
