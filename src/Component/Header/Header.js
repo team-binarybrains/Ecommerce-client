@@ -12,7 +12,7 @@ const Header = () => {
     const [menu,setMenu] = useState(false);
 
     return (
-        <div className='fixed top-0 left-0 right-0 border-b bg-clr z-[99]'>
+        <div className='fixed top-0 left-0 right-0 border-b border-clr bg-clr z-[99]'>
             
             <section className='bg-white'>
                 
@@ -24,7 +24,7 @@ const Header = () => {
             
             </section>
 
-            <section className='h-14 cont px-5 flex justify-between items-center'>
+            <section className='h-16 cont px-5 flex justify-between items-center'>
 
                 <NavLink onClick={() => setMenu(false)} to={'/'} className='satisfy text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
                 

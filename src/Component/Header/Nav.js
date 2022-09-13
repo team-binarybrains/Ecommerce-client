@@ -5,7 +5,7 @@ const Nav = ({className,hideMenuFn}) => {
 
     
     const navStyle = ({isActive})=> {
-        return isActive?'font-extrabold text-dark tracking-wider':'font-extrabold text-white tracking-wider';
+        return isActive?'font-extrabold text-clr lg:text-dark tracking-wider':'font-extrabold lg:text-white text-dark tracking-wider';
     }
 
     return (

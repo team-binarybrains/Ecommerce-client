@@ -1,5 +1,4 @@
 .slideIn{
-    border-top: 1px solid white;
     animation: slideIn 0.2s steps(100) forwards;
 }
 .slideOut{
