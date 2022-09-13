@@ -8,22 +8,13 @@ const AllProducts = () => {
   const [products] = useAllProducts();
   console.log(products);
   const [sesrch, setSesrch] = useState("");
-
+  //   onChange={(e) => setSesrch(e.target.value)}
   return (
     <div>
-      <div className=" mt-20">
-        <form className="ml-5 lg:ml-0">
-          <label
-            for="default-search"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
-          >
-            Search
-          </label>
+      <div className=" mt-10 ">
+        <form className="max-w-2xl mx-auto px-3 lg:px-0">
           <div class="relative">
-            <div
-              class="flex absolute 
-             inset-y-0 left-0 items-center pl-3 pointer-events-none"
-            >
+            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
               <svg
                 aria-hidden="true"
                 class="w-5 h-5 text-gray-500 dark:text-gray-400"
@@ -41,11 +32,10 @@ const AllProducts = () => {
               </svg>
             </div>
             <input
-              onChange={(e) => setSesrch(e.target.value)}
               type="search"
               id="default-search"
-              class="block p-4 pl-10 w-80 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300  "
-              placeholder="এখানে অনুসন্ধান করুন"
+              class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border   "
+              placeholder="Search Mockups, Logos..."
               required=""
             />
           </div>

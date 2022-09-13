@@ -29,7 +29,7 @@ const SingleHomepageProducts = ({ value }) => {
         </h1>
       </div>
       <div className="mt-20 ">
-        <button className="  mx-auto p-5 absolute bottom-0 lg:bottom-2 left-2 right-2 tracking-wider rounded-xl rounded-t-none bg-clr font-bold   mt-5 text-white hover:text-dark transition duration-300">
+        <button className="  mx-auto p-5 absolute bottom-0 left-0 right-0 lg:bottom-2 lg:left-2 lg:right-2 tracking-wider rounded-xl rounded-t-none bg-clr font-bold   mt-5 text-white hover:text-dark transition duration-300">
           অর্ডার করুন
         </button>
       </div>

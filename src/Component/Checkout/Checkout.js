@@ -11,7 +11,7 @@ const Checkout = () => {
     setCountry(e.target.textContent);
   };
   return (
-    <div className="flex justify-center items-center mt-32">
+    <div className="flex justify-center items-center ">
       <div className="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
         <div className="flex flex-col justify-start items-start w-full space-y-9">
           <div className="flex justify-start flex-col items-start space-y-2">
