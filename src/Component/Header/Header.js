@@ -12,7 +12,7 @@ const Header = () => {
     const [menu,setMenu] = useState(false);
 
     return (
-        <div className='fixed top-0 left-0 right-0 border-b border-clr bg-clr z-[99]'>
+        <div className='sticky top-0 left-0 right-0 border-b border-clr bg-clr z-[99]'>
             
             <section className='bg-white'>
                 
