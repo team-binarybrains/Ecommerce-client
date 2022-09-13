@@ -10,11 +10,10 @@ const Nav = ({className,hideMenuFn}) => {
 
     return (
         <div className={className}>
-            <NavLink onClick={hideMenuFn} to={'/'} className={navStyle}>HOME</NavLink>
-            <NavLink onClick={hideMenuFn} to={'/shop'} className={navStyle}>SHOP</NavLink>
-            <NavLink onClick={hideMenuFn} to={'/pages'} className={navStyle}>PAGES</NavLink>
-            <NavLink onClick={hideMenuFn} to={'/blog'} className={navStyle}>BLOG</NavLink>
-            <NavLink onClick={hideMenuFn} to={'/contact'} className={navStyle}>CONTACT</NavLink>
+            <NavLink onClick={hideMenuFn} to={'/'} className={navStyle}>হোম</NavLink>
+            <NavLink onClick={hideMenuFn} to={'/shop'} className={navStyle}>কেনাকাটা করুন</NavLink>
+            <NavLink onClick={hideMenuFn} to={'/checkout'} className={navStyle}>চেকআউট</NavLink>
+            <NavLink onClick={hideMenuFn} to={'/blog'} className={navStyle}>ব্লগ</NavLink>
         </div>
     );
 };
