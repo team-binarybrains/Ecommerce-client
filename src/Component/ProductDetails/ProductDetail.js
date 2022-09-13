@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const [count, setCount] = useState(0);
-
+  const { productId } = useParams();
   const addCount = () => {
     setCount((prev) => prev + 1);
   };
@@ -12,6 +13,7 @@ const ProductDetail = () => {
       setCount((prev) => prev - 1);
     }
   };
+
   return (
     <div className="h-full lg:mb-96 ">
       <div className="2xl:container 2xl:mx-auto lg:py-16  md:py-12 md:px-6 py-9 px-1 ">
@@ -24,11 +26,9 @@ const ProductDetail = () => {
               পণ্যের নাম:
             </h2>
 
-            <p className=" font-normal text-base leading-6 text-gray-600 mt-7">
+            <p className="  h-[100px] overflow-y-auto font-normal text-base leading-6 text-gray-600 mt-7">
               It is a long established fact that a reader will be distracted by
               the readable content of a page when looking at its layout. The
-              point of using. Lorem Ipsum is that it has a more-or-less normal
-              distribution of letters.
             </p>
             <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
               মূল্য: <span className="text-3xl font-bold">৳</span> 23
@@ -67,7 +67,7 @@ const ProductDetail = () => {
 
             <button
               //   onClick={() => handleAddtocartt(detail)}
-              className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-12 mt-6"
+              className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-5 mt-6"
             >
               অর্ডার করুন
             </button>
@@ -75,10 +75,10 @@ const ProductDetail = () => {
 
           {/* <!-- Preview Images Div For larger Screen--> */}
 
-          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
+          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-2 sm:gap-6 gap-4">
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
-                className="lg:h-[395px]  "
+                className="lg:h-[395px]  object-cover"
                 src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
                 alt="image"
               />

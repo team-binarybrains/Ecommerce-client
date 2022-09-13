@@ -10,7 +10,6 @@ import AllProducts from "./Component/AllProducts/AllProducts";
 import { useEffect } from "react";
 
 function App() {
-
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,7 +23,10 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/productDetail" element={<ProductDetail />}></Route>
+          <Route
+            path="/productDetail/:productId"
+            element={<ProductDetail />}
+          ></Route>
           <Route path="/allProducts" element={<AllProducts />}></Route>
         </Routes>
       </section>
