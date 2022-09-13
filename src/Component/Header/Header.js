@@ -17,7 +17,7 @@ const Header = () => {
             
             <section className='bg-white'>
                 
-                <div className='h-10 cont px-5 hidden lg:flex justify-between items-center'>
+                <div className='h-10 cont px-5 hidden lg:flex justify-between items-center max-w-7xl mx-auto'>
                     <MailAndMssg className='flex justify-center items-center' />
 
                     <SocialAndLogin className='flex justify-center items-center' />
@@ -25,7 +25,7 @@ const Header = () => {
             
             </section>
 
-            <section className='h-16 cont px-5 flex justify-between items-center'>
+            <section className='h-16 cont px-5 flex justify-between items-center max-w-7xl mx-auto'>
 
                 <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
                 
