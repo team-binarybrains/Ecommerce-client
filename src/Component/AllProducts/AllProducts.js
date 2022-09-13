@@ -37,7 +37,7 @@ const AllProducts = () => {
               type="search"
               id="default-search"
               class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border   "
-              placeholder="Search Mockups, Logos..."
+              placeholder="আপনার পণ্য অনুসন্ধান করুন"
               required=""
             />
           </div>
