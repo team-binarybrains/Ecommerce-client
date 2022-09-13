@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Checkout = () => {
   const countries = ["China", "Russia", "UK"];
@@ -10,7 +11,7 @@ const Checkout = () => {
     setCountry(e.target.textContent);
   };
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center mt-32">
       <div className="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
         <div className="flex flex-col justify-start items-start w-full space-y-9">
           <div className="flex justify-start flex-col items-start space-y-2">
@@ -45,7 +46,10 @@ const Checkout = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <p className="text-sm leading-none">Back</p>
+              <Link to="/">
+                {" "}
+                <p className="text-sm leading-none">Back</p>
+              </Link>
             </button>
             <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
               Checkout
@@ -57,18 +61,24 @@ const Checkout = () => {
               <div className="">
                 <div className="flex justify-between ">
                   <p className="text-2xl font-bold">Product:</p>
-                  <p className="text-2xl font-bold">Price:</p>
+                  <p className="text-2xl font-bold"> Price:</p>
                 </div>
                 <div className="flex justify-between mt-7 mb-5">
                   <p>Product</p>
-                  <p>taka</p>
+                  <p>
+                    {" "}
+                    <span className="text-xl font-bold">৳</span> 200
+                  </p>
                 </div>
               </div>
               <hr />
               <div>
                 <div className="flex justify-between mt-7 mb-5">
                   <p className="text-xl ">Subtotal</p>
-                  <p className="text-xl ">3000</p>
+                  <p className="text-xl ">
+                    {" "}
+                    <span className="text-xl font-bold">৳</span> 3000
+                  </p>
                 </div>
               </div>
               <hr />
@@ -86,7 +96,9 @@ const Checkout = () => {
                       ঢাকার বাহিরে :
                     </div>
                     <div>
-                      <p>100</p>
+                      <p>
+                        <span className="text-xl font-bold">৳</span> 100
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -102,7 +114,10 @@ const Checkout = () => {
                       ঢাকার ভিতর:
                     </div>
                     <div>
-                      <p>100</p>
+                      <p>
+                        {" "}
+                        <span className="text-xl font-bold">৳</span> 100
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -111,7 +126,10 @@ const Checkout = () => {
                 <div>
                   <div className="flex justify-between mt-7 mb-5">
                     <p className="text-xl ">Subtotal</p>
-                    <p className="text-xl font-bold">3000</p>
+                    <p className="text-xl font-bold">
+                      {" "}
+                      <span className="text-2xl font-bold">৳</span> 3000
+                    </p>
                   </div>
                 </div>
               </div>
@@ -161,93 +179,6 @@ const Checkout = () => {
                   placeholder="আপনার মোবাইল"
                 />
               </div>
-              {/* 
-              <div className="mt-2 flex-col">
-                <div>
-                  <input
-                    className="border rounded-tl rounded-tr border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="email"
-                    placeholder="0000 1234 6549 15151"
-                  />
-                </div>
-                <div className="flex-row flex">
-                  <input
-                    className="border rounded-bl border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="email"
-                    placeholder="MM/YY"
-                  />
-                  <input
-                    className="border rounded-br border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="email"
-                    placeholder="CVC"
-                  />
-                </div>
-              </div> */}
-
-              {/* <div className="mt-2 flex-col">
-                <div>
-                  <input
-                    className="border rounded border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="email"
-                    placeholder="Name on card"
-                  />
-                </div>
-              </div> */}
-
-              {/* <label className="mt-8 text-base leading-4 text-gray-800">
-                Country or region
-              </label> */}
-              {/* <div className="mt-2 flex-col">
-                <div className="relative">
-                  <button
-                    className="text-left border rounded-tr rounded-tl border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600 bg-white"
-                    type="email"
-                  >
-                    {country}
-                  </button>
-                  <svg
-                    onClick={() => setMenu(!menu)}
-                    className={
-                      "transform  cursor-pointer absolute top-4 right-4 " +
-                      (menu ? "rotate-180" : "")
-                    }
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3.5 5.75L8 10.25L12.5 5.75"
-                      stroke="#27272A"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <div
-                    className={
-                      "mt-1 absolute z-10 w-full flex bg-gray-50 justify-start flex-col text-gray-600 " +
-                      (menu ? "block" : "hidden")
-                    }
-                  >
-                    {countries.map((country) => (
-                      <div
-                        key={country}
-                        className="cursor-pointer hover:bg-gray-800 hover:text-white px-4 py-2"
-                        onClick={changeText}
-                      >
-                        {country}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <input
-                  className="border rounded-bl rounded-br border-gray-300 p-4 w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                  type="text"
-                  placeholder="ZIP"
-                />
-              </div> */}
-
               <button className="mt-8 border border-transparent hover:border-gray-300 bg-clr transition duration-300 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full">
                 <div>
                   <p className="text-base leading-4">অর্ডার কনফার্ম করুন</p>

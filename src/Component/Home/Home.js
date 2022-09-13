@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div>
       <HomePageProducts />
-      <Checkout />
+
       <ProductDetail />
     </div>
   );
