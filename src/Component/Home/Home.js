@@ -1,10 +1,10 @@
 import React from "react";
+import HomePageProducts from "./HomepageProducts/HomePageProducts";
 
 const Home = () => {
   return (
     <div>
-      <h1>this is home section</h1>
-      <p></p>
+      <HomePageProducts />
     </div>
   );
 };
