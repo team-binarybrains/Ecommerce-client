@@ -8,7 +8,6 @@ import MailAndMssg from './MailAndMssg';
 import SocialAndLogin from './SocialAndLogin';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Cart from './Cart/Cart';
-import Loading from '../Share/Loading';
 
 const Header = () => {
     const [menu,setMenu] = useState(false);
@@ -38,7 +37,7 @@ const Header = () => {
                 <MobileMenu menu={menu} setMenu={setMenu} className='block lg:hidden'/>
 
                 <Cart setMenu={setMenu}/>
-                
+
             </section>
 
         </div>
