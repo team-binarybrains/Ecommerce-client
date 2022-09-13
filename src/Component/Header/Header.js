@@ -7,6 +7,7 @@ import Nav from './Nav';
 import MailAndMssg from './MailAndMssg';
 import SocialAndLogin from './SocialAndLogin';
 import MobileMenu from './MobileMenu/MobileMenu';
+import Cart from './Cart/Cart';
 
 const Header = () => {
     const [menu,setMenu] = useState(false);
@@ -34,6 +35,8 @@ const Header = () => {
 
                 {/* menu for mobile device */}
                 <MobileMenu menu={menu} setMenu={setMenu} className='block lg:hidden'/>
+
+                <Cart setMenu={setMenu}/>
 
             </section>
 
