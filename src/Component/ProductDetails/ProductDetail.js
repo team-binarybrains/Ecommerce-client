@@ -15,7 +15,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="h-full lg:mb-96 ">
+    <div className="h-full  lg:h-screen lg:mt-20">
       <div className="2xl:container 2xl:mx-auto lg:py-16  md:py-12 md:px-6 py-9 px-1 ">
         <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
           {/* <!-- Description Div --> */}
@@ -23,7 +23,7 @@ const ProductDetail = () => {
           <div className=" p-2 lg:p-0 w-full sm:w-96 md:w-8/12 lg:w-5/12 items-center">
             <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
               {/* {detail.productname} */}
-              পণ্যের নাম:
+              পণ্যের নাম :
             </h2>
 
             <p className="  h-[100px] overflow-y-auto font-normal text-base leading-6 text-gray-600 mt-7">
@@ -31,7 +31,7 @@ const ProductDetail = () => {
               the readable content of a page when looking at its layout. The
             </p>
             <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-              মূল্য: <span className="text-3xl font-bold">৳</span> 23
+              মূল্য : <span className="text-3xl font-bold">৳</span> 23
               {/* $ {count > 0 ? detail.price * count : detail.price} */}
             </p>
 
