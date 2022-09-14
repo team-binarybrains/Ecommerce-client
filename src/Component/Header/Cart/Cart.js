@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import useProductStore from "../../Hooks/useProductStorage";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import style from "./cart.module.css";
 import { ImCross } from 'react-icons/im';
 import CartProduct from "./CartProduct";
 
-let drawer, setDrawer;
+const Cart = ({drawer,setDrawer,upserting,deleting,getData,cartProducts}) => {
 
-const Cart = () => {
-  [drawer, setDrawer] = useState(false);
-  const [cartProducts,upserting,deleting] = useProductStore();
+  useEffect(()=> {
+      getData()
+  },[drawer])
 
   return (
     <div
@@ -17,7 +17,7 @@ const Cart = () => {
       }`}
     >
       <section
-        className={`relative w-full sm:w-[25rem] bg-white h-full border-r-2 ${
+        className={`relative max-w-[35rem] bg-white h-full border-r-2 ${
           drawer ? style.slideIn : style.slideOut
         }`}
       >
@@ -46,4 +46,3 @@ const Cart = () => {
 };
 
 export default Cart;
-export { drawer, setDrawer };

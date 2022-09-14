@@ -16,6 +16,10 @@ const getProductStore = ()=> {
 const useProductStore = ()=> {    
     const [data,setData] = useState([...getProductStore()]);
 
+    const getData = ()=> {
+        setData([...getProductStore()]);
+    }
+
     const upserting = (product) => {
         const allData = [...getProductStore()];
         const index = allData.findIndex(data => data._id === product._id);
@@ -42,7 +46,7 @@ const useProductStore = ()=> {
         setData(getProductStore());
     }
     
-    return [data,upserting,deleting];
+    return [data,upserting,deleting,getData];
 }
 
 

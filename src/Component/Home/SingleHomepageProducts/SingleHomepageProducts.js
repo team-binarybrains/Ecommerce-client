@@ -4,9 +4,9 @@ import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../Hooks/useProductStorage";
 
-
 const SingleHomepageProducts = ({ value }) => {
   const [data,upserting] = useProductStore();
+  console.log(data);
 
   const handleaddToCart = (p) => {
     const cartProduct = {
