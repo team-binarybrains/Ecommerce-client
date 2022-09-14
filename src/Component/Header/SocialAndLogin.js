@@ -1,5 +1,6 @@
 import React from 'react';
 import { GrFacebookOption, GrTwitter, GrLinkedinOption } from 'react-icons/gr';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaPinterestP, FaUser } from 'react-icons/fa';
 
 const SocialAndLogin = ({ className }) => {
@@ -12,7 +13,7 @@ const SocialAndLogin = ({ className }) => {
                 <FaPinterestP className='cursor-pointer' />
             </nav>
             <div className="divider lg:divider-horizontal my-0" />
-            <button className='flex justify-center items-center gap-2 cursor-pointer text-dark'><FaUser /> Login</button>
+            <Link to='/login' className='flex justify-center items-center gap-2 cursor-pointer text-dark'><FaUser /> Login</Link>
         </div>
     );
 };

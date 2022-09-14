@@ -8,6 +8,8 @@ import Footer from "./Component/Footer/Footer";
 import Checkout from "./Component/Checkout/Checkout";
 import AllProducts from "./Component/AllProducts/AllProducts";
 import { useEffect } from "react";
+import Login from "./Component/Auth/Login";
+import Register from "./Component/Auth/Register";
 
 function App() {
   const { pathname } = useLocation();
@@ -22,12 +24,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
+
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route
             path="/productDetail/:productId"
             element={<ProductDetail />}
           ></Route>
           <Route path="/allProducts" element={<AllProducts />}></Route>
+                         {/* auth */}
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+
         </Routes>
       </section>
 
