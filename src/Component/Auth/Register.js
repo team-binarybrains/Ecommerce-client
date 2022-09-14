@@ -6,7 +6,6 @@ import Loading from '../Share/Loading';
 
 const Register = () => {
     const navigate=useNavigate()
-    const location=useLocation()
     const [
         createUserWithEmailAndPassword,
         user,
@@ -16,14 +15,12 @@ const Register = () => {
 
       const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
 
-
       if(loading || loadinguserGoogle ){
         return <Loading></Loading>
       }
 
-      let from = location.state?.from?.pathname || "/";
-      if(user){
-        navigate(from, { replace: true });
+      if(user || userGoogle){
+        navigate('/');
       }
     const handleRegister = ( event )=>{
         event.preventDefault();
@@ -34,9 +31,10 @@ const Register = () => {
         createUserWithEmailAndPassword(name, email, password)
     }
     return (
-        <div>
+        <div className="mt-16 py-10">
+
           <div className=" mx-auto">
-       <h1 className='text-center'>please register</h1>
+       <h1 className='text-center text-3xl text-[#7fad39] font-extrabold pb-5'>অনুগ্রহ করে নিবন্ধন করুন</h1>
        <div className ='mx-auto'>
              
     
@@ -61,7 +59,7 @@ const Register = () => {
         </div>
             
        <div className='pt-2 font-medium text-center'>
-      <p> Already have an account ?   <Link to='/login' className='border-b'>please login </Link></p>
+      <p className="text-red-500"> ইতিমধ্যে একটি সদস্যপদ আছে ?   <Link to='/login' className='text-green-600 '>অনুগ্রহ করে লগইন করুন </Link></p>
        </div>
        
      </div>
