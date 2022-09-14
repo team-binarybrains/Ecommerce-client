@@ -14,7 +14,7 @@ const Indicator = ({ className,setMenu }) => {
 
                 
 
-            <p className='font-semibold text-dark'>Item: <span className='font-extrabold text-clr lg:text-white'>$ 0</span></p>
+            <p className='font-semibold text-dark select-none'>Item: <span className='font-extrabold text-clr lg:text-white'>$ 0</span></p>
         </div>
     );
 };

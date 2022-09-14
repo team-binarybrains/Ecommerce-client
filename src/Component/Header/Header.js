@@ -27,11 +27,11 @@ const Header = () => {
 
             <section className='h-16 cont px-5 flex justify-between items-center max-w-7xl mx-auto'>
 
-                <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
+                <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer selection:bg-white selection:text-dark'><span className='text-dark selection:text-clr'>VIP</span> Bazar</NavLink>
                 
-                <Nav className='hidden lg:flex items-center justify-center gap-8'/>
+                <Nav className='hidden lg:flex items-center justify-center gap-8 select-none'/>
                 
-                <Indicator className='hidden lg:flex justify-center gap-8'/>
+                <Indicator className='hidden lg:flex justify-center gap-8 select-none'/>
 
                 {/* menu for mobile device */}
                 <MobileMenu menu={menu} setMenu={setMenu} className='block lg:hidden'/>
