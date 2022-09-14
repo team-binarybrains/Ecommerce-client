@@ -1,6 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import { BiBed, BiBath, BiArea } from "react-icons/bi";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../Hooks/useProductStorage";
 
@@ -27,6 +25,7 @@ const SingleHomepageProducts = ({ value }) => {
       .then((response) => response.json())
       .then((json) => console.log(json));
   };
+
   const navigate = useNavigate();
   const handleDetail = (id) => {
     navigate("/productDetail/" + id);
