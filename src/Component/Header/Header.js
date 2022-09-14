@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
@@ -8,9 +9,13 @@ import MailAndMssg from './MailAndMssg';
 import SocialAndLogin from './SocialAndLogin';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Cart from './Cart/Cart';
+import useProductStore from '../Hooks/useProductStorage';
 
 const Header = () => {
     const [menu,setMenu] = useState(false);
+    const [drawer,setDrawer] = useState(false);
+    const [cartProducts,upserting,deleting,getData] = useProductStore();
+
 
     return (
         <div className='sticky top-0 left-0 right-0 border-b border-clr bg-clr z-[99]'>
@@ -31,12 +36,19 @@ const Header = () => {
                 
                 <Nav className='hidden lg:flex items-center justify-center gap-8 select-none'/>
                 
-                <Indicator className='hidden lg:flex justify-center gap-8 select-none'/>
+                <Indicator setDrawer={setDrawer} setMenu={setMenu} className='hidden lg:flex justify-center gap-8 select-none'/>
 
                 {/* menu for mobile device */}
-                <MobileMenu menu={menu} setMenu={setMenu} className='block lg:hidden'/>
+                <MobileMenu menu={menu} setMenu={setMenu} setDrawer={setDrawer} className='block lg:hidden'/>
 
-                <Cart setMenu={setMenu}/>
+                <Cart
+                drawer={drawer}
+                setMenu={setMenu}
+                upserting={upserting}
+                deleting={deleting}
+                getData={getData}
+                setDrawer={setDrawer}
+                cartProducts={cartProducts}/>
 
             </section>
 

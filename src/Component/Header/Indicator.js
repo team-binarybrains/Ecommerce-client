@@ -1,9 +1,8 @@
 import React from 'react';
 import { BsFillBookmarkHeartFill } from 'react-icons/bs';
 import { MdShoppingCart } from 'react-icons/md';
-import { setDrawer } from './Cart/Cart';
 
-const Indicator = ({ className,setMenu }) => {
+const Indicator = ({ className,setMenu,setDrawer }) => {
 
     return (
         <div className={className}>

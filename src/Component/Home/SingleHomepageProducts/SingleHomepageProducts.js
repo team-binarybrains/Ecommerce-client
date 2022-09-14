@@ -1,14 +1,20 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useProductStore from "../../Hooks/useProductStorage";
+
 const SingleHomepageProducts = ({ value }) => {
+  const [data,upserting] = useProductStore();
+  console.log(data);
 
   const handleaddToCart = (p) => {
     const cartProduct = {
       name: p.name,
       image: p.image,
-      price: p.price,
-      quantity: "1",
+      price: parseFloat(p.price),
+      quantity: 1,
     };
+
+    upserting({...cartProduct,_id:value._id});
     fetch(`http://localhost:5000/cart/${p._id}`, {
       method: "PUT",
       body: JSON.stringify(cartProduct),

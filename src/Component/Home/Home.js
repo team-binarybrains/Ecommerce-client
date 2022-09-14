@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import Checkout from "../Checkout/Checkout";
 import ProductDetail from "../ProductDetails/ProductDetail";
