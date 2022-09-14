@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
+
   const [count, setCount] = useState(0);
   const { productId } = useParams();
+
+  const [products, setProducts] = useState({})
+
+  const {name, image, price, details} = products
+
+ useEffect(() => {
+        if (productId) {
+            fetch(`http://localhost:5000/product/${productId}`)
+                .then(res => res.json())
+                .then(data => {
+                  console.log(data);
+                    setProducts(data)
+                })
+        }
+
+    }, [productId])
+
   const addCount = () => {
     setCount((prev) => prev + 1);
   };
@@ -23,23 +41,18 @@ const ProductDetail = () => {
           <div className=" p-2 lg:p-0 w-full sm:w-96 md:w-8/12 lg:w-5/12 items-center">
             <h2 className=" font-semibold lg:text-3xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4 h-auto lg:w-full">
               {/* {detail.productname} */}
-              পণ্যের নাম : productname
+              পণ্যের নাম : {name}
             </h2>
             <p className="mt-10 font-semibold lg:text-xl text-xl lg:leading-6 leading-5 lg:mt-9 ">
               পণ্য বিবরণী :
             </p>
             <p className="  h-[120px] overflow-y-auto font-normal text-base leading-6 text-gray-600 mt-4">
-              It is a long established fact that a reader will be distracted by
-              the readable content of a page when looking at its layout. The It
-              is a long established fact that a reader will be distracted by the
-              readable content of a page when looking at its layout. The It is a
-              long established fact that a reader will be distracted by the
-              readable content of a page when looking at its layout. The
+              {details}
             </p>
 
             <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-              মূল্য : <span className="text-3xl font-bold">৳</span> 23
-              {/* $ {count > 0 ? detail.price * count : detail.price} */}
+              মূল্য : <span className="text-3xl font-bold">৳ </span> 
+              {price}
             </p>
 
             <div className="lg:mt-11 mt-10">
@@ -86,7 +99,7 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
+                src={image}
                 alt="image"
               />
             </div>
@@ -94,13 +107,13 @@ const ProductDetail = () => {
               <div className=" flex justify-center ">
                 <img
                   className="object-cover"
-                  src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
+                  src={image}
                 />
               </div>
               <div className=" flex justify-center  ">
                 <img
                   className="object-cover"
-                  src="https://i.ibb.co/h9jfKpN/Grapefruit.jpg"
+                  src={image}
                   alt="Wooden chair - preview 2"
                 />
               </div>
