@@ -4,11 +4,15 @@ import SingleProducts from "./SingleProducts";
 
 import { BsSearch } from "react-icons/bs";
 import Loading from "../Share/Loading";
+import { useNavigate } from "react-router-dom";
 
 const AllProducts = () => {
   const [products, loading] = useAllProducts();
   console.log(products);
   const [sesrch, setSesrch] = useState("");
+
+  
+
   //
   return (
     <div>
