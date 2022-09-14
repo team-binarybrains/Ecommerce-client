@@ -1,7 +1,7 @@
 import React from "react";
-import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 const SingleHomepageProducts = ({ value }) => {
+
   const handleaddToCart = (p) => {
     const cartProduct = {
       name: p.name,
@@ -19,6 +19,7 @@ const SingleHomepageProducts = ({ value }) => {
       .then((response) => response.json())
       .then((json) => console.log(json));
   };
+
   const navigate = useNavigate();
   const handleDetail = (id) => {
     navigate("/productDetail/" + id);
