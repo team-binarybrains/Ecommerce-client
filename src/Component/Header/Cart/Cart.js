@@ -8,12 +8,12 @@ const Cart = () => {
 
   return (
     <div
-      className={`fixed w-screen backdrop-blur-sm top-[70px] lg:top-[105px] bottom-0 left-0 right-0 z-[99] ${
-        drawer ? "block" : "hidden"
+      className={`fixed backdrop-blur-[8px] top-[4rem] lg:top-[6.5rem] bottom-0 z-[80] left-0 ${
+        drawer ? 'w-screen' : 'w-0'
       }`}
     >
       <section
-        className={`relative w-full sm:w-[25rem] bg-white h-full ${
+        className={`relative w-full sm:w-[25rem] bg-white h-full border-r-2 ${
           drawer ? style.slideIn : style.slideOut
         }`}
       >

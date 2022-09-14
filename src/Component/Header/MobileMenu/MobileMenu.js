@@ -8,7 +8,7 @@ const MobileMenu = ({menu,setMenu,className}) => {
         <div className={className}>
             <MenuIcon menu={menu} setMenu={setMenu} style={style}/>
 
-            <MenuDrawar menu={menu} setMenu={setMenu} className={`fixed w-screen backdrop-blur-sm top-16 bottom-0 z-[99]  ${menu ? style.slideIn : style.slideOut}`}/>
+            <MenuDrawar menu={menu} setMenu={setMenu} className={`fixed backdrop-blur-[8px] top-16 bottom-0 z-[99] right-0 ${menu ? 'w-screen' : 'w-0'}`}/>
         </div>
     );
 };

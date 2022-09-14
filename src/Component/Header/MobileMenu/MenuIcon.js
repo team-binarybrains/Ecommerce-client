@@ -1,4 +1,5 @@
 import React from 'react';
+import { setDrawer } from '../Cart/Cart';
 
 
 const MenuIcon = ({menu,setMenu,style}) => {
@@ -8,7 +9,7 @@ const MenuIcon = ({menu,setMenu,style}) => {
             <input
                 className={`${style.input}`}
                 type="checkbox" id="check"
-                onChange={(e) => setMenu(e.target.checked)}
+                onChange={(e) => {setMenu(e.target.checked);setDrawer(false)}}
                 checked={menu}
             />
             <span className={`${style.span}`}></span>
