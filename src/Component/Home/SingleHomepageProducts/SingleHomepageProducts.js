@@ -1,5 +1,4 @@
 import React from "react";
-import { BiBed, BiBath, BiArea } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 const SingleHomepageProducts = ({ value }) => {
   const handleaddToCart = (p) => {
