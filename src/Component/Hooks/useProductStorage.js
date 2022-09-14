@@ -17,7 +17,6 @@ const useProductStore = ()=> {
     const [data,setData] = useState([...getProductStore()]);
 
     const upserting = (product) => {
-        console.log(product);
         const allData = [...getProductStore()];
         const index = allData.findIndex(data => data._id === product._id);
 
