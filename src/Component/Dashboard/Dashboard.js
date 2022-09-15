@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AiOutlineUser, AiOutlineAppstoreAdd } from "react-icons/ai";
+import {  AiOutlineAppstoreAdd } from "react-icons/ai";
 import { TiThSmall } from "react-icons/ti";
 import { IoTicket } from "react-icons/io5";
-import { IoMdPersonAdd } from "react-icons/io";
 import { FaUsers } from "react-icons/fa";
-import { faChartBar, faChevronRight, } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, } from "@fortawesome/free-solid-svg-icons";
 import "./Dashboard.css";
 import { Link, Outlet } from "react-router-dom";
 
@@ -31,13 +30,13 @@ const Dashboard = () => {
         </div>
         <div className="drawer-side w-[100%] lg:w-[260px]">
           <label htmlFor="open-dashboard-menu" className="drawer-overlay "></label>
-          <ul className="menu overflow-y-auto  bg-[#1e293b] gap-y-5 py-5 border-r-1 w-[50%] lg:w-[100%] border-r-1 shadow-lg  text-white">
+          <ul className="menu overflow-y-auto  bg-[#1e293b] gap-y-5 py-5 px-3 border-r-1 w-[50%] lg:w-[100%] border-r-1 shadow-lg  text-white">
             {/* <!-- Sidebar content here --> */}
 
             {/* Route for admin */}
-            <li className="text-base hover:bg-[#0f172a]  rounded px-2">
+            <li className="text-base hover:bg-[#0f172a]  rounded">
               <Link
-                className="flex justify-center items-center gap-2"
+                className="flex items-center "
                 to={"/dashboard/all-users"}
               >
                 <FaUsers className="text-xl" />
@@ -45,9 +44,9 @@ const Dashboard = () => {
               </Link>
             </li>
 
-            <li className="text-base hover:bg-[#0f172a]  rounded px-2">
+            <li className="text-base hover:bg-[#0f172a]  rounded ">
               <Link
-                className="flex justify-center items-center gap-2"
+                className="flex items-center"
                 to={"/dashboard/all-order"}
               >
                 <TiThSmall className="text-xl" />
@@ -57,7 +56,7 @@ const Dashboard = () => {
 
             <li className="text-base hover:bg-[#0f172a]  rounded">
               <Link
-                className="flex justify-center items-center gap-2 "
+                className="flex items-center"
                 to={"/dashboard/add-product"}
               >
                 <AiOutlineAppstoreAdd className="text-xl" />
@@ -69,7 +68,7 @@ const Dashboard = () => {
             {/* Route for user */}
             <li className="text-base hover:bg-[#0f172a]  rounded">
               <Link
-                className="flex justify-center items-center gap-2 "
+                className="flex items-center"
                 to={"/dashboard/my-orders"}
               >
                 <IoTicket className="text-xl" />
