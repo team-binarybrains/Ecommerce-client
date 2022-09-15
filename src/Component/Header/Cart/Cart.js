@@ -22,7 +22,7 @@ const Cart = ({drawer,setDrawer,upserting,deleting,getData,cartProducts}) => {
         }`}
       >
         <section className="flex flex-wrap-reverse items-center justify-between px-2 gap-x-5">
-          <h1 className="text-dark font-bold text-lg inline-flex gap-2 items-center">Product in Cart : <span className="text-clr text-2xl">{cartProducts.length}</span></h1>
+          <h1 className="text-dark font-bold text-lg inline-flex gap-2 items-center select-none">Product in Cart : <span className="text-clr text-2xl">{cartProducts.length}</span></h1>
           <button
             className="btn btn-ghost"
             onClick={() => {
