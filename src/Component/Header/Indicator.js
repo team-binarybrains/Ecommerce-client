@@ -1,9 +1,8 @@
 import React from 'react';
 import { BsFillBookmarkHeartFill } from 'react-icons/bs';
 import { MdShoppingCart } from 'react-icons/md';
-import { setDrawer } from './Cart/Cart';
 
-const Indicator = ({ className,setMenu }) => {
+const Indicator = ({ className,setMenu,setDrawer }) => {
 
     return (
         <div className={className}>
@@ -14,7 +13,7 @@ const Indicator = ({ className,setMenu }) => {
 
                 
 
-            <p className='font-semibold text-dark'>Item: <span className='font-extrabold text-clr lg:text-white'>$ 0</span></p>
+            <p className='font-semibold text-dark select-none'>Item: <span className='font-extrabold text-clr lg:text-white'>$ 0</span></p>
         </div>
     );
 };

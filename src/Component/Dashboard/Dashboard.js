@@ -37,7 +37,7 @@ const Dashboard = () => {
             <li className="text-base hover:bg-[#0f172a]  rounded">
               <Link
                 className="flex items-center "
-                to={"/dashboard/all-users"}
+                to={"/dashboard"}
               >
                 <FaUsers className="text-xl" />
                 <span className=" font-bold"> ALL USERS</span>

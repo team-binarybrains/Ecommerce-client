@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
@@ -8,9 +9,13 @@ import MailAndMssg from './MailAndMssg';
 import SocialAndLogin from './SocialAndLogin';
 import MobileMenu from './MobileMenu/MobileMenu';
 import Cart from './Cart/Cart';
+import useProductStore from '../Hooks/useProductStorage';
 
-const Header = () => {
+
+const Header = ({drawer,setDrawer}) => {
     const [menu,setMenu] = useState(false);
+    const [cartProducts,upserting,deleting,getData] = useProductStore();
+
 
     return (
         <div className='sticky top-0 left-0 right-0 border-b border-clr bg-clr z-[99]'>
@@ -27,16 +32,23 @@ const Header = () => {
 
             <section className='h-16 cont px-5 flex justify-between items-center max-w-7xl mx-auto'>
 
-                <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer'><span className='text-dark'>VIP</span> Bazar</NavLink>
+                <NavLink onClick={() => setMenu(false)} to={'/'} className='cairo text-white font-extrabold text-3xl cursor-pointer selection:bg-white selection:text-dark'><span className='text-dark selection:text-clr'>VIP</span> Bazar</NavLink>
                 
-                <Nav className='hidden lg:flex items-center justify-center gap-8'/>
+                <Nav className='hidden lg:flex items-center justify-center gap-8 select-none'/>
                 
-                <Indicator className='hidden lg:flex justify-center gap-8'/>
+                <Indicator setDrawer={setDrawer} setMenu={setMenu} className='hidden lg:flex justify-center gap-8 select-none'/>
 
                 {/* menu for mobile device */}
-                <MobileMenu menu={menu} setMenu={setMenu} className='block lg:hidden'/>
+                <MobileMenu menu={menu} setMenu={setMenu} setDrawer={setDrawer} className='block lg:hidden'/>
 
-                <Cart setMenu={setMenu}/>
+                <Cart
+                drawer={drawer}
+                setMenu={setMenu}
+                upserting={upserting}
+                deleting={deleting}
+                getData={getData}
+                setDrawer={setDrawer}
+                cartProducts={cartProducts}/>
 
             </section>
 

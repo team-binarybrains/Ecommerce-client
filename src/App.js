@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Component/Home/Home";
@@ -14,6 +14,7 @@ import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 
 function App() {
+  const [drawer, setDrawer] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,26 +22,26 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header drawer={drawer} setDrawer={setDrawer} />
       <section className="max-w-7xl mx-auto min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-
-          {/*-------------- dashboard start ------------------*/}
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="all-users" element={<AllUser />} />
-            <Route path="all-orders" element={<AllOrders />} />
-            <Route path="add-product" element={<AddProduct />} />
-            <Route path="my-orders" element={<MyOrders />} />
-          </Route>
-          {/*-------------- dashboard end ------------------*/}
-
           <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/checkout" element={<Checkout drawer={drawer} />}></Route>
           <Route
             path="/productDetail/:productId"
             element={<ProductDetail />}
           ></Route>
           <Route path="/allProducts" element={<AllProducts />}></Route>
+
+          {/*-------------- dashboard start ------------------*/}
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard" element={<AllUser />} ></Route>
+            <Route path="all-orders" element={<AllOrders />} ></Route>
+            <Route path="add-product" element={<AddProduct />} ></Route>
+            <Route path="my-orders" element={<MyOrders />} ></Route>
+          </Route>
+          {/*-------------- dashboard end ------------------*/}
         </Routes>
       </section>
 
