@@ -59,13 +59,14 @@ const ProductDetail = () => {
 
           <div className=" p-2 lg:p-0 w-full sm:w-96 md:w-8/12 lg:w-5/12 items-center">
             <h2 className=" font-semibold lg:text-3xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4 h-auto lg:w-full">
-              {/* {detail.productname} */}
               {name}
             </h2>
 
             <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
               মূল্য : <span className="text-3xl font-bold">৳ </span>
-              {price}
+              <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
+                $ {count > 0 ? price * count : price}
+              </p>
             </p>
 
             <div className="lg:mt-11 mt-10">

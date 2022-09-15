@@ -21,6 +21,20 @@
   border-radius: 2px;
 }
 
+.thin-scroll::-webkit-scrollbar {
+  @apply w-2;
+}
+
+/* Track */
+.thin-scroll::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+/* Handle */
+.thin-scroll::-webkit-scrollbar-thumb {
+  @apply bg-clr rounded-full;
+}
+
 /* fonts */
 .cairo {
   font-family: "Cairo", sans-serif !important;
@@ -28,4 +42,11 @@
 
 .satisfy {
   font-family: "Satisfy", cursive !important;
+}
+
+
+@layer components{
+  .bdr{
+    @apply border-4 border-dark;
+  }
 }

@@ -2,20 +2,15 @@ import React, { useState } from "react";
 import useAllProducts from "../Hooks/useAllProducts";
 import SingleProducts from "./SingleProducts";
 
-import { BsSearch } from "react-icons/bs";
 import Loading from "../Share/Loading";
-import { useNavigate } from "react-router-dom";
 
 const AllProducts = () => {
   const [products, loading] = useAllProducts();
   console.log(products);
   const [sesrch, setSesrch] = useState("");
 
-  
-
-  //
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className=" mt-10 ">
         <form className="max-w-2xl mx-auto px-3 lg:px-0">
           <div class="relative">
