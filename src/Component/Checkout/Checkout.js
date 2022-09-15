@@ -51,7 +51,7 @@ const Checkout = ({drawer}) => {
                     <p className="text-2xl font-bold">পণ্য :</p>
                     <p className="text-2xl font-bold">দাম :</p>
                   </div>
-                  <section className="h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
+                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
 
                     {
                       bookedData?.map((product) =>
@@ -310,7 +310,7 @@ const Checkout = ({drawer}) => {
                     <p className="text-2xl font-bold">পণ্য :</p>
                     <p className="text-2xl font-bold">দাম :</p>
                   </div>
-                  <section className="h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
+                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
 
                     {
                       bookedData?.map((product) =>
