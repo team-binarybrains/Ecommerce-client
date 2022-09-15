@@ -8,7 +8,7 @@ import ProductDetail from "./Component/ProductDetails/ProductDetail";
 import Footer from "./Component/Footer/Footer";
 import Checkout from "./Component/Checkout/Checkout";
 import AllProducts from "./Component/AllProducts/AllProducts";
-import AllUser from "./Component/Dashboard/AllUser/AllUser"
+import AllUser from "./Component/Dashboard/AllUser/AllUser";
 import AllOrders from "./Component/Dashboard/AllOrders/AllOrders";
 import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
@@ -23,11 +23,14 @@ function App() {
   return (
     <div>
       <Header drawer={drawer} setDrawer={setDrawer} />
-      <section className="max-w-7xl mx-auto min-h-[calc(100vh-365px)]">
+      <section className=" min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/checkout" element={<Checkout drawer={drawer} />}></Route>
+          <Route
+            path="/checkout"
+            element={<Checkout drawer={drawer} />}
+          ></Route>
           <Route
             path="/productDetail/:productId"
             element={<ProductDetail />}
@@ -36,10 +39,10 @@ function App() {
 
           {/*-------------- dashboard start ------------------*/}
           <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="/dashboard" element={<AllUser />} ></Route>
-            <Route path="all-orders" element={<AllOrders />} ></Route>
-            <Route path="add-product" element={<AddProduct />} ></Route>
-            <Route path="my-orders" element={<MyOrders />} ></Route>
+            <Route path="/dashboard" element={<AllUser />}></Route>
+            <Route path="all-orders" element={<AllOrders />}></Route>
+            <Route path="add-product" element={<AddProduct />}></Route>
+            <Route path="my-orders" element={<MyOrders />}></Route>
           </Route>
           {/*-------------- dashboard end ------------------*/}
         </Routes>

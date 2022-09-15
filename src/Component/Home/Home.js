@@ -6,7 +6,7 @@ import HomePageProducts from "./HomepageProducts/HomePageProducts";
 
 const Home = () => {
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <HomePageProducts />
     </div>
   );

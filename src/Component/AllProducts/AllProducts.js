@@ -11,11 +11,9 @@ const AllProducts = () => {
   console.log(products);
   const [sesrch, setSesrch] = useState("");
 
-  
-
   //
   return (
-    <div>
+    <div className="max-w-7xl mx-auto">
       <div className=" mt-10 ">
         <form className="max-w-2xl mx-auto px-3 lg:px-0">
           <div class="relative">
