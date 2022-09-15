@@ -55,10 +55,14 @@ const Checkout = ({drawer}) => {
 
                     {
                       bookedData?.map((product) =>
-                        <div key={product._id} className="flex justify-between items-center h-16 snap-start">
+                        <div
+                        key={product._id}
+                        className={`justify-between items-center h-16 snap-start ${product.quantity>0?'flex':'hidden'}`}>
                           <p className="text-clr font-bold inline-flex items-center text-xl">
+                          <span className="text-dark text-base">{product.name}</span>
+                          <ImCross className="w-3 h-3 ml-3 mr-0.5"/>
                             {product.quantity}
-                            <ImCross className="w-3 h-3 ml-0.5 mr-2" /> <span className="text-dark text-base">{product.name}</span></p>
+                            </p>
                           <p>
                             <span className="text-xl font-bold">৳ </span>
                             {product.price * product.quantity}
@@ -314,7 +318,9 @@ const Checkout = ({drawer}) => {
 
                     {
                       bookedData?.map((product) =>
-                        <div key={product._id} className="flex justify-between items-center h-16 snap-start">
+                        <div
+                        key={product._id}
+                        className={`justify-between items-center h-16 snap-start ${product.quantity>0?'flex':'hidden'}`}>
                           <p className="text-clr font-bold inline-flex items-center text-xl">
                             {product.quantity}
                             <ImCross className="w-3 h-3 ml-0.5 mr-2" /> <span className="text-dark text-base">{product.name}</span></p>
