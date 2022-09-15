@@ -26,7 +26,6 @@ function App() {
       <section className="max-w-7xl mx-auto min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/checkout" element={<Checkout drawer={drawer} />}></Route>
           <Route
             path="/productDetail/:productId"
