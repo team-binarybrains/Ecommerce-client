@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useProductStore from "../Hooks/useProductStorage";
 
 const SingleProducts = ({ value }) => {
+  const navigate = useNavigate();
   const [data,upserting] = useProductStore();
 
   const handleaddToCart = (p) => {
@@ -11,7 +12,7 @@ const SingleProducts = ({ value }) => {
       name: p.name,
       image: p.image,
       price: parseFloat(p.price),
-      quantity: 1,
+      quantity: data?.find(p=> p._id===value._id)?data?.find(p=> p._id===value._id).quantity:1,
     };
 
     upserting({...cartProduct,_id:value._id});
@@ -24,8 +25,10 @@ const SingleProducts = ({ value }) => {
     })
       .then((response) => response.json())
       .then((json) => console.log(json));
+      navigate('/checkout');
   };
-  const navigate = useNavigate();
+
+
   const handleDetail = (id) => {
     navigate("/productDetail/" + id);
   };
