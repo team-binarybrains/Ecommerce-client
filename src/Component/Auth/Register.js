@@ -15,14 +15,7 @@ const Register = () => {
 
       const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
 
-      if(loading || loadinguserGoogle ){
-        return <Loading></Loading>
-      }
-
-      if(user || userGoogle){
-        navigate('/');
-      }
-    const handleRegister = ( event )=>{
+      const handleRegister = ( event )=>{
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
@@ -30,6 +23,16 @@ const Register = () => {
         console.log(name, email, password);
         createUserWithEmailAndPassword(name, email, password)
     }
+
+
+      if(loading || loadinguserGoogle ){
+        return <Loading></Loading>
+      }
+
+      if(user || userGoogle){
+        navigate('/');
+      }
+   
     return (
         <div className="mt-16 py-10">
 
