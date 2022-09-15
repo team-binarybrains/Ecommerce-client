@@ -1,8 +1,6 @@
 import React from 'react';
-import { setDrawer } from '../Cart/Cart';
 
-
-const MenuIcon = ({menu,setMenu,style}) => {
+const MenuIcon = ({menu,setMenu,style,setDrawer}) => {
 
     return (
         <label className={`${style.label}`} htmlFor="check">
