@@ -47,7 +47,7 @@ const Dashboard = () => {
             <li className="text-base hover:bg-[#0f172a]  rounded ">
               <Link
                 className="flex items-center"
-                to={"/dashboard/all-order"}
+                to={"/dashboard/all-orders"}
               >
                 <TiThSmall className="text-xl" />
                 <span className=" font-bold"> ALL ORDERS</span>
