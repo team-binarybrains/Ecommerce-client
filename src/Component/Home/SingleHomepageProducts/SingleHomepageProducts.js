@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../Hooks/useProductStorage";
 
 const SingleHomepageProducts = ({ value }) => {
   const [data,upserting] = useProductStore();
-  console.log(data);
 
   const handleaddToCart = (p) => {
     const cartProduct = {
