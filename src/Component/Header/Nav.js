@@ -22,9 +22,6 @@ const Nav = ({ className, hideMenuFn }) => {
       <NavLink onClick={hideMenuFn} to={"/dashboard"} className={navStyle}>
         ড্যাশবোর্ড
       </NavLink>
-      <NavLink onClick={hideMenuFn} to={"/contact"} className={navStyle}>
-        যোগাযোগ
-      </NavLink>
     </div>
   );
 };

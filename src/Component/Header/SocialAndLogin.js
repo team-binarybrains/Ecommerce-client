@@ -1,9 +1,17 @@
 import React from "react";
 import { GrFacebookOption, GrTwitter, GrLinkedinOption } from "react-icons/gr";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaPinterestP, FaUser } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 const SocialAndLogin = ({ className }) => {
+  const [user] = useAuthState(auth);
+  const handelSignOut = () => {
+    signOut(auth);
+  };
+
   return (
     <div className={className}>
       <nav className="flex justify-center items-center gap-5 text-dark">
@@ -13,11 +21,26 @@ const SocialAndLogin = ({ className }) => {
         <FaPinterestP className="cursor-pointer" />
       </nav>
       <div className="divider lg:divider-horizontal my-0" />
-      <Link to="login">
-        <button className="flex justify-center items-center gap-2 cursor-pointer text-dark">
-          <FaUser /> Login
+      {/* auth */}
+      
+      {user ? (
+        <button
+          className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+          onClick={handelSignOut}
+        >
+          signOut{" "}
         </button>
-      </Link>
+      ) : (
+        <Link
+          to="/register"
+          className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+        >
+          {" "}
+          <span className="flex items-center gap-5">
+            <FaUser /> Register
+          </span>{" "}
+        </Link>
+      )}
     </div>
   );
 };

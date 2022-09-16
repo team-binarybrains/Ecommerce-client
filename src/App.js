@@ -9,6 +9,9 @@ import ProductDetail from "./Component/ProductDetails/ProductDetail";
 import Footer from "./Component/Footer/Footer";
 import Checkout from "./Component/Checkout/Checkout";
 import AllProducts from "./Component/AllProducts/AllProducts";
+
+import Login from "./Component/Auth/Login";
+import Register from "./Component/Auth/Register";
 import AllUser from "./Component/Dashboard/AllUser/AllUser";
 import AllOrders from "./Component/Dashboard/AllOrders/AllOrders";
 import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
@@ -28,6 +31,9 @@ function App() {
       <section className=" min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
+
+          <Route path="/checkout" element={<Checkout />}></Route>
           <Route
             path="/checkout"
             element={<Checkout drawer={drawer} />}
@@ -37,6 +43,10 @@ function App() {
             element={<ProductDetail />}
           ></Route>
           <Route path="/allProducts" element={<AllProducts />}></Route>
+                         {/* auth */}
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/register" element={<Register />}></Route>
+
 
           {/*-------------- dashboard start ------------------*/}
           <Route path="/dashboard" element={<Dashboard />}>
