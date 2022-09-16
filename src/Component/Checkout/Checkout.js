@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
@@ -9,10 +9,15 @@ const Checkout = ({drawer}) => {
   const navigate = useNavigate();
   const [bookedData,,,getData] = useProductStore();
   const [deliveryCost,setDeliveryCost] = useState(0);
+  const dCost = useRef();
   
+  const totalPrice = ()=> {
+    return bookedData?.reduce((total,product) => total+(product.quantity*product.price),0);
+  };
+
   useEffect(()=> {
       getData();
-      bookedData.length && setDeliveryCost(0);
+      setDeliveryCost(dCost.current);
   },[drawer]);
   /* const countries = ["China", "Russia", "UK"];
   const [menu, setMenu] = useState(false);
@@ -23,12 +28,9 @@ const Checkout = ({drawer}) => {
     setCountry(e.target.textContent);
   }; */
 
-  const totalPrice = ()=> {
-    return bookedData?.reduce((total,product) => total+(product.quantity*product.price),0);
-  };
 
   return (
-    <div>
+    <div className="max-w-7xl mx-auto sm:px-2">
       <div className="hidden sm:block">
         <div className="py-16 px-4">
           <div className="w-full space-y-9">
@@ -51,7 +53,7 @@ const Checkout = ({drawer}) => {
                     <p className="text-2xl font-bold">পণ্য :</p>
                     <p className="text-2xl font-bold">দাম :</p>
                   </div>
-                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
+                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll snap-y snap-mandatory">
 
                     {
                       bookedData?.map((product) =>
@@ -59,10 +61,10 @@ const Checkout = ({drawer}) => {
                         key={product._id}
                         className={`justify-between items-center h-16 snap-start ${product.quantity>0?'flex':'hidden'}`}>
                           <p className="text-clr font-bold inline-flex items-center text-xl">
-                          <span className="text-dark text-base">{product.name}</span>
-                          <ImCross className="w-3 h-3 ml-3 mr-0.5"/>
+                            <span className="text-dark text-base">{product.name}</span>
+                            <ImCross className="w-3 h-3 ml-3 mr-0.5" />
                             {product.quantity}
-                            </p>
+                          </p>
                           <p>
                             <span className="text-xl font-bold">৳ </span>
                             {product.price * product.quantity}
@@ -76,7 +78,7 @@ const Checkout = ({drawer}) => {
                 <div>
                   <div className="flex justify-between mt-7 mb-5">
                     <p className="text-xl ">মোট =</p>
-                    <p className="text-xl mr-4">
+                    <p className="text-xl">
                       <span className="text-xl font-bold">৳ </span>
                       {
                         totalPrice()
@@ -91,7 +93,7 @@ const Checkout = ({drawer}) => {
                     <section className="flex justify-between mt-7">
                       <label className="cursor-pointer select-none" htmlFor="outSideDhaka">
                         <input
-                          onClick={(e)=> setDeliveryCost(parseInt(e.target.value))}
+                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                           className="mr-2 font-bold cursor-pointer"
                           type="radio"
                           name="place"
@@ -110,7 +112,7 @@ const Checkout = ({drawer}) => {
                     <section className="flex justify-between mt-7 mb-5">
                       <label className="cursor-pointer select-none" htmlFor="inSideDhaka">
                         <input
-                          onClick={(e)=> setDeliveryCost(parseInt(e.target.value))}
+                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                           className="mr-2 font-bold cursor-pointer"
                           type="radio"
                           name="place"
@@ -133,7 +135,7 @@ const Checkout = ({drawer}) => {
                       <p className="text-xl font-bold">
                         <span className="text-2xl font-bold">৳ </span>
                         {
-                          totalPrice()+deliveryCost
+                          totalPrice()?totalPrice()+deliveryCost:0
                         }
                       </p>
                     </div>
@@ -199,10 +201,10 @@ const Checkout = ({drawer}) => {
 
       {/* for phone */}
       <div className="flex justify-center items-center lg:hidden md:hidden">
-        <div className="py-16 px-4 md:px-6 2xl:px-0 flex justify-center items-center 2xl:mx-auto 2xl:container">
+        <div className="py-16 px-2 flex justify-center items-center">
           <div className="flex flex-col justify-start items-start w-full space-y-9">
             <div className="flex flex-col xl:flex-row justify-center xl:justify-between space-y-6 xl:space-y-0 xl:space-x-6 w-full">
-              <div className="p-8 bg-gray-100 flex flex-col lg:w-full xl:w-3/5">
+              <div className="py-8 px-4 bg-gray-100 flex flex-col lg:w-full xl:w-3/5">
                 <div className="flex flex-row justify-center items-center mt-6">
                   <hr className="border w-full" />
                   <p className="flex flex-shrink-0 px-4  leading-4 text-gray-600 text-3xl">
@@ -258,7 +260,7 @@ const Checkout = ({drawer}) => {
                           id="outDhaka"
                           value={200}
                           disabled={!totalPrice()}
-                          onClick={(e)=> setDeliveryCost(parseInt(e.target.value))}
+                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                         />
                         ঢাকার বাহিরে :
                       </label>
@@ -280,7 +282,7 @@ const Checkout = ({drawer}) => {
                           id="inDhaka"
                           value={100}
                           disabled={!totalPrice()}
-                          onClick={(e)=> setDeliveryCost(parseInt(e.target.value))}
+                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                         />
                         ঢাকার ভিতর:
                       </label>
@@ -305,39 +307,46 @@ const Checkout = ({drawer}) => {
                     <FaLongArrowAltLeft />
                     <p className="text-lg leading-none font-bold">Back</p>
                   </button>
-                  <p className="pt-5 text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
+                  <p className="pt-2 pb-5 text-2xl font-semibold text-dark">
                     আপনার অর্ডার
                   </p>
                 </div>
-                <div className="mt-5">
+
+                <div className="">
                   <div className="flex justify-between ">
-                    <p className="text-2xl font-bold">পণ্য :</p>
-                    <p className="text-2xl font-bold">দাম :</p>
+                    <p className="text-lg font-bold">পণ্য :</p>
+                    <p className="text-lg font-bold">দাম :</p>
                   </div>
-                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll pr-3 snap-y snap-mandatory">
+                  <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll snap-y snap-mandatory">
 
                     {
                       bookedData?.map((product) =>
                         <div
-                        key={product._id}
-                        className={`justify-between items-center h-16 snap-start ${product.quantity>0?'flex':'hidden'}`}>
-                          <p className="text-clr font-bold inline-flex items-center text-xl">
-                            {product.quantity}
-                            <ImCross className="w-3 h-3 ml-0.5 mr-2" /> <span className="text-dark text-base">{product.name}</span></p>
-                          <p>
-                            <span className="text-xl font-bold">৳ </span>
+                          key={product._id}
+                          className={`justify-between items-start h-16 snap-start gap-x-3 ${product.quantity > 0 ? 'flex' : 'hidden'}`}>
+
+                          <p className="text-clr font-bold inline-flex items-start grow-0 shrink basis-[80%]">
+                            <span>{product.quantity}</span>
+                            <ImCross className="w-2 h-[1.5rem] ml-0.5 mr-1" />
+                            <span className="text-dark font-normal text-xs pt-[0.25rem] basis-[85%]">{product.name}</span>
+                          </p>
+
+                          <p className="font-bold text-xs leading-6 shrink-0">
+                            <span className="font-extrabold">৳ </span>
                             {product.price * product.quantity}
                           </p>
+
                         </div>)
                     }
 
                   </section>
                 </div>
+                
                 <div>
-                  <div className="flex justify-between mt-7 mb-5">
-                    <p className="text-xl ">সর্বমোট =</p>
-                    <p className="text-xl font-bold">
-                      <span className="text-2xl font-bold">৳ </span>
+                  <div className="flex justify-between items-center mt-7 mb-5">
+                    <p className="text-lg font-bold">সর্বমোট =</p>
+                    <p className="text-lg font-bold">
+                      <span className=''>৳ </span>
                       {totalPrice()+deliveryCost}
                     </p>
                   </div>
