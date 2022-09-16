@@ -22,8 +22,8 @@ const Register = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (user) {
-      navigate("/");
+    if (user || userGoogle) {
+      navigate("/")
     }
   }, [ user, navigate]);
 
