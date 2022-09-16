@@ -30,12 +30,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/dashboard" element={<Dashboard />}></Route>
-
-          <Route path="/checkout" element={<Checkout />}></Route>
-          <Route
-            path="/checkout"
-            element={<Checkout drawer={drawer} />}
-          ></Route>
           <Route
             path="/checkout"
             element={<Checkout drawer={drawer} />}
