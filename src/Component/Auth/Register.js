@@ -1,26 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
+  useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import usePerson from "../Hooks/usePerson.js";
 import Loading from "../Share/Loading";
 
 const Register = () => {
   const navigate = useNavigate();
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
 
-  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] =
-    useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword,
+    user,
+    loading,
+    error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
-  const handleRegister = (event) => {
+  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
+
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth)
+
+
+  const handleRegister = async (event) => {
     event.preventDefault();
+    const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
+    await updateProfile({ displayName: name })
   };
+
+  const userData = usePerson(user || userGoogle)
+
+ 
+    if (user || userGoogle) {
+      navigate("/")
+    }
+ 
 
   if (loading || loadinguserGoogle) {
     return <Loading></Loading>;
