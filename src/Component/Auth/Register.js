@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -8,12 +8,10 @@ import auth from "../../firebase.init";
 import Loading from "../Share/Loading";
 
 const Register = () => {
-  const navigate = useNavigate();
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
 
-  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] =
-    useSignInWithGoogle(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -21,6 +19,13 @@ const Register = () => {
     const password = event.target.password.value;
     createUserWithEmailAndPassword(email, password);
   };
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [ user, navigate]);
 
   if (loading || loadinguserGoogle) {
     return <Loading></Loading>;
