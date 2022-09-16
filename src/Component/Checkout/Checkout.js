@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 import useProductStore from "../Hooks/useProductStorage";
+import { getCookie, setCookie } from "../Hooks/useCookie";
+import { toast } from "react-toastify";
 
 const Checkout = ({drawer}) => {
   const navigate = useNavigate();
@@ -17,20 +19,34 @@ const Checkout = ({drawer}) => {
 
   useEffect(()=> {
       getData();
-      setDeliveryCost(dCost.current);
+      setDeliveryCost(dCost.current || 0);
   },[drawer]);
-  /* const countries = ["China", "Russia", "UK"];
-  const [menu, setMenu] = useState(false);
-  const [country, setCountry] = useState("United States");
 
-  const changeText = (e) => {
-    setMenu(false);
-    setCountry(e.target.textContent);
-  }; */
 
+  const confirmingOrder = (e)=> {
+      e.preventDefault();
+      
+      const order = {
+        name: e.target.name.value,
+        address: e.target.address.value,
+        phone: e.target.phone.value,
+        product: bookedData,
+      }
+      // console.dir(order);
+      if (getCookie(order.phone)) {
+        toast.error(`Can't order with in 72 hour of your previous booking`,{theme:'colored'})
+      } else {
+        setCookie(order.phone);
+
+        //code for order send to the server
+
+        toast.success(`Order successfully booked`)
+      }
+  }
 
   return (
     <div className="max-w-7xl mx-auto sm:px-2">
+
       <div className="hidden sm:block">
         <div className="py-16 px-4">
           <div className="w-full space-y-9">
@@ -151,47 +167,48 @@ const Checkout = ({drawer}) => {
                   </p>
                   <hr className="border w-full" />
                 </div>
-                <div>
                   <p className="text-gray-600 text-base pt-5 leading-7">
                     অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার,
                     লিখে অর্ডার কনফার্ম বাটনে ক্লিক করুন
                   </p>
-                </div>
-                <label className="mt-8 text-base leading-4 text-gray-800">
-                  আপনার নাম
-                </label>
-                <div className="mt-3">
+                
+                <form onSubmit={confirmingOrder} className="flex flex-col">
+                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="name">
+                    আপনার নাম
+                    <input
+                      className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
+                      type="text"
+                      placeholder="আপনার নাম"
+                      id="name"
+                      name="name"
+                    />
+                  </label>
+                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="address">
+                    আপনার ঠিকানা
+                    <input
+                      className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
+                      type="text"
+                      placeholder="আপনার ঠিকানা"
+                      id="address"
+                      name="address"
+                    />
+                  </label>
+                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="phone">
+                    আপনার মোবাইল
+                    <input
+                      className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
+                      type="text"
+                      placeholder="আপনার মোবাইল"
+                      id="phone"
+                      name="phone"
+                    />
+                  </label>
                   <input
-                    className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="আপনার নাম"
-                  />
-                </div>
-                <label className="mt-8 text-base leading-4 text-gray-800">
-                  আপনার ঠিকানা
-                </label>
-                <div className="mt-3">
-                  <input
-                    className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="আপনার ঠিকানা"
-                  />
-                </div>
-                <label className="mt-8 text-base leading-4 text-gray-800">
-                  আপনার মোবাইল
-                </label>
-                <div className="mt-3">
-                  <input
-                    className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="আপনার মোবাইল"
-                  />
-                </div>
-                <button 
-                className="mt-8 border border-transparent hover:border-gray-300 bg-clr transition duration-300 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full text-base leading-4 disabled:bg-clr/50 disabled:hover:bg-clr/50 disabled:hover:text-white disabled:cursor-not-allowed"
-                disabled={!totalPrice()}>
-                  অর্ডার কনফার্ম করুন
-                </button>
+                    type='submit'
+                    className="mt-8 border border-transparent hover:border-gray-300 bg-clr transition duration-300 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full text-base leading-4 disabled:bg-clr/50 disabled:hover:bg-clr/50 disabled:hover:text-white disabled:cursor-not-allowed cursor-pointer"
+                    value='অর্ডার কনফার্ম করুন'
+                    disabled={!totalPrice()} />
+                </form>
               </div>
             </div>
           </div>
@@ -218,16 +235,15 @@ const Checkout = ({drawer}) => {
                     লিখে অর্ডার কনফার্ম বাটনে ক্লিক করুন
                   </p>
                 </div>
-                <label className="mt-8 text-base leading-4 text-gray-800">
+                <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="name">
                   আপনার নাম
-                </label>
-                <div className="mt-3">
                   <input
-                    className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                     type="text"
                     placeholder="আপনার নাম"
+                    id="name"
                   />
-                </div>
+                  </label>
                 <label className="mt-8 text-base leading-4 text-gray-800">
                   আপনার ঠিকানা
                 </label>

@@ -16,16 +16,7 @@ const SingleHomepageProducts = ({ value }) => {
     };
 
     upserting({...cartProduct,_id:value._id});
-    fetch(`http://localhost:5000/cart/${p._id}`, {
-      method: "PUT",
-      body: JSON.stringify(cartProduct),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
-      navigate('/checkout');
+    navigate('/checkout');
   };
 
   const handleDetail = (id) => {

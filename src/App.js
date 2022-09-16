@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Component/Home/Home";
@@ -12,6 +13,7 @@ import AllUser from "./Component/Dashboard/AllUser/AllUser";
 import AllOrders from "./Component/Dashboard/AllOrders/AllOrders";
 import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
 import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const [drawer, setDrawer] = useState(false);
@@ -26,10 +28,6 @@ function App() {
       <section className=" min-h-[calc(100vh-365px)]">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route
-            path="/checkout"
-            element={<Checkout drawer={drawer} />}
-          ></Route>
           <Route
             path="/checkout"
             element={<Checkout drawer={drawer} />}
@@ -52,6 +50,7 @@ function App() {
       </section>
 
       <Footer />
+      <ToastContainer/>
     </div>
   );
 }
