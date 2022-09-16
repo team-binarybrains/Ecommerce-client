@@ -3,6 +3,8 @@ import { useQuery } from "react-query";
 import SingleUser from "./SingleUser";
 
 function AllUser() {
+  const [show, setShow] = useState(8);
+  const [search, setSearch] = useState("");
   const {
     data: users,
     isLoading,
@@ -12,6 +14,9 @@ function AllUser() {
       method: "GET",
     }).then((res) => res.json())
   );
+  const handleLoadmore = () => {
+    setShow((visible) => visible + 4);
+  };
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -30,6 +35,7 @@ function AllUser() {
                 </svg>
               </span>
               <input
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search"
                 class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
@@ -61,21 +67,26 @@ function AllUser() {
                   </tr>
                 </thead>
                 <tbody>
-                  {users?.map((user) => (
-                    <SingleUser user={user} />
-                  ))}
+                  {users
+                    ?.slice(0, show)
+                    ?.filter((user) =>
+                      user.email.toLowerCase().includes(search)
+                    )
+                    ?.map((user) => (
+                      <SingleUser user={user} />
+                    ))}
                 </tbody>
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
-                  Showing 1 to 4 of 50 Entries
+                  Showing 1 to {users.length} of {users.length} Entries
                 </span>
                 <div class="inline-flex mt-2 xs:mt-0">
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-                    Prev
-                  </button>
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-                    Next
+                  <button
+                    onClick={handleLoadmore}
+                    class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l"
+                  >
+                    Load More...
                   </button>
                 </div>
               </div>
