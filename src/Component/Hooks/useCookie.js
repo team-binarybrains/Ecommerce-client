@@ -8,7 +8,7 @@ const setCookie = (key)=> {
     d.setTime(d.getTime() + (10 * 1000));
     // d.setTime(d.getTime() + (3 * 24 * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = key + "=" + true + ";" + expires + ";path=/checkout";
+    document.cookie = key + "=" + true + ";" + expires + ";path=/";
 }
 
 export {getCookie,setCookie};
