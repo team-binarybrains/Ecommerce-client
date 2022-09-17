@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaLongArrowAltLeft } from 'react-icons/fa';
-import { ImCross } from 'react-icons/im';
+import { FaLongArrowAltLeft } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 import useProductStore from "../Hooks/useProductStorage";
 import { getCookie, setCookie } from "../Hooks/useCookie";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Checkout = ({drawer}) => {
+const Checkout = ({ drawer }) => {
   const navigate = useNavigate();
   const {data:bookedData,getData,clear} = useProductStore();
   const [deliveryCost,setDeliveryCost] = useState(0);
@@ -61,11 +61,13 @@ const Checkout = ({drawer}) => {
       <div className="hidden sm:block">
         <div className="py-16 px-4">
           <div className="w-full space-y-9">
-            
             <div className="space-y-2">
-              <button onClick={()=>navigate('/')} className="flex flex-row items-center gap-x-1 text-clr text-2xl">
-                  <FaLongArrowAltLeft/>
-                  <p className="text-lg leading-none font-bold">Back</p>
+              <button
+                onClick={() => navigate("/")}
+                className="flex flex-row items-center gap-x-1 text-clr text-2xl"
+              >
+                <FaLongArrowAltLeft />
+                <p className="text-lg leading-none font-bold">Back</p>
               </button>
               <p className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">
                 আপনার অর্ডার
@@ -73,7 +75,6 @@ const Checkout = ({drawer}) => {
             </div>
 
             <div className="flex flex-col xl:flex-row justify-center xl:justify-between gap-y-6 xl:gap-y-0 xl:gap-x-6">
-              
               <div className="bg-gray-100 py-10 px-10 basis-[55%] grow">
                 <div className="">
                   <div className="flex justify-between ">
@@ -107,9 +108,7 @@ const Checkout = ({drawer}) => {
                     <p className="text-xl ">মোট =</p>
                     <p className="text-xl">
                       <span className="text-xl font-bold">৳ </span>
-                      {
-                        totalPrice()
-                      }
+                      {totalPrice()}
                     </p>
                   </div>
                 </div>
@@ -231,7 +230,6 @@ const Checkout = ({drawer}) => {
         </div>
       </div>
 
-
       {/* for phone */}
       <div className="flex justify-center items-center lg:hidden md:hidden">
         <div className="py-16 px-2 flex justify-center items-center">
@@ -341,7 +339,10 @@ const Checkout = ({drawer}) => {
                 </form>
 
                 <div className="flex justify-start flex-col items-start space-y-2 mt-5">
-                  <button onClick={() => navigate('/')} className="flex flex-row items-center text-clr space-x-1">
+                  <button
+                    onClick={() => navigate("/")}
+                    className="flex flex-row items-center text-clr space-x-1"
+                  >
                     <FaLongArrowAltLeft />
                     <p className="text-lg leading-none font-bold">Back</p>
                   </button>

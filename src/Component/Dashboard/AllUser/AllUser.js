@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import SingleUser from "./SingleUser";
 
 function AllUser() {
+  const [show, setShow] = useState(8);
+  const [search, setSearch] = useState("");
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("user", () =>
+    fetch("http://localhost:5000/alluser", {
+      method: "GET",
+    }).then((res) => res.json())
+  );
+  const handleLoadmore = () => {
+    setShow((visible) => visible + 4);
+  };
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -19,6 +35,7 @@ function AllUser() {
                 </svg>
               </span>
               <input
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search"
                 class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
               />
@@ -30,7 +47,10 @@ function AllUser() {
                 <thead>
                   <tr>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                      User
+                      User Name
+                    </th>
+                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      User Email
                     </th>
                     <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                       Rol
@@ -47,62 +67,26 @@ function AllUser() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div class="flex items-center">
-                        <div class="flex-shrink-0 w-10 h-10">
-                          <img
-                            class="w-full h-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                            alt=""
-                          />
-                        </div>
-                        <div class="ml-3">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            Vera Carpenter
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p class="text-gray-900 whitespace-no-wrap">
-                        Jan 21, 2020
-                      </p>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        ></span>
-                        <button class="relative">Admin</button>
-                      </span>
-                    </td>
-                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          class="absolute inset-0 bg-red-600  opacity-50 rounded-full"
-                        ></span>
-                        <button class="relative text-white">Remove</button>
-                      </span>
-                    </td>
-                  </tr>
+                  {users
+                    ?.slice(0, show)
+                    ?.filter((user) =>
+                      user.email.toLowerCase().includes(search)
+                    )
+                    ?.map((user) => (
+                      <SingleUser user={user} />
+                    ))}
                 </tbody>
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
-                  Showing 1 to 4 of 50 Entries
+                  Showing 1 to {users.length} of {users.length} Entries
                 </span>
                 <div class="inline-flex mt-2 xs:mt-0">
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-                    Prev
-                  </button>
-                  <button class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-                    Next
+                  <button
+                    onClick={handleLoadmore}
+                    class="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l"
+                  >
+                    Load More...
                   </button>
                 </div>
               </div>

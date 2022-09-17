@@ -5,14 +5,16 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import usePerson from "../Hooks/usePerson";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
 
-  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] =
-    useSignInWithGoogle(auth);
+  const navigate = useNavigate();
+  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
+
+  const userData = usePerson(user || userGoogle)
 
   if (user || userGoogle) {
     navigate("/");
@@ -20,10 +22,11 @@ const Login = () => {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    const email = event.current.value;
-    const password = event.current.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
     signInWithEmailAndPassword(email, password);
   };
+
   return (
     <div className="mt-16 py-10">
       <div className=" mx-auto">
@@ -33,13 +36,6 @@ const Login = () => {
 
         <div className="mx-auto">
           <form onSubmit={handleLogin}>
-            <input
-              className="block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
-              type="text"
-              name="name"
-              placeholder="Name"
-              required
-            />
             <input
               className="block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
               type="email"
@@ -55,7 +51,7 @@ const Login = () => {
               required
             />
             <input
-              className="block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
+              className="block bg-[#7fad39] my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
               type="submit"
               value="Login"
             />
