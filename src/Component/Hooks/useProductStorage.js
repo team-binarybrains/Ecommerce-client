@@ -45,8 +45,13 @@ const useProductStore = ()=> {
         localStorage.setItem('vipBookedProducts', JSON.stringify(allData));
         setData(getProductStore());
     }
+
+    const clear = ()=> {
+        localStorage.setItem('vipBookedProducts', JSON.stringify([]));
+        setData(getProductStore());
+    }
     
-    return {data,upserting,deleting,getData};
+    return {data,upserting,deleting,getData,clear};
 }
 
 

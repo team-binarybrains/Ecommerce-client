@@ -6,10 +6,11 @@ import { ImCross } from 'react-icons/im';
 import useProductStore from "../Hooks/useProductStorage";
 import { getCookie, setCookie } from "../Hooks/useCookie";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Checkout = ({drawer}) => {
   const navigate = useNavigate();
-  const {data:bookedData,getData} = useProductStore();
+  const {data:bookedData,getData,clear} = useProductStore();
   const [deliveryCost,setDeliveryCost] = useState(0);
   const dCost = useRef();
   
@@ -25,22 +26,32 @@ const Checkout = ({drawer}) => {
 
   const confirmingOrder = (e)=> {
       e.preventDefault();
-      
+
+      const t = new Date();
+      t.setTime(t.getTime());
+
       const order = {
         name: e.target.name.value,
         address: e.target.address.value,
         phone: e.target.phone.value,
-        product: bookedData,
+        products: bookedData,
+        time:t.toString(),
       }
-      // console.dir(order);
+
       if (getCookie(order.phone)) {
         toast.error(`Can't order with in 72 hour of your previous booking`,{theme:'colored'})
       } else {
-        setCookie(order.phone);
-
-        //code for order send to the server
-
-        toast.success(`Order successfully booked`)
+        axios.post('http://localhost:5000/order',order).then(({data})=>{
+          if(data.acknowledged){
+            setCookie(order.phone);
+            clear();
+            e.target.reset();
+            toast.success(`Order successfully booked`);
+          }
+          else{
+            toast.error(`Order unsuccessfull`,{theme:'colored'});
+          }
+        })
       }
   }
 
