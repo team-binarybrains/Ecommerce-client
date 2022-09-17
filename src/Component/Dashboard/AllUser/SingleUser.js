@@ -1,6 +1,20 @@
+import axios from "axios";
 import React from "react";
 
-const SingleUser = ({ user }) => {
+const SingleUser = ({ user, refetch }) => {
+
+  const handleDeleteUser = (id) => {
+    const proceed = window.confirm("Are you sure?");
+
+    axios.delete(`http://localhost:5000/delete-user/${id}`)
+      .then(res => {
+        const { data } = res
+        console.log(data);
+        refetch()
+      })
+
+  };
+
   console.log(user);
   return (
     <tr>
@@ -36,7 +50,7 @@ const SingleUser = ({ user }) => {
             aria-hidden
             class="absolute inset-0 bg-red-600  opacity-50 rounded-full"
           ></span>
-          <button class="relative text-white">Remove</button>
+          <button onClick={()=> handleDeleteUser(user._id)} class="relative text-white">Remove</button>
         </span>
       </td>
     </tr>

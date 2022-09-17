@@ -3,6 +3,8 @@ import { useQuery } from "react-query";
 import SingleUser from "./SingleUser";
 
 function AllUser() {
+
+
   const [show, setShow] = useState(8);
   const [search, setSearch] = useState("");
   const {
@@ -17,6 +19,7 @@ function AllUser() {
   const handleLoadmore = () => {
     setShow((visible) => visible + 4);
   };
+
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -73,13 +76,16 @@ function AllUser() {
                       user.email.toLowerCase().includes(search)
                     )
                     ?.map((user) => (
-                      <SingleUser user={user} />
+                      <SingleUser 
+                      user={user}
+                      refetch={refetch}
+                      />
                     ))}
                 </tbody>
               </table>
               <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
                 <span class="text-xs xs:text-sm text-gray-900">
-                  Showing 1 to {users.length} of {users.length} Entries
+                  Showing 1 to {users?.length} of {users?.length} Entries
                 </span>
                 <div class="inline-flex mt-2 xs:mt-0">
                   <button
