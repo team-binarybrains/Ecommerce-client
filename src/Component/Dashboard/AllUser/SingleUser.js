@@ -1,7 +1,18 @@
 import axios from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 const SingleUser = ({ user, refetch }) => {
+
+  const makeAdmin = ()=>{
+    axios.patch(`http://localhost:5000/make-admin/${user.email}`)
+    .then(res => {
+      const { data } = res
+      // console.log(data);
+      toast.success('Successfully made an admin.')
+      refetch()
+    })
+  }
 
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure?");
@@ -9,8 +20,10 @@ const SingleUser = ({ user, refetch }) => {
     axios.delete(`http://localhost:5000/delete-user/${id}`)
       .then(res => {
         const { data } = res
-        console.log(data);
+        // console.log(data);
+        toast.success('Successfully delete the user.')
         refetch()
+
       })
 
   };
@@ -41,7 +54,7 @@ const SingleUser = ({ user, refetch }) => {
             aria-hidden
             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
           ></span>
-          <button class="relative">Admin</button>
+          <button onClick={makeAdmin} class="relative">Admin</button>
         </span>
       </td>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
