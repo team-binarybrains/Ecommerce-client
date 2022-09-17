@@ -5,7 +5,7 @@ import useProductStore from "../../Hooks/useProductStorage";
 
 const SingleHomepageProducts = ({ value }) => {
   const navigate = useNavigate();
-  const [data,upserting] = useProductStore();
+  const {data,upserting} = useProductStore();
 
   const handleaddToCart = (p) => {
     const cartProduct = {

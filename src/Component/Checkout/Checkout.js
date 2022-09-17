@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 const Checkout = ({drawer}) => {
   const navigate = useNavigate();
-  const [bookedData,,,getData] = useProductStore();
+  const {data:bookedData,getData} = useProductStore();
   const [deliveryCost,setDeliveryCost] = useState(0);
   const dCost = useRef();
   

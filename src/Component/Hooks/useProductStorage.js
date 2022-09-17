@@ -46,7 +46,7 @@ const useProductStore = ()=> {
         setData(getProductStore());
     }
     
-    return [data,upserting,deleting,getData];
+    return {data,upserting,deleting,getData};
 }
 
 
