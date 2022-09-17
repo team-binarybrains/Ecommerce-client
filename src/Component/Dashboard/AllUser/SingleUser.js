@@ -9,8 +9,8 @@ const SingleUser = ({ user, refetch }) => {
     .then(res => {
       const { data } = res
       // console.log(data);
-      toast.success('Successfully made an admin.')
       refetch()
+      toast.success('Successfully made an admin.')
     })
   }
 
@@ -21,8 +21,8 @@ const SingleUser = ({ user, refetch }) => {
       .then(res => {
         const { data } = res
         // console.log(data);
-        toast.success('Successfully delete the user.')
         refetch()
+        toast.success('Successfully delete the user.')
 
       })
 
@@ -32,9 +32,6 @@ const SingleUser = ({ user, refetch }) => {
   return (
     <tr>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-        <p class="text-gray-900 whitespace-no-wrap">{user.displayName}</p>
-      </td>
-      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <div class="flex items-center">
           <div class="ml-3">
             <p class="text-gray-900 whitespace-no-wrap">{user.email}</p>
@@ -43,7 +40,11 @@ const SingleUser = ({ user, refetch }) => {
       </td>
 
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+          { user?.role === 'admin' ?
         <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+        :
+        <p class="text-gray-900 whitespace-no-wrap">User</p>
+          }
       </td>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p class="text-gray-900 whitespace-no-wrap">Jan 21, 2020</p>
