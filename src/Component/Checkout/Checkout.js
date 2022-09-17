@@ -109,6 +109,7 @@ const Checkout = ({drawer}) => {
                     <section className="flex justify-between mt-7">
                       <label className="cursor-pointer select-none" htmlFor="outSideDhaka">
                         <input
+                          required
                           onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                           className="mr-2 font-bold cursor-pointer"
                           type="radio"
@@ -128,6 +129,7 @@ const Checkout = ({drawer}) => {
                     <section className="flex justify-between mt-7 mb-5">
                       <label className="cursor-pointer select-none" htmlFor="inSideDhaka">
                         <input
+                          required
                           onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
                           className="mr-2 font-bold cursor-pointer"
                           type="radio"
@@ -176,6 +178,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="name">
                     আপনার নাম
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার নাম"
@@ -186,6 +189,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="address">
                     আপনার ঠিকানা
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার ঠিকানা"
@@ -196,6 +200,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="phone">
                     আপনার মোবাইল
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার মোবাইল"
@@ -240,6 +245,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mName">
                     আপনার নাম
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার নাম"
@@ -250,6 +256,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mAddress">
                     আপনার ঠিকানা
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার ঠিকানা"
@@ -260,6 +267,7 @@ const Checkout = ({drawer}) => {
                   <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mPhone">
                     আপনার মোবাইল
                     <input
+                      required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
                       type="text"
                       placeholder="আপনার মোবাইল"
@@ -273,6 +281,7 @@ const Checkout = ({drawer}) => {
                     <div className="flex justify-between mt-7">
                       <label htmlFor="outDhaka" className="cursor-pointer select-none">
                         <input
+                          required
                           className="mr-2 font-bold cursor-pointer select-none"
                           type="radio"
                           name="place"
@@ -291,6 +300,7 @@ const Checkout = ({drawer}) => {
                     <div className="flex justify-between mt-7 mb-5">
                       <label htmlFor="inDhaka" className="cursor-pointer select-none">
                         <input
+                          required
                           className="mr-2 font-bold cursor-pointer select-none"
                           type="radio"
                           name="place"
