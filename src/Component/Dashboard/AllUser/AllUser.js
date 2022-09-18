@@ -69,7 +69,7 @@ function AllUser() {
                   {users
                     ?.slice(0, show)
                     ?.filter((user) =>
-                      user.email.toLowerCase().includes(search)
+                      user?.email?.toLowerCase().includes(search)
                     )
                     ?.map((user) => (
                       <SingleUser user={user} refetch={refetch} />
