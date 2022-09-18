@@ -14,7 +14,7 @@ import useProductStore from '../Hooks/useProductStorage';
 
 const Header = ({drawer,setDrawer}) => {
     const [menu,setMenu] = useState(false);
-    const [cartProducts,upserting,deleting,getData] = useProductStore();
+    const {data:cartProducts,upserting,deleting,getData} = useProductStore();
 
 
     return (

@@ -34,7 +34,7 @@ const Cart = ({drawer,setDrawer,upserting,deleting,getData,cartProducts}) => {
 
         </section>
 
-        <section className="mt-2 h-full overflow-y-auto space-y-2 p-2 pb-20">
+        <section className="mt-2 h-full overflow-y-auto space-y-2 pl-2 pr-4 pb-20">
           {
             cartProducts?.map(product => <CartProduct key={product._id} product={product} upserting={upserting} deleting={deleting}/>)
           }

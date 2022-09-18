@@ -1,7 +1,15 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink } from "react-router-dom";
+import auth from "../../firebase.init";
+import useAdmin from "../Hooks/useAdmin";
 
 const Nav = ({ className, hideMenuFn }) => {
+
+  const user = useAuthState(auth)
+  // console.log(user)
+  const [admin] = useAdmin(user)
+
   const navStyle = ({ isActive }) => {
     return isActive
       ? "font-extrabold lg:text-dark text-clr tracking-wider"
@@ -19,12 +27,12 @@ const Nav = ({ className, hideMenuFn }) => {
       <NavLink onClick={hideMenuFn} to={"/checkout"} className={navStyle}>
         চেকআউট
       </NavLink>
-      <NavLink onClick={hideMenuFn} to={"/dashboard"} className={navStyle}>
-        ড্যাশবোর্ড
-      </NavLink>
-      <NavLink onClick={hideMenuFn} to={"/contact"} className={navStyle}>
-        যোগাযোগ
-      </NavLink>
+
+      {admin &&
+        <NavLink onClick={hideMenuFn} to={"/dashboard"} className={navStyle}>
+          ড্যাশবোর্ড
+        </NavLink>
+      } 
     </div>
   );
 };

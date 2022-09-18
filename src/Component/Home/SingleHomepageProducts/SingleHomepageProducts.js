@@ -1,32 +1,26 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../Hooks/useProductStorage";
 
 const SingleHomepageProducts = ({ value }) => {
-  const [data, upserting] = useProductStore();
-  console.log(data);
+  const navigate = useNavigate();
+  const { data, upserting } = useProductStore();
 
   const handleaddToCart = (p) => {
     const cartProduct = {
       name: p.name,
       image: p.image,
       price: parseFloat(p.price),
-      quantity: 1,
+      quantity: data?.find((p) => p._id === value._id)
+        ? data?.find((p) => p._id === value._id).quantity
+        : 1,
     };
 
     upserting({ ...cartProduct, _id: value._id });
-    fetch(`https://vip-bazar.onrender.com/cart/${p._id}`, {
-      method: "PUT",
-      body: JSON.stringify(cartProduct),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    navigate("/checkout");
   };
 
-  const navigate = useNavigate();
   const handleDetail = (id) => {
     navigate("/productDetail/" + id);
   };
