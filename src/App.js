@@ -16,8 +16,14 @@ import AllOrders from "./Component/Dashboard/AllOrders/AllOrders";
 import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
 import { ToastContainer } from "react-toastify";
 import ManageProducts from "./Component/Dashboard/MyOrders/ManageProducts";
+import axios from "axios";
+import useAdmin from "./Component/Hooks/useAdmin";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "./firebase.init";
 
 function App() {
+  const user = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const [drawer, setDrawer] = useState(false);
   const { pathname } = useLocation();
   useEffect(() => {
@@ -45,12 +51,17 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
 
           {/*-------------- dashboard start ------------------*/}
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="/dashboard" element={<AllUser />}></Route>
-            <Route path="all-orders" element={<AllOrders />}></Route>
-            <Route path="add-product" element={<AddProduct />}></Route>
-            <Route path="manage-products" element={<ManageProducts />}></Route>
-          </Route>
+          {admin && (
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="/dashboard" element={<AllUser />}></Route>
+              <Route path="all-orders" element={<AllOrders />}></Route>
+              <Route path="add-product" element={<AddProduct />}></Route>
+              <Route
+                path="manage-products"
+                element={<ManageProducts />}
+              ></Route>
+            </Route>
+          )}
           {/*-------------- dashboard end ------------------*/}
         </Routes>
       </section>
