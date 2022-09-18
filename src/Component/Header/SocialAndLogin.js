@@ -22,10 +22,10 @@ const SocialAndLogin = ({ className }) => {
       </nav>
       <div className="divider lg:divider-horizontal my-0" />
       {/* auth */}
-      
+
       {user ? (
         <button
-          className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+          className="nav-link text-red-500 font-bold hover:text-red-700 focus:text-red-700 p-0"
           onClick={handelSignOut}
         >
           signOut{" "}
@@ -33,7 +33,7 @@ const SocialAndLogin = ({ className }) => {
       ) : (
         <Link
           to="/register"
-          className="nav-link text-gray-500 hover:text-gray-700 focus:text-gray-700 p-0"
+          className="nav-link text-gray-500 font-bold hover:text-gray-700 focus:text-gray-700 p-0"
         >
           {" "}
           <span className="flex items-center gap-5">
