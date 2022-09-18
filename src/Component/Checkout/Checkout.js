@@ -10,54 +10,56 @@ import axios from "axios";
 
 const Checkout = ({ drawer }) => {
   const navigate = useNavigate();
-  const {data:bookedData,getData,clear} = useProductStore();
-  const [deliveryCost,setDeliveryCost] = useState(0);
+  const { data: bookedData, getData, clear } = useProductStore();
+  const [deliveryCost, setDeliveryCost] = useState(0);
   const dCost = useRef();
-  
-  const totalPrice = ()=> {
-    return bookedData?.reduce((total,product) => total+(product.quantity*product.price),0);
+
+  const totalPrice = () => {
+    return bookedData?.reduce(
+      (total, product) => total + product.quantity * product.price,
+      0
+    );
   };
 
-  useEffect(()=> {
-      getData();
-      setDeliveryCost(dCost.current || 0);
-  },[drawer]);
+  useEffect(() => {
+    getData();
+    setDeliveryCost(dCost.current || 0);
+  }, [drawer]);
 
+  const confirmingOrder = (e) => {
+    e.preventDefault();
 
-  const confirmingOrder = (e)=> {
-      e.preventDefault();
+    const t = new Date();
+    t.setTime(t.getTime());
 
-      const t = new Date();
-      t.setTime(t.getTime());
+    const order = {
+      name: e.target.name.value,
+      address: e.target.address.value,
+      phone: e.target.phone.value,
+      products: bookedData,
+      time: t.toString(),
+    };
 
-      const order = {
-        name: e.target.name.value,
-        address: e.target.address.value,
-        phone: e.target.phone.value,
-        products: bookedData,
-        time:t.toString(),
-      }
-
-      if (getCookie(order.phone)) {
-        toast.error(`Can't order with in 72 hour of your previous booking`,{theme:'colored'})
-      } else {
-        axios.post('http://localhost:5000/order',order).then(({data})=>{
-          if(data.acknowledged){
-            setCookie(order.phone);
-            clear();
-            e.target.reset();
-            toast.success(`Order successfully booked`);
-          }
-          else{
-            toast.error(`Order unsuccessfull`,{theme:'colored'});
-          }
-        })
-      }
-  }
+    if (getCookie(order.phone)) {
+      toast.error(`আপনি 72 ঘন্টার মধ্যে অর্ডার করতে পারবেন না`, {
+        theme: "colored",
+      });
+    } else {
+      axios.post("http://localhost:5000/order", order).then(({ data }) => {
+        if (data.acknowledged) {
+          setCookie(order.phone);
+          clear();
+          e.target.reset();
+          toast.success(`Order successfully booked`);
+        } else {
+          toast.error(`Order unsuccessfull`, { theme: "colored" });
+        }
+      });
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto sm:px-2">
-
       <div className="hidden sm:block">
         <div className="py-16 px-4">
           <div className="w-full space-y-9">
@@ -82,24 +84,26 @@ const Checkout = ({ drawer }) => {
                     <p className="text-2xl font-bold">দাম :</p>
                   </div>
                   <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll snap-y snap-mandatory">
-
-                    {
-                      bookedData?.map((product) =>
-                        <div
+                    {bookedData?.map((product) => (
+                      <div
                         key={product._id}
-                        className={`justify-between items-center h-16 snap-start ${product.quantity>0?'flex':'hidden'}`}>
-                          <p className="text-clr font-bold inline-flex items-center text-xl">
-                            <span className="text-dark text-base">{product.name}</span>
-                            <ImCross className="w-3 h-3 ml-3 mr-0.5" />
-                            {product.quantity}
-                          </p>
-                          <p>
-                            <span className="text-xl font-bold">৳ </span>
-                            {product.price * product.quantity}
-                          </p>
-                        </div>)
-                    }
-
+                        className={`justify-between items-center h-16 snap-start ${
+                          product.quantity > 0 ? "flex" : "hidden"
+                        }`}
+                      >
+                        <p className="text-clr font-bold inline-flex items-center text-xl">
+                          <span className="text-dark text-base">
+                            {product.name}
+                          </span>
+                          <ImCross className="w-3 h-3 ml-3 mr-0.5" />
+                          {product.quantity}
+                        </p>
+                        <p>
+                          <span className="text-xl font-bold">৳ </span>
+                          {product.price * product.quantity}
+                        </p>
+                      </div>
+                    ))}
                   </section>
                 </div>
                 <hr />
@@ -115,46 +119,58 @@ const Checkout = ({ drawer }) => {
                 <hr />
                 <div className="mt-7">
                   <p className="text-2xl font-bold">Shipping</p>
-                  
-                    <section className="flex justify-between mt-7">
-                      <label className="cursor-pointer select-none" htmlFor="outSideDhaka">
-                        <input
-                          required
-                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
-                          className="mr-2 font-bold cursor-pointer"
-                          type="radio"
-                          name="place"
-                          id="outSideDhaka"
-                          value={200}
-                          disabled={!totalPrice()}
-                        />
-                        ঢাকার বাহিরে :
-                      </label>
-                        <p>
-                          <span className="text-xl font-bold">৳ </span>
-                          200
-                        </p>
-                    </section>
 
-                    <section className="flex justify-between mt-7 mb-5">
-                      <label className="cursor-pointer select-none" htmlFor="inSideDhaka">
-                        <input
-                          required
-                          onClick={(e)=> {setDeliveryCost(parseInt(e.target.value));dCost.current= parseInt(e.target.value)}}
-                          className="mr-2 font-bold cursor-pointer"
-                          type="radio"
-                          name="place"
-                          id="inSideDhaka"
-                          value={100}
-                          disabled={!totalPrice()}
-                        />
-                        ঢাকার ভিতর:
-                      </label>
-                        <p>
-                          <span className="text-xl font-bold">৳ </span>
-                          100
-                        </p>
-                    </section>
+                  <section className="flex justify-between mt-7">
+                    <label
+                      className="cursor-pointer select-none"
+                      htmlFor="outSideDhaka"
+                    >
+                      <input
+                        required
+                        onClick={(e) => {
+                          setDeliveryCost(parseInt(e.target.value));
+                          dCost.current = parseInt(e.target.value);
+                        }}
+                        className="mr-2 font-bold cursor-pointer"
+                        type="radio"
+                        name="place"
+                        id="outSideDhaka"
+                        value={200}
+                        disabled={!totalPrice()}
+                      />
+                      ঢাকার বাহিরে :
+                    </label>
+                    <p>
+                      <span className="text-xl font-bold">৳ </span>
+                      200
+                    </p>
+                  </section>
+
+                  <section className="flex justify-between mt-7 mb-5">
+                    <label
+                      className="cursor-pointer select-none"
+                      htmlFor="inSideDhaka"
+                    >
+                      <input
+                        required
+                        onClick={(e) => {
+                          setDeliveryCost(parseInt(e.target.value));
+                          dCost.current = parseInt(e.target.value);
+                        }}
+                        className="mr-2 font-bold cursor-pointer"
+                        type="radio"
+                        name="place"
+                        id="inSideDhaka"
+                        value={100}
+                        disabled={!totalPrice()}
+                      />
+                      ঢাকার ভিতর:
+                    </label>
+                    <p>
+                      <span className="text-xl font-bold">৳ </span>
+                      100
+                    </p>
+                  </section>
                   <hr />
 
                   <div>
@@ -162,9 +178,7 @@ const Checkout = ({ drawer }) => {
                       <p className="text-xl ">সর্বমোট =</p>
                       <p className="text-xl font-bold">
                         <span className="text-2xl font-bold">৳ </span>
-                        {
-                          totalPrice()?totalPrice()+deliveryCost:0
-                        }
+                        {totalPrice() ? totalPrice() + deliveryCost : 0}
                       </p>
                     </div>
                   </div>
@@ -179,13 +193,16 @@ const Checkout = ({ drawer }) => {
                   </p>
                   <hr className="border w-full" />
                 </div>
-                  <p className="text-gray-600 text-base pt-5 leading-7">
-                    অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার,
-                    লিখে অর্ডার কনফার্ম বাটনে ক্লিক করুন
-                  </p>
-                
+                <p className="text-gray-600 text-base pt-5 leading-7">
+                  অর্ডারটি কনফার্ম করতে আপনার নাম, ঠিকানা, মোবাইল নাম্বার, লিখে
+                  অর্ডার কনফার্ম বাটনে ক্লিক করুন
+                </p>
+
                 <form onSubmit={confirmingOrder} className="flex flex-col">
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="name">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="name"
+                  >
                     আপনার নাম
                     <input
                       required
@@ -196,7 +213,10 @@ const Checkout = ({ drawer }) => {
                       name="name"
                     />
                   </label>
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="address">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="address"
+                  >
                     আপনার ঠিকানা
                     <input
                       required
@@ -207,7 +227,10 @@ const Checkout = ({ drawer }) => {
                       name="address"
                     />
                   </label>
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="phone">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="phone"
+                  >
                     আপনার মোবাইল
                     <input
                       required
@@ -219,10 +242,11 @@ const Checkout = ({ drawer }) => {
                     />
                   </label>
                   <input
-                    type='submit'
+                    type="submit"
                     className="mt-8 border border-transparent hover:border-gray-300 bg-clr transition duration-300 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full text-base leading-4 disabled:bg-clr/50 disabled:hover:bg-clr/50 disabled:hover:text-white disabled:cursor-not-allowed cursor-pointer"
-                    value='অর্ডার কনফার্ম করুন'
-                    disabled={!totalPrice() || !deliveryCost} />
+                    value="অর্ডার কনফার্ম করুন"
+                    disabled={!totalPrice() || !deliveryCost}
+                  />
                 </form>
               </div>
             </div>
@@ -249,9 +273,12 @@ const Checkout = ({ drawer }) => {
                     লিখে অর্ডার কনফার্ম বাটনে ক্লিক করুন
                   </p>
                 </div>
-                
-                <form onSubmit={confirmingOrder} className='flex flex-col'>
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mName">
+
+                <form onSubmit={confirmingOrder} className="flex flex-col">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="mName"
+                  >
                     আপনার নাম
                     <input
                       required
@@ -262,7 +289,10 @@ const Checkout = ({ drawer }) => {
                       id="mName"
                     />
                   </label>
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mAddress">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="mAddress"
+                  >
                     আপনার ঠিকানা
                     <input
                       required
@@ -273,7 +303,10 @@ const Checkout = ({ drawer }) => {
                       id="mAddress"
                     />
                   </label>
-                  <label className="mt-8 text-base leading-4 text-gray-800" htmlFor="mPhone">
+                  <label
+                    className="mt-8 text-base leading-4 text-gray-800"
+                    htmlFor="mPhone"
+                  >
                     আপনার মোবাইল
                     <input
                       required
@@ -288,7 +321,10 @@ const Checkout = ({ drawer }) => {
                   <div className="mt-7">
                     <p className="text-2xl font-bold">Shipping</p>
                     <div className="flex justify-between mt-7">
-                      <label htmlFor="outDhaka" className="cursor-pointer select-none">
+                      <label
+                        htmlFor="outDhaka"
+                        className="cursor-pointer select-none"
+                      >
                         <input
                           required
                           className="mr-2 font-bold cursor-pointer select-none"
@@ -297,7 +333,10 @@ const Checkout = ({ drawer }) => {
                           id="outDhaka"
                           value={200}
                           disabled={!totalPrice()}
-                          onClick={(e) => { setDeliveryCost(parseInt(e.target.value)); dCost.current = parseInt(e.target.value) }}
+                          onClick={(e) => {
+                            setDeliveryCost(parseInt(e.target.value));
+                            dCost.current = parseInt(e.target.value);
+                          }}
                         />
                         ঢাকার বাহিরে :
                       </label>
@@ -307,7 +346,10 @@ const Checkout = ({ drawer }) => {
                       </p>
                     </div>
                     <div className="flex justify-between mt-7 mb-5">
-                      <label htmlFor="inDhaka" className="cursor-pointer select-none">
+                      <label
+                        htmlFor="inDhaka"
+                        className="cursor-pointer select-none"
+                      >
                         <input
                           required
                           className="mr-2 font-bold cursor-pointer select-none"
@@ -316,7 +358,10 @@ const Checkout = ({ drawer }) => {
                           id="inDhaka"
                           value={100}
                           disabled={!totalPrice()}
-                          onClick={(e) => { setDeliveryCost(parseInt(e.target.value)); dCost.current = parseInt(e.target.value) }}
+                          onClick={(e) => {
+                            setDeliveryCost(parseInt(e.target.value));
+                            dCost.current = parseInt(e.target.value);
+                          }}
                         />
                         ঢাকার ভিতর:
                       </label>
@@ -332,10 +377,11 @@ const Checkout = ({ drawer }) => {
                   </div>
 
                   <input
-                    type='submit'
+                    type="submit"
                     className="mt-8 border border-transparent hover:border-gray-300 bg-clr transition duration-300 hover:bg-white text-white hover:text-gray-900 flex justify-center items-center py-4 rounded w-full text-base leading-4 disabled:bg-clr/50 disabled:hover:bg-clr/50 disabled:hover:text-white disabled:cursor-not-allowed text-center cursor-pointer"
                     disabled={!totalPrice() || !deliveryCost}
-                    value='অর্ডার কনফার্ম করুন' />
+                    value="অর্ডার কনফার্ম করুন"
+                  />
                 </form>
 
                 <div className="flex justify-start flex-col items-start space-y-2 mt-5">
@@ -357,36 +403,36 @@ const Checkout = ({ drawer }) => {
                     <p className="text-lg font-bold">দাম :</p>
                   </div>
                   <section className="min-h-16 max-h-[13.5rem] space-y-2 overflow-y-auto thin-scroll snap-y snap-mandatory">
+                    {bookedData?.map((product) => (
+                      <div
+                        key={product._id}
+                        className={`justify-between items-start h-16 snap-start gap-x-3 ${
+                          product.quantity > 0 ? "flex" : "hidden"
+                        }`}
+                      >
+                        <p className="text-clr font-bold inline-flex items-start grow-0 shrink basis-[80%]">
+                          <span>{product.quantity}</span>
+                          <ImCross className="w-2 h-[1.5rem] ml-0.5 mr-1" />
+                          <span className="text-dark font-normal text-xs pt-[0.25rem] basis-[85%]">
+                            {product.name}
+                          </span>
+                        </p>
 
-                    {
-                      bookedData?.map((product) =>
-                        <div
-                          key={product._id}
-                          className={`justify-between items-start h-16 snap-start gap-x-3 ${product.quantity > 0 ? 'flex' : 'hidden'}`}>
-
-                          <p className="text-clr font-bold inline-flex items-start grow-0 shrink basis-[80%]">
-                            <span>{product.quantity}</span>
-                            <ImCross className="w-2 h-[1.5rem] ml-0.5 mr-1" />
-                            <span className="text-dark font-normal text-xs pt-[0.25rem] basis-[85%]">{product.name}</span>
-                          </p>
-
-                          <p className="font-bold text-xs leading-6 shrink-0">
-                            <span className="font-extrabold">৳ </span>
-                            {product.price * product.quantity}
-                          </p>
-
-                        </div>)
-                    }
-
+                        <p className="font-bold text-xs leading-6 shrink-0">
+                          <span className="font-extrabold">৳ </span>
+                          {product.price * product.quantity}
+                        </p>
+                      </div>
+                    ))}
                   </section>
                 </div>
-                
+
                 <div>
                   <div className="flex justify-between items-center mt-7 mb-5">
                     <p className="text-lg font-bold">সর্বমোট =</p>
                     <p className="text-lg font-bold">
-                      <span className=''>৳ </span>
-                      {totalPrice()+deliveryCost}
+                      <span className="">৳ </span>
+                      {totalPrice() + deliveryCost}
                     </p>
                   </div>
                 </div>
