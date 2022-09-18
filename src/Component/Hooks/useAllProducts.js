@@ -11,7 +11,7 @@ const useAllProducts = () => {
         setLoading(false);
       });
   }, []);
-  return [products, loading];
+  return [products, setProducts];
 };
 
 export default useAllProducts;
