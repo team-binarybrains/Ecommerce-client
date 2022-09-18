@@ -7,6 +7,8 @@ import { FaUsers } from "react-icons/fa";
 import { faChevronRight, } from "@fortawesome/free-solid-svg-icons";
 import "./Dashboard.css";
 import { Link, Outlet } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Dashboard = () => {
 
@@ -61,18 +63,6 @@ const Dashboard = () => {
               >
                 <AiOutlineAppstoreAdd className="text-xl" />
                 <span className="font-bold">ADD PRODUCT</span>
-              </Link>
-            </li>
-
-
-            {/* Route for user */}
-            <li className="text-base hover:bg-[#0f172a]  rounded">
-              <Link
-                className="flex items-center"
-                to={"/dashboard/my-orders"}
-              >
-                <IoTicket className="text-xl" />
-                <span className="font-bold">MY ORDERS</span>
               </Link>
             </li>
 

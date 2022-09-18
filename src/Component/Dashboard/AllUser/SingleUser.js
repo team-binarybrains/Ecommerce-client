@@ -28,7 +28,6 @@ const SingleUser = ({ user, refetch }) => {
 
   };
 
-  console.log(user);
   return (
     <tr>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
