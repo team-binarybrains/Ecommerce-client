@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import Loading from "../../Share/Loading";
 import SingleUser from "./SingleUser";
 
 function AllUser() {
-
-
   const [show, setShow] = useState(8);
   const [search, setSearch] = useState("");
   const {
@@ -19,7 +18,9 @@ function AllUser() {
   const handleLoadmore = () => {
     setShow((visible) => visible + 4);
   };
-
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -73,10 +74,7 @@ function AllUser() {
                       user.email.toLowerCase().includes(search)
                     )
                     ?.map((user) => (
-                      <SingleUser 
-                      user={user}
-                      refetch={refetch}
-                      />
+                      <SingleUser user={user} refetch={refetch} />
                     ))}
                 </tbody>
               </table>

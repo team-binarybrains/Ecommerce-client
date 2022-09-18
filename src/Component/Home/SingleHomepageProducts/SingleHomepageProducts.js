@@ -5,18 +5,20 @@ import useProductStore from "../../Hooks/useProductStorage";
 
 const SingleHomepageProducts = ({ value }) => {
   const navigate = useNavigate();
-  const {data,upserting} = useProductStore();
+  const { data, upserting } = useProductStore();
 
   const handleaddToCart = (p) => {
     const cartProduct = {
       name: p.name,
       image: p.image,
       price: parseFloat(p.price),
-      quantity: data?.find(p=> p._id===value._id)?data?.find(p=> p._id===value._id).quantity:1,
+      quantity: data?.find((p) => p._id === value._id)
+        ? data?.find((p) => p._id === value._id).quantity
+        : 1,
     };
 
-    upserting({...cartProduct,_id:value._id});
-    navigate('/checkout');
+    upserting({ ...cartProduct, _id: value._id });
+    navigate("/checkout");
   };
 
   const handleDetail = (id) => {

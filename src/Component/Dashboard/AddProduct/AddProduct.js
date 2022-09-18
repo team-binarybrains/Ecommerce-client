@@ -45,7 +45,7 @@ function AddProduct() {
             Add Product
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            {/* <div>
               <lable className="text-sm font-medium leading-none text-gray-800">
                 Product Image <br />
                 <span className="text-green-600"> please add a image link</span>
@@ -69,7 +69,7 @@ function AddProduct() {
                   </span>
                 )}
               </label>
-            </div>
+            </div> */}
             <div>
               <lable className="text-sm font-medium leading-none text-gray-800">
                 Product Image <br />
@@ -78,6 +78,7 @@ function AddProduct() {
               <input
                 aria-label="enter email adress"
                 role="input"
+                accept=".jpg"
                 type="file"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 {...register("fileimage", {
