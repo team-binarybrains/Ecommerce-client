@@ -3,29 +3,27 @@ import React from "react";
 import { toast } from "react-toastify";
 
 const SingleUser = ({ user, refetch }) => {
-
-  const makeAdmin = ()=>{
-    axios.patch(`http://localhost:5000/make-admin/${user.email}`)
-    .then(res => {
-      const { data } = res
-      // console.log(data);
-      refetch()
-      toast.success('Successfully made an admin.')
-    })
-  }
+  const makeAdmin = () => {
+    axios
+      .patch(`http://localhost:5000/make-admin/${user.email}`)
+      .then((res) => {
+        const { data } = res;
+        // console.log(data);
+        refetch();
+        toast.success("Successfully made an admin.");
+      });
+  };
 
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure?");
-
-    axios.delete(`http://localhost:5000/delete-user/${id}`)
-      .then(res => {
-        const { data } = res
+    if (proceed) {
+      axios.delete(`http://localhost:5000/delete-user/${id}`).then((res) => {
+        const { data } = res;
         // console.log(data);
-        refetch()
-        toast.success('Successfully delete the user.')
-
-      })
-
+        refetch();
+        toast.success("Successfully delete the user.");
+      });
+    }
   };
 
   return (
@@ -39,11 +37,11 @@ const SingleUser = ({ user, refetch }) => {
       </td>
 
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-          { user?.role === 'admin' ?
-        <p class="text-gray-900 whitespace-no-wrap">Admin</p>
-        :
-        <p class="text-gray-900 whitespace-no-wrap">User</p>
-          }
+        {user?.role === "admin" ? (
+          <p class="text-gray-900 whitespace-no-wrap">Admin</p>
+        ) : (
+          <p class="text-gray-900 whitespace-no-wrap">User</p>
+        )}
       </td>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <p class="text-gray-900 whitespace-no-wrap">Jan 21, 2020</p>
@@ -54,7 +52,9 @@ const SingleUser = ({ user, refetch }) => {
             aria-hidden
             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
           ></span>
-          <button onClick={makeAdmin} class="relative">Admin</button>
+          <button onClick={makeAdmin} class="relative">
+            Admin
+          </button>
         </span>
       </td>
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -63,7 +63,12 @@ const SingleUser = ({ user, refetch }) => {
             aria-hidden
             class="absolute inset-0 bg-red-600  opacity-50 rounded-full"
           ></span>
-          <button onClick={()=> handleDeleteUser(user._id)} class="relative text-white">Remove</button>
+          <button
+            onClick={() => handleDeleteUser(user._id)}
+            class="relative text-white"
+          >
+            Remove
+          </button>
         </span>
       </td>
     </tr>

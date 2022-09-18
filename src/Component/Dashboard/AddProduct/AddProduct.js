@@ -14,7 +14,8 @@ function AddProduct() {
     const productinfo = {
       image: data.image,
       name: data.name,
-      price: data.price,
+      oldPrice: data.oldprice,
+      newPrice: data.newprice,
       details: data.description,
     };
     fetch("http://localhost:5000/add-product", {
@@ -122,24 +123,48 @@ function AddProduct() {
             </div>
             <div>
               <lable className="text-sm font-medium leading-none text-gray-800">
-                Product Price
+                Old Price
               </lable>
               <input
                 aria-label="enter email adress"
                 role="input"
                 type="text"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                {...register("price", {
+                {...register("oldprice", {
                   required: {
                     value: true,
-                    message: "Price is Required",
+                    message: "Old Price is Required",
                   },
                 })}
               />
               <label className="label">
-                {errors.price?.type === "required" && (
+                {errors.oldprice?.type === "required" && (
                   <span className="label-text-alt text-red-500">
-                    {errors.price.message}
+                    {errors.oldprice.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            <div>
+              <lable className="text-sm font-medium leading-none text-gray-800">
+                New Price
+              </lable>
+              <input
+                aria-label="enter email adress"
+                role="input"
+                type="text"
+                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                {...register("newprice", {
+                  required: {
+                    value: true,
+                    message: "New Price is Required",
+                  },
+                })}
+              />
+              <label className="label">
+                {errors.newprice?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.newprice.message}
                   </span>
                 )}
               </label>
