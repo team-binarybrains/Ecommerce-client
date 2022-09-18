@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "./Component/Home/Home";
@@ -9,14 +9,13 @@ import ProductDetail from "./Component/ProductDetails/ProductDetail";
 import Footer from "./Component/Footer/Footer";
 import Checkout from "./Component/Checkout/Checkout";
 import AllProducts from "./Component/AllProducts/AllProducts";
-
 import Login from "./Component/Auth/Login";
 import Register from "./Component/Auth/Register";
 import AllUser from "./Component/Dashboard/AllUser/AllUser";
 import AllOrders from "./Component/Dashboard/AllOrders/AllOrders";
 import AddProduct from "./Component/Dashboard/AddProduct/AddProduct";
-import MyOrders from "./Component/Dashboard/MyOrders/MyOrders";
 import { ToastContainer } from "react-toastify";
+import ManageProducts from "./Component/Dashboard/MyOrders/ManageProducts";
 
 function App() {
   const [drawer, setDrawer] = useState(false);
@@ -41,24 +40,23 @@ function App() {
             element={<ProductDetail />}
           ></Route>
           <Route path="/allProducts" element={<AllProducts />}></Route>
-                         {/* auth */}
+          {/* auth */}
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-
 
           {/*-------------- dashboard start ------------------*/}
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard" element={<AllUser />}></Route>
             <Route path="all-orders" element={<AllOrders />}></Route>
             <Route path="add-product" element={<AddProduct />}></Route>
-            <Route path="my-orders" element={<MyOrders />}></Route>
+            <Route path="manage-products" element={<ManageProducts />}></Route>
           </Route>
           {/*-------------- dashboard end ------------------*/}
         </Routes>
       </section>
 
       <Footer />
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }
