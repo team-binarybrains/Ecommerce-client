@@ -45,7 +45,7 @@ const Checkout = ({ drawer }) => {
         theme: "colored",
       });
     } else {
-      axios.post("http://localhost:5000/order", order).then(({ data }) => {
+      axios.post("https://monirshop.onrender.com/order", order).then(({ data }) => {
         if (data.acknowledged) {
           setCookie(order.phone);
           clear();

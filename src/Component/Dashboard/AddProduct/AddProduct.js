@@ -17,7 +17,7 @@ function AddProduct() {
       price: data.price,
       details: data.description,
     };
-    fetch("http://localhost:5000/add-product", {
+    fetch("https://monirshop.onrender.com/add-product", {
       method: "POST",
       body: JSON.stringify(productinfo),
       headers: {

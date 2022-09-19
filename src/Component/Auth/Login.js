@@ -1,31 +1,56 @@
 import React, { useRef } from "react";
 import {
+  useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import usePerson from "../Hooks/usePerson";
+import Loading from "../Share/Loading";
 
 const Login = () => {
 
+  const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, emailUser, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const [user] = useAuthState(auth);
   const navigate = useNavigate();
-  const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+// const [token] = <UseToken></UseToken>(gUser || emailUser)
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
-  const [signInWithGoogle, userGoogle, loadinguserGoogle, erroruserGoogle] = useSignInWithGoogle(auth);
-
-  const userData = usePerson(user || userGoogle)
-
-  if (user || userGoogle) {
-    navigate("/");
+  if (user) {
+    navigate(from, { replace: true });
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    signInWithEmailAndPassword(email, password);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  if (error) {
+    return (
+      <div>
+        <p className='text-red-500'> আপনার ভালমানের একটি ইমেইল দিন {error?.message}</p>
+      </div>
+    );
+  }
+  if (loading) {
+    return <Loading />;
+  }
+
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(data.email, data.password);
+         
+  
+  
   };
+ 
 
   return (
     <div className="mt-16 py-10">
@@ -34,28 +59,83 @@ const Login = () => {
           দয়া করে লগইন করুন
         </h1>
 
-        <div className="mx-auto">
-          <form onSubmit={handleLogin}>
-            <input
-              className="block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
-              type="email"
-              name="email"
-              placeholder="type your email"
-              required
-            />
-            <input
-              className="block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
-              type="password"
-              name="password"
-              placeholder="type your password"
-              required
-            />
-            <input
-              className="block bg-[#7fad39] my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"
-              type="submit"
-              value="Login"
-            />
-          </form>
+        <div className=" ">
+
+        <form className="mx-auto text-center" onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-control mx-auto w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  name="email"
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "email is required",
+                    },
+                    pattern: {
+                      value: /[A-Za-z]{3}/,
+                      message: "your email is not required",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.email?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                  {errors.email?.type === "pattern" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.email.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+
+              <div className="form-control mx-auto w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  className="input input-bordered w-full max-w-xs"
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "password is required",
+                    },
+                    minLength: {
+                      value: 6,
+                      message: "your password  must be 6 character",
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.password?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
+                  {errors.password?.type === "minLength" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.password.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+
+              <input
+                className="w-full max-w-xs btn"
+                type="submit"
+                value="Login"
+              />
+            </form>
 
           <div>
             <div className="flex items-center justify-center">
@@ -85,6 +165,10 @@ const Login = () => {
               অনুগ্রহ করে নিবন্ধন করুন{" "}
             </Link>
           </p>
+          {/* <button className="mx-auto block outline-none text-red-500"
+        onClick={handelResetPassword}>
+        Reset password
+      </button> */}
         </div>
       </div>
     </div>

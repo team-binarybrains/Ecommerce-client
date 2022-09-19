@@ -46,7 +46,7 @@ const Register = () => {
           <h1 className="text-center text-3xl text-[#7fad39] font-extrabold pb-5">
             অনুগ্রহ করে নিবন্ধন করুন
           </h1>
-          <div className="mx-auto">
+          <div className="">
             <form onSubmit={handleRegister}>
               <input
                 className=" block bg-slate-100 my-3 py-2 px-2 w-80 pl-4 outline-none mx-auto"

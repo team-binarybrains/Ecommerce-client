@@ -11,7 +11,7 @@ const useAdmin = user => {
         const email = user[0]?.email
         console.log(email);
         if (email) {
-            fetch(`http://localhost:5000/admin/${email}`)
+            fetch(`https://monirshop.onrender.com/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

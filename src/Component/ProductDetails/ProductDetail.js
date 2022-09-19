@@ -11,7 +11,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
-      fetch(`http://localhost:5000/product/${productId}`)
+      fetch(`https://monirshop.onrender.com/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

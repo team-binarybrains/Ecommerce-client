@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const SingleUser = ({ user, refetch }) => {
 
   const makeAdmin = ()=>{
-    axios.patch(`http://localhost:5000/make-admin/${user.email}`)
+    axios.patch(`https://monirshop.onrender.com/make-admin/${user.email}`)
     .then(res => {
       const { data } = res
       // console.log(data);
@@ -17,7 +17,7 @@ const SingleUser = ({ user, refetch }) => {
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure?");
 
-    axios.delete(`http://localhost:5000/delete-user/${id}`)
+    axios.delete(`https://monirshop.onrender.com/delete-user/${id}`)
       .then(res => {
         const { data } = res
         // console.log(data);
@@ -33,7 +33,7 @@ const SingleUser = ({ user, refetch }) => {
       <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
         <div class="flex items-center">
           <div class="ml-3">
-            <p class="text-gray-900 whitespace-no-wrap">{user.email}</p>
+            <p class="text-gray-900 whitespace-no-wrap">{user?.email}</p>
           </div>
         </div>
       </td>

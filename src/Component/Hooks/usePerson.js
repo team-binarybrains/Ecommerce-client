@@ -8,7 +8,7 @@ const usePerson = (user) => {
     const currentUser = { email: email, displayName: displayName };
     console.log(currentUser);
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://monirshop.onrender.com/user/${email}`, {
         method: "PUT",
         body: JSON.stringify(currentUser),
         headers: {
