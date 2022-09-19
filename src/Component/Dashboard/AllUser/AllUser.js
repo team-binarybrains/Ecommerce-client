@@ -18,9 +18,7 @@ function AllUser() {
   const handleLoadmore = () => {
     setShow((visible) => visible + 4);
   };
-  if (isLoading) {
-    return <Loading />;
-  }
+
   return (
     <body class="antialiased font-sans bg-gray-200">
       <div class="container mx-auto px-4 sm:px-8">
@@ -71,7 +69,7 @@ function AllUser() {
                   {users
                     ?.slice(0, show)
                     ?.filter((user) =>
-                      user.email.toLowerCase().includes(search)
+                      user?.email?.toLowerCase().includes(search)
                     )
                     ?.map((user) => (
                       <SingleUser user={user} refetch={refetch} />
