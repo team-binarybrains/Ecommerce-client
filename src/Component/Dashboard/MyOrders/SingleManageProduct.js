@@ -19,7 +19,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   return (
     <div className="card w-[98%] mx-auto lg:w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className="w-[450px] h-[270px]" src={`http://localhost:5000/file/${product?.image}`} alt="Shoes" />
+        <img className="max-w-[450px] h-[270px] mx-auto" src={`http://localhost:5000/file/${product?.image}`} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.name}</h2>
@@ -28,7 +28,7 @@ const SingleManageProduct = ({ product, refetch }) => {
         <div className="card-actions justify-end">
           <button
             onClick={() => setDeleteproducts(product._id)}
-            for="product-dalete-modal"
+            htmlFor="product-dalete-modal"
             className="btn btn-error text-white"
           >
             <FontAwesomeIcon className="mr-2" icon={faTrash}></FontAwesomeIcon>{" "}
