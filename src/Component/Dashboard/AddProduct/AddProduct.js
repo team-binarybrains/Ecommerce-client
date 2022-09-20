@@ -13,10 +13,10 @@ function AddProduct() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const img= data.image[0];
+    const img = data.image[0];
     console.log(img);
     const form = new FormData();
-    form.append('productImg',img);
+    form.append("productImg", img);
 
     const productinfo = {
       name: data.name,
@@ -26,25 +26,23 @@ function AddProduct() {
     };
 
     try {
-      
-      const {data} = await axios.post('http://localhost:5000/upload',form);
+      const { data } = await axios.post("http://localhost:5000/upload", form);
 
       if (data?.uploaded) {
-        
-        const {data:productData} = await axios.post('http://localhost:5000/add-product',{...productinfo,image:data?.filename})
+        const { data: productData } = await axios.post(
+          "http://localhost:5000/add-product",
+          { ...productinfo, image: data?.filename }
+        );
 
-        productData?.acknowledged? toast.success('Product successfully added'):toast.error('Unable to added product');
+        productData?.acknowledged
+          ? toast.success("Product successfully added")
+          : toast.error("Unable to added product");
       } else {
-        
-        toast.error('Unable to upload image');
-      
+        toast.error("Unable to upload image");
       }
+    } catch (err) {}
 
-    } catch (err) {
-      
-    }
-
-    // reset();
+    reset();
   };
 
   return (
