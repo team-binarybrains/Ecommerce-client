@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -30,7 +31,7 @@ function AddProduct() {
 
       if (data?.uploaded) {
         
-        const {data:productData} = await axios.post('http://localhost:5000/add-product',{...productinfo,image:`products/${data?.filename}`})
+        const {data:productData} = await axios.post('http://localhost:5000/add-product',{...productinfo,image:data?.filename})
 
         productData?.acknowledged? toast.success('Product successfully added'):toast.error('Unable to added product');
       } else {

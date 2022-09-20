@@ -30,7 +30,7 @@ const SingleHomepageProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
-        src={value.image}
+        src={`http://localhost:5000/file/${value.image}`}
         alt=""
       />
 

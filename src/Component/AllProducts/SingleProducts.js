@@ -29,7 +29,7 @@ const SingleProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
-        src={value.image}
+        src={`http://localhost:5000/file/${value.image}`}
         alt=""
       />
 
@@ -37,7 +37,7 @@ const SingleProducts = ({ value }) => {
         {value.name}
       </div>
       <div className="text-lg font-semibold text-violet-600 mb-4 mt-2">
-        <span className="text-3xl font-bold">৳</span> {value.price}
+        <span className="text-3xl font-bold">৳</span> {value.newPrice}
       </div>
       <div>
         <h1>
