@@ -26,7 +26,7 @@ const SingleProducts = ({ value }) => {
   };
 
   return (
-    <div className="bg-white border relative  shadow-lg p-5 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
+    <div className="bg-white border relative  shadow-lg p-3 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
