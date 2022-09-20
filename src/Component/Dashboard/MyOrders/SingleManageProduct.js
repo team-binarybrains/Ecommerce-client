@@ -8,8 +8,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   const setDeleteproducts = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      axios.delete(`http://localhost:5000/delete-product/${id}`).then((res) => {
-        const { data } = res;
+      axios.delete(`http://localhost:5000/product/${id}`).then(({ data }) => {
         // console.log(data);
         refetch();
         toast.success("Successfully delete the user.");
@@ -17,14 +16,15 @@ const SingleManageProduct = ({ product, refetch }) => {
     }
   };
 
+  console.log(product?.image);
   return (
     <div className="card w-[98%] mx-auto lg:w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className="w-[450px] h-[270px]" src={product.image} alt="Shoes" />
+        <img className="w-[450px] h-[270px]" src={`${process.env.PUBLIC_URL}/${product?.image}`} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.name}</h2>
-        <p>$ {product.price}</p>
+        <p>$ {product.newPrice}</p>
         <p> {product.details}</p>
         <div className="card-actions justify-end">
           <button
