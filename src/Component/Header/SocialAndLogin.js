@@ -20,7 +20,7 @@ const SocialAndLogin = ({ className }) => {
         <GrLinkedinOption className="cursor-pointer" />
         <FaPinterestP className="cursor-pointer" />
       </nav> */}
-      <div className="divider lg:divider-horizontal my-0" />
+      {/* <div className="divider lg:divider-horizontal my-0" /> */}
       {/* auth */}
 
       {user ? (
