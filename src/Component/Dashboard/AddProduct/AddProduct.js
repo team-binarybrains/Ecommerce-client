@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -11,26 +13,38 @@ function AddProduct() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const img= data.image[0];
+    console.log(img);
+    const form = new FormData();
+    form.append('productImg',img);
+
     const productinfo = {
-      image: data.image,
       name: data.name,
       oldPrice: data.oldprice,
       newPrice: data.newprice,
       details: data.description,
     };
-    fetch("http://localhost:5000/add-product", {
-      method: "POST",
-      body: JSON.stringify(productinfo),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        toast("Product Added Successfully");
-        // console.log(json);
-      });
-    reset();
+
+    try {
+      
+      const {data} = await axios.post('http://localhost:5000/upload',form);
+
+      if (data?.uploaded) {
+        
+        const {data:productData} = await axios.post('http://localhost:5000/add-product',{...productinfo,image:data?.filename})
+
+        productData?.acknowledged? toast.success('Product successfully added'):toast.error('Unable to added product');
+      } else {
+        
+        toast.error('Unable to upload image');
+      
+      }
+
+    } catch (err) {
+      
+    }
+
+    // reset();
   };
 
   return (
@@ -79,10 +93,10 @@ function AddProduct() {
               <input
                 aria-label="enter email adress"
                 role="input"
-                accept=".jpg"
+                accept=".jpg, .png, .jpeg"
                 type="file"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                {...register("fileimage", {
+                {...register("image", {
                   required: {
                     value: true,
                     message: "Image is Required",

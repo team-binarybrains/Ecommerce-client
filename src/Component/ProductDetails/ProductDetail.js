@@ -40,18 +40,18 @@ const ProductDetail = () => {
               <img
                 className="lg:h-[495px]  object-cover"
                 src={image}
-                alt="image"
+                alt={name}
               />
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img className="object-cover" src={image} />
+                <img className="object-cover" src={image} alt={name} />
               </div>
               <div className=" flex justify-center  ">
                 <img
                   className="object-cover"
                   src={image}
-                  alt="Wooden chair - preview 2"
+                  alt={name}
                 />
               </div>
             </div>

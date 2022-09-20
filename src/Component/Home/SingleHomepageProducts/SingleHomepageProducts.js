@@ -11,7 +11,7 @@ const SingleHomepageProducts = ({ value }) => {
     const cartProduct = {
       name: p.name,
       image: p.image,
-      price: parseFloat(p.price),
+      price: parseFloat(p.newPrice),
       quantity: data?.find((p) => p._id === value._id)
         ? data?.find((p) => p._id === value._id).quantity
         : 1,
@@ -30,7 +30,7 @@ const SingleHomepageProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
-        src={value.image}
+        src={`http://localhost:5000/file/${value.image}`}
         alt=""
       />
 
@@ -38,7 +38,7 @@ const SingleHomepageProducts = ({ value }) => {
         {value.name}
       </div>
       <div className="text-lg font-semibold text-violet-600 mb-4 mt-2">
-        <span className="text-3xl font-bold">৳</span> {value.price}
+        <span className="text-3xl font-bold">৳</span> {value.newPrice}
       </div>
       <div>
         <h1>
