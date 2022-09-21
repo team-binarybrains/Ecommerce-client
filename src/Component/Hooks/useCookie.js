@@ -1,6 +1,13 @@
-const getCookie = (phone) => {
-    const myCookie = document.cookie.split('=');
-    return myCookie[0] === phone;
+const getCookie = (phone='') => {
+    const myCookies = document.cookie.split(' ');
+    
+    for (const myCookie of myCookies) {
+        const phoneCookie = myCookie.split('=')[0];
+        if (phoneCookie === phone) {
+            return true
+        }
+    }
+    return false;
 }
 
 const setCookie = (key)=> {

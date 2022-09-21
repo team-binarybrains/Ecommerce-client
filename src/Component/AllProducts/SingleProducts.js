@@ -25,8 +25,16 @@ const SingleProducts = ({ value }) => {
     navigate("/productDetail/" + id);
   };
 
+
+
   return (
     <div className="bg-white border relative  shadow-lg p-3 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
+      {
+        value?.newPrice && <div className="w-24 h-16 rounded-full rounded-t-md rounded-r-md absolute -right-2 -top-2 bg-dark flex flex-col justify-center items-center text-white gap-0 text-lg font-bold">
+        <p>{parseInt(((parseFloat(value?.oldPrice)-parseFloat(value?.newPrice))/parseFloat(value?.oldPrice))*100)}%</p>
+        <p className="text-center">Off</p>
+      </div>
+      }
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] "
