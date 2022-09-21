@@ -1,0 +1,16 @@
+.paigination {
+  background-color: rgb(32, 41, 19);
+  color: white;
+  font: bold;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.paiginationnone {
+  background-color: rgb(123, 183, 33);
+  color: white;
+  font: bold;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}

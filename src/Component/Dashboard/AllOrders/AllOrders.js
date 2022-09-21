@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SingleOrder from "./SingleOrder";
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import useRefetch from "../../Hooks/useRefetch";
 import Loading from "../../Share/Loading";
-
+import { useState } from "react";
+import { useToast } from "react-toastify";
+import "./allorder.css";
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
     "https://vip-bazar.onrender.com/all-order"
   );
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/productCount")
+      .then((res) => res.json())
+      .then((data) => {
+        const count = data.result;
+        const pages = Math.ceil(count / 20);
+        setPageCount(pages);
+      });
+  }, [page]);
 
   return (
     <div className="overflow-x-auto">
@@ -56,6 +70,18 @@ function AllOrders() {
                     refetch={refetch}
                   />
                 ))}
+                <div className="flex justify-center items-center mt-6">
+                  {[...Array(pageCount).keys()].map((number) => (
+                    <button
+                      onClick={() => setPage(number)}
+                      className={
+                        page === number ? "paigination" : "paiginationnone"
+                      }
+                    >
+                      {number + 1}
+                    </button>
+                  ))}
+                </div>
               </tbody>
             </table>
           </div>
