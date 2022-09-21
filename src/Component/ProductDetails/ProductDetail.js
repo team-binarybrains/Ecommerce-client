@@ -8,7 +8,7 @@ const ProductDetail = () => {
   const { data, upserting } = useProductStore();
   const [products, setProducts] = useState({});
 
-  const { name, image, newPrice, details } = products;
+  const { name, image, newPrice, details, img1, img2 } = products;
 
   useEffect(() => {
     if (productId) {
@@ -50,12 +50,12 @@ const ProductDetail = () => {
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img className="object-cover" src={`http://localhost:5000/file/${image}`} alt={name} />
+                <img className="object-cover" src={`http://localhost:5000/file/${img1}`} alt={name} />
               </div>
               <div className=" flex justify-center  ">
                 <img
                   className="object-cover"
-                  src={`http://localhost:5000/file/${image}`}
+                  src={`http://localhost:5000/file/${img2}`}
                   alt={name}
                 />
               </div>
