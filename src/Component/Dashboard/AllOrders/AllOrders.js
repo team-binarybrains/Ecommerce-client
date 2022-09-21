@@ -6,7 +6,7 @@ import Loading from "../../Share/Loading";
 
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
-    "https://vip-bazar.onrender.com/all-order"
+    "http://localhost:5000/all-order"
   );
 
   return (
@@ -46,7 +46,7 @@ function AllOrders() {
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
-                {orders.map((order,i) => (
+                {orders.map((order, i) => (
                   <SingleOrder
                     i={i}
                     order={order}

@@ -12,7 +12,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
-      fetch(`https://vip-bazar.onrender.com/product/${productId}`)
+      fetch(`http://localhost:5000/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -44,18 +44,18 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src={`https://vip-bazar.onrender.com/file/${image}`}
+                src={`http://localhost:5000/file/${image}`}
                 alt={name}
               />
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img className="object-cover" src={`https://vip-bazar.onrender.com/file/${img1}`} alt={name} />
+                <img className="object-cover" src={`http://localhost:5000/file/${img1}`} alt={name} />
               </div>
               <div className=" flex justify-center  ">
                 <img
                   className="object-cover"
-                  src={`https://vip-bazar.onrender.com/file/${img2}`}
+                  src={`http://localhost:5000/file/${img2}`}
                   alt={name}
                 />
               </div>
