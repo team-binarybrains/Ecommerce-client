@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const SingleUser = ({ user, refetch }) => {
   const makeAdmin = () => {
     axios
-      .patch(`https://vip-bazar.onrender.com/make-admin/${user.email}`)
+      .patch(`http://localhost:5000/make-admin/${user.email}`)
       .then((res) => {
         const { data } = res;
         // console.log(data);
@@ -17,7 +17,7 @@ const SingleUser = ({ user, refetch }) => {
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      axios.delete(`https://vip-bazar.onrender.com/delete-user/${id}`).then((res) => {
+      axios.delete(`http://localhost:5000/delete-user/${id}`).then((res) => {
         const { data } = res;
         // console.log(data);
         refetch();
