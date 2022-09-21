@@ -1,16 +1,24 @@
 import axios from "axios";
 import React from "react";
 import { FaCheck } from "react-icons/fa";
+import { FaDotCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const SingleOrder = ({ order, refetch }) => {
+const SingleOrder = ({ order, refetch, i }) => {
+
+
   const confirming = () => {
-    axios.put(`https://vip-bazar.onrender.com/order/${order._id}`).then(({ data }) => {
-      if (data?.acknowledged) {
-        toast.success("Order confirmed", { theme: "dark" });
-        refetch();
-      }
-    });
+    const confirmed = window.confirm('Are you sure ?');
+    if (confirmed) {
+      axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { confirm: true }).then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order confirmed", { theme: "dark" });
+          refetch();
+        }
+      });
+    } else {
+      return 0;
+    }
   };
 
   const deleting = () => {
@@ -24,23 +32,35 @@ const SingleOrder = ({ order, refetch }) => {
       });
   };
 
+  const holding = ()=> {
+    const confirmed = window.confirm('Are you sure ?');
+    if (confirmed) {
+      axios.put(`http://localhost:5000/order/${order._id}`, { hold: true }).then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order hold", { theme: "dark" })
+          refetch();
+        }
+      });
+    } else {
+      return 0;
+    }
+  }
+
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
-      <td className="py-3 px-6 text-left whitespace-nowrap">
-        <div className="flex items-center">{order?.name}</div>
+      <td className="py-3 px-4 text-left whitespace-nowrap">
+        <div className="flex items-center"><span className="mr-2 font-bold">{i+1}.</span> {order?.name}</div>
       </td>
       <td className="py-3 px-6 text-left">
-        <div className="flex items-center">
-          <span>{order?.address}</span>
+        <div className="flex gap-0 flex-col">
+          <span>{order?.address};</span>
+          <p>{order?.phone}</p>
         </div>
       </td>
       <td className="py-3 px-6 text-left">
         <div className="flex items-center">
           <span>{order?.time?.split("GMT")[0]}</span>
         </div>
-      </td>
-      <td className="py-3 px-6 text-center">
-        <p>{order?.phone}</p>
       </td>
       <td className="py-3 px-6 text-center space-y-5">
         {order?.products.map((product) => (
@@ -67,12 +87,23 @@ const SingleOrder = ({ order, refetch }) => {
       <td className="py-3 px-6 text-center">
         <div className="flex item-center justify-center gap-2">
           {order?.confirm ? (
-            <FaCheck className="h-6 w-10 py-1 rounded-full text-white bg-clr" />
+            <>
+              <FaCheck className="h-6 w-10 py-1 rounded-full text-white bg-clr" />
+              {
+                order?.hold ?
+                <FaDotCircle
+                className="h-6 w-6 rounded-full bg-white text-yellow-500" />:
+                <button
+                  onClick={holding}
+                  className="btn btn-xs bg-yellow-500 hover:bg-yellow-500 border-0">
+                  Hold
+                </button>
+              }
+            </>
           ) : (
             <button
               onClick={confirming}
-              className="btn btn-xs bg-clr hover:bg-clr border-0"
-            >
+              className="btn btn-xs bg-clr hover:bg-clr border-0">
               Confirm
             </button>
           )}
