@@ -30,14 +30,14 @@ const SingleProducts = ({ value }) => {
   return (
     <div className="bg-white border relative  shadow-lg p-3 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
       {
-        value?.newPrice && <div className="w-24 h-16 rounded-full rounded-t-md rounded-r-md absolute -right-2 -top-2 bg-dark flex flex-col justify-center items-center text-white gap-0 text-lg font-bold">
-          <p>{parseInt(((parseFloat(value?.oldPrice) - parseFloat(value?.newPrice)) / parseFloat(value?.oldPrice)) * 100)}%</p>
-          <p className="text-center">Off</p>
+        value?.newPrice && <div className="w-24 h-16 rounded-full rounded-t-md rounded-r-md absolute -right-2 -top-2 bg-dark flex flex-col justify-center items-end pr-3 text-white gap-0 font-bold">
+          <p className="text-2xl">{parseInt(((parseInt(value?.oldPrice) - parseInt(value?.newPrice)) / parseInt(value?.oldPrice)) * 100)}%</p>
+          <p className="text-center text-sm mr-3">Off</p>
         </div>
       }
       <img
         onClick={() => handleDetail(value._id)}
-        className="mb-2 rounded-tl-[80px] h-[250px] "
+        className="mb-2 rounded-tl-[80px] h-[250px] mx-auto w-full object-cover"
         src={`https://vip-bazar.onrender.com/file/${value.image}`}
         alt=""
       />

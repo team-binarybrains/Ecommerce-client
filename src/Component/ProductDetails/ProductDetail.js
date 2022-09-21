@@ -36,7 +36,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="h-full  lg:h-screen lg:mt-20">
+    <div className="min-h-screen">
       <div className="2xl:container 2xl:mx-auto lg:py-16  md:py-12 md:px-6 py-9 px-1 ">
         <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
           {/* <!-- Description Div --> */}
