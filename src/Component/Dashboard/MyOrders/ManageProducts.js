@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import SingleManageProduct from "./SingleManageProduct";
 import useAllProducts from "../../Hooks/useAllProducts";

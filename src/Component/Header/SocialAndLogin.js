@@ -14,13 +14,13 @@ const SocialAndLogin = ({ className }) => {
 
   return (
     <div className={className}>
-      <nav className="flex justify-center items-center gap-5 text-dark">
+      {/* <nav className="flex justify-center items-center gap-5 text-dark">
         <GrFacebookOption className="cursor-pointer" />
         <GrTwitter className="cursor-pointer" />
         <GrLinkedinOption className="cursor-pointer" />
         <FaPinterestP className="cursor-pointer" />
-      </nav>
-      <div className="divider lg:divider-horizontal my-0" />
+      </nav> */}
+      {/* <div className="divider lg:divider-horizontal my-0" /> */}
       {/* auth */}
 
       {user ? (

@@ -41,7 +41,7 @@ const Checkout = ({ drawer }) => {
     };
 
     if (getCookie(order.phone)) {
-      toast.error(`আপনি 72 ঘন্টার মধ্যে অর্ডার করতে পারবেন না`, {
+      toast.error(`আপনি ৭২ ঘন্টার মধ্যে অর্ডার করতে পারবেন না |`, {
         theme: "colored",
       });
     } else {

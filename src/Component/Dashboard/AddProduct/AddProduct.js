@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable jsx-a11y/aria-role */
+/* eslint-disable no-unused-vars */
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -11,25 +15,41 @@ function AddProduct() {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const img = data.image[0];
+    const img1 = data.img1[0];
+    const img2 = data.img2[0];
+
+    const form = new FormData();
+    form.append("productImg", img);
+    form.append("productImg1", img1);
+    form.append("productImg2", img2);
+
     const productinfo = {
-      image: data.image,
       name: data.name,
       oldPrice: data.oldprice,
       newPrice: data.newprice,
       details: data.description,
     };
-    fetch("https://vip-bazar.onrender.com/add-product", {
-      method: "POST",
-      body: JSON.stringify(productinfo),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        toast("Product Added Successfully");
-        // console.log(json);
-      });
+
+    try {
+      const { data } = await axios.post("https://vip-bazar.onrender.com/upload", form);
+      // console.log(data);
+
+      if (data?.uploaded) {
+        const { productImg, productImg1, productImg2 } = data;
+        const { data: productData } = await axios.post(
+          "https://vip-bazar.onrender.com/add-product",
+          { ...productinfo, image: productImg?.[0]?.filename, img1: productImg1?.[0]?.filename, img2: productImg2?.[0]?.filename }
+        );
+
+        productData?.acknowledged
+          ? toast.success("Product successfully added")
+          : toast.error("Unable to added product");
+      } else {
+        toast.error("Unable to upload image");
+      }
+    } catch (err) { }
+
     reset();
   };
 
@@ -39,56 +59,66 @@ function AddProduct() {
         <div className="bg-white shadow rounded lg:w-1/3  md:w-1/2 w-full p-10 mt-16">
           <p
             tabIndex={0}
-            role="heading"
             aria-label="Login to your account"
             className="text-2xl font-extrabold leading-6 mb-7 text-center text-gray-800"
           >
             Add Product
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <div>
-              <lable className="text-sm font-medium leading-none text-gray-800">
-                Product Image <br />
-                <span className="text-green-600"> please add a image link</span>
-              </lable>
-              <input
-                aria-label="enter email adress"
-                role="input"
-                type="text"
-                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                {...register("image", {
-                  required: {
-                    value: true,
-                    message: "Image is Required",
-                  },
-                })}
-              />
-              <label className="label">
-                {errors.image?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors.image.message}
-                  </span>
-                )}
-              </label>
-            </div> */}
             <div>
-              <lable className="text-sm font-medium leading-none text-gray-800">
-                Product Image <br />
-                <span className="text-green-600"> please choose a file</span>
-              </lable>
-              <input
-                aria-label="enter email adress"
-                role="input"
-                accept=".jpg"
-                type="file"
-                className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
-                {...register("fileimage", {
-                  required: {
-                    value: true,
-                    message: "Image is Required",
-                  },
-                })}
-              />
+              <section className='flex flex-col gap-5'>
+                <lable className="text-sm font-medium leading-none text-gray-800">
+                  Product Main Image <br />
+                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <input
+                    aria-label="enter email adress"
+                    role="input"
+                    accept=".jpg, .png, .jpeg"
+                    type="file"
+                    className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                    {...register("image", {
+                      required: {
+                        value: true,
+                        message: "Image is Required",
+                      },
+                    })}
+                  />
+                </lable>
+                <lable className="text-sm font-medium leading-none text-gray-800">
+                  Product Secondary Image - 1 <br />
+                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <input
+                    aria-label="enter email adress"
+                    role="input"
+                    accept=".jpg, .png, .jpeg"
+                    type="file"
+                    className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                    {...register("img1", {
+                      required: {
+                        value: true,
+                        message: "Image is Required",
+                      },
+                    })}
+                  />
+                </lable>
+                <lable className="text-sm font-medium leading-none text-gray-800">
+                  Product Secondary Image - 2 <br />
+                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <input
+                    aria-label="enter email adress"
+                    role="input"
+                    accept=".jpg, .png, .jpeg"
+                    type="file"
+                    className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
+                    {...register("img2", {
+                      required: {
+                        value: true,
+                        message: "Image is Required",
+                      },
+                    })}
+                  />
+                </lable>
+              </section>
               <label className="label">
                 {errors.fileimage?.type === "required" && (
                   <span className="label-text-alt text-red-500">
@@ -199,7 +229,7 @@ function AddProduct() {
               <button
                 role="button"
                 aria-label="create my account"
-                className="focus:ring-2 focus:ring-offset-2 focus:bg-green-600 text-sm font-semibold leading-none text-white focus:outline-none bg-green-600 border rounded hover:bg-green-800 py-4 w-full font-bold text-xl"
+                className="focus:ring-2 focus:ring-offset-2 focus:bg-green-600 leading-none text-white focus:outline-none bg-green-600 border rounded hover:bg-green-800 py-4 w-full font-bold text-lg"
               >
                 Add product
               </button>
