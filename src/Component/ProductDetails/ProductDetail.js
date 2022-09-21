@@ -71,19 +71,9 @@ const ProductDetail = () => {
               মূল্য : <span className="text-3xl font-bold">৳ </span>{newPrice}
             </p>
 
-            <div className="lg:mt-11 mt-10">
-              <div className="flex flex-row justify-between">
-                <p className=" font-medium text-base leading-4 text-gray-600">
-                  পরিমাণ বাছাই করুন
-                </p>
-              </div>
-
-              <hr className=" bg-gray-200 w-full mt-10" />
-            </div>
-
             <button
               onClick={()=> checking(products)}
-              className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-5 mt-6"
+              className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-20 mt-6"
             >
               অর্ডার করুন
             </button>
