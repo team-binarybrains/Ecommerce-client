@@ -8,17 +8,12 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
 
 
   const confirming = () => {
-    const confirmed = window.confirm('Are you sure ?');
-    if (confirmed) {
       axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { confirm: true }).then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order confirmed", { theme: "dark" });
           refetch();
         }
-      });
-    } else {
-      return 0;
-    }
+      })
   };
 
   const deleting = () => {
@@ -38,28 +33,24 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   };
 
   const holding = () => {
-    const confirmed = window.confirm('Are you sure ?');
-    if (confirmed) {
       axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { hold: true }).then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order hold", { theme: "dark" })
           refetch();
         }
-      });
-    } else {
-      return 0;
-    }
+      })
   }
 
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
-      <td className="py-3 px-4 text-left whitespace-nowrap">
-        <div className="flex items-center"><span className="mr-2 font-bold">{(currentPage - 1) * postsPerPage + (i + 1)}.</span> {order?.name}</div>
-      </td>
       <td className="py-3 px-6 text-left">
-        <div className="flex gap-0 flex-col">
-          <span>{order?.address};</span>
-          <p>{order?.phone}</p>
+        <div className="flex items-center gap-x-2">
+          <span className="mr-2 font-bold">{(currentPage - 1) * postsPerPage + (i + 1)}.</span>
+          <div className="flex gap-2 flex-col">
+            <span>{order?.name}</span>
+            <span>{order?.address};</span>
+            <p>{order?.phone}</p>
+          </div>
         </div>
       </td>
       <td className="py-3 px-6 text-left">

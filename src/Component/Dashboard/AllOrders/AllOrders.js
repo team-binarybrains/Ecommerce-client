@@ -48,12 +48,11 @@ function AllOrders() {
             <table className="table-auto mx-auto" id="table-to-xls">
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                  <th className="py-3 px-6 text-left min-w-[12rem]">
-                    Customer Name
+                  <th className="py-3 px-6 text-left min-w-[18rem]">
+                    Customer Info
                   </th>
-                  <th className="py-3 px-6 text-left min-w-[8rem]">Address</th>
                   <th className="py-3 px-6 text-left min-w-[8rem]">time</th>
-                  <th className="py-3 px-6 text-center min-w-[15rem]">
+                  <th className="py-3 px-6 text-center min-w-[12rem]">
                     Product & Quantity
                   </th>
                   <th className="py-3 px-6 text-center min-w-[9rem]">
