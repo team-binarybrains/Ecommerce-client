@@ -7,18 +7,15 @@ const Pagination = ({ totalPosts, postsPerPage, setCurrentPage }) => {
     pages.push(i);
   }
   return (
-    <div>
-      {pages.map((page, index) => {
-        return (
+    <div className="my-10 flex flex-wrap justify-center gap-2">
+      {pages.map((page, index) => 
           <button
             onClick={() => setCurrentPage(page)}
-            className="btn hover:bg-dark mt-10 mb-10 ml-5 "
+            className="btn btn-sm hover:bg-dark"
             key={index}
           >
             {page}
-          </button>
-        );
-      })}
+          </button>)}
     </div>
   );
 };

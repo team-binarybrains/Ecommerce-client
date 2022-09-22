@@ -78,14 +78,14 @@ function AllOrders() {
                     postsPerPage={postsPerPage}
                   />
                 ))}
-                <Pagination
-                  totalPosts={orders?.length}
-                  postsPerPage={postsPerPage}
-                  setCurrentPage={setCurrentPage}
-                />
               </tbody>
             </table>
           </div>
+          <Pagination
+            totalPosts={orders?.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
     </div>

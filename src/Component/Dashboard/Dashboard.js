@@ -31,7 +31,6 @@ const Dashboard = () => {
             </label>
           </div>
           <div className="text-center ">
-            <div id="header" className=""></div>
             <div className="text-left px-3">
               <Outlet></Outlet>
             </div>
