@@ -6,23 +6,16 @@ import Loading from "../../Share/Loading";
 import { useState } from "react";
 import { useToast } from "react-toastify";
 import "./allorder.css";
+import Pagination from "./Pagination";
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
     "https://vip-bazar.onrender.com/all-order"
   );
-  const [pageCount, setPageCount] = useState(0);
-  const [page, setPage] = useState(0);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/productCount")
-      .then((res) => res.json())
-      .then((data) => {
-        const count = data.result;
-        const pages = Math.ceil(count / 20);
-        setPageCount(pages);
-      });
-  }, [page]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostPerPage] = useState(10);
+  const lastPostindex = currentPage * postsPerPage;
+  const firstPostindex = lastPostindex - postsPerPage;
+  const currentPost = orders.slice(firstPostindex, lastPostindex);
   return (
     <div className="overflow-x-auto">
       {loading && <Loading />}
@@ -63,25 +56,18 @@ function AllOrders() {
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
-                {orders.map((order) => (
+                {currentPost.map((order) => (
                   <SingleOrder
                     order={order}
                     key={order._id}
                     refetch={refetch}
                   />
                 ))}
-                <div className="flex justify-center items-center mt-6">
-                  {[...Array(pageCount).keys()].map((number) => (
-                    <button
-                      onClick={() => setPage(number)}
-                      className={
-                        page === number ? "paigination" : "paiginationnone"
-                      }
-                    >
-                      {number + 1}
-                    </button>
-                  ))}
-                </div>
+                <Pagination
+                  totalPosts={orders?.length}
+                  postsPerPage={postsPerPage}
+                  setCurrentPage={setCurrentPage}
+                />
               </tbody>
             </table>
           </div>
