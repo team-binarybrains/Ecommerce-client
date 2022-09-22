@@ -38,7 +38,7 @@ const SingleProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] mx-auto w-full object-cover"
-        src={`https://vip-bazar.onrender.com/file/${value.image}`}
+        src={`http://localhost:5000/file/${value.image}`}
         alt=""
       />
 
