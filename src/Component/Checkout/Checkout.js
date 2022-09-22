@@ -41,7 +41,7 @@ const Checkout = ({ drawer }) => {
       time: t.toString(),
     };
 
-    console.log(order);
+    // console.log(order);
 
     if (getCookie(order.phone)) {
       toast.error(`আপনি ৭২ ঘন্টার মধ্যে অর্ডার করতে পারবেন না |`, {

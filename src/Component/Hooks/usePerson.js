@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 const usePerson = (user) => {
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     const email = user?.user?.email;
     const displayName = user?.user?.displayName;
     const currentUser = { email: email, displayName: displayName };
-    console.log(currentUser);
+    // console.log(currentUser);
     if (email) {
       fetch(`https://vip-bazar.onrender.com/user/${email}`, {
         method: "PUT",
@@ -17,7 +17,7 @@ const usePerson = (user) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           // setUsers(data)
         });
     }

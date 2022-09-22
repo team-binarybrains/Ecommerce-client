@@ -21,7 +21,7 @@ const ProductDetail = () => {
       fetch(`https://vip-bazar.onrender.com/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setProducts(data);
           setPic({
             pic1: data?.image,

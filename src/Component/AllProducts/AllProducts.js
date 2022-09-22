@@ -6,7 +6,7 @@ import Loading from "../Share/Loading";
 
 const AllProducts = () => {
   const [products, loading] = useAllProducts();
-  console.log(products);
+  // console.log(products);
   const [sesrch, setSesrch] = useState("");
 
   return (
