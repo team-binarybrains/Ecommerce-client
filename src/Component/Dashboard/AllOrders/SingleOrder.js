@@ -22,7 +22,9 @@ const SingleOrder = ({ order, refetch, i }) => {
   };
 
   const deleting = () => {
-    axios
+    const confirmed = window.confirm('Are you sure to delete ?');
+    if (confirmed) {
+      axios
       .delete(`https://vip-bazar.onrender.com/cancel-order/${order._id}`)
       .then(({ data }) => {
         if (data?.acknowledged) {
@@ -30,6 +32,9 @@ const SingleOrder = ({ order, refetch, i }) => {
           refetch();
         }
       });
+    } else {
+      return 0;
+    }
   };
 
   const holding = () => {
@@ -75,14 +80,18 @@ const SingleOrder = ({ order, refetch, i }) => {
           </div>
         ))}
       </td>
-      <td className="py-3 px-6 text-center">
-        <p>
-          <b className="text-lg font-bold">৳</b>{" "}
+      <td className="py-3 px-4 text-center flex flex-col gap-1 justify-center">
+        <p className="text-lg">
+          <b className="font-bold">৳</b>{" "}
           {order?.products?.reduce(
-            (total, product) => total + product?.price,
+            (total, product) => total + product?.price * product?.quantity,
             0
           )}
         </p>
+        <small className={`font-bold tracking-widest text-clr`}>
+          {order?.delivery?.place} : 
+          <span className="tracking-normal ml-1">{order?.delivery?.cost}</span>
+        </small>
       </td>
       <td className="py-3 px-6 text-center">
         <div className="flex item-center justify-center gap-2">
