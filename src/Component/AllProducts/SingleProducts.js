@@ -37,7 +37,7 @@ const SingleProducts = ({ value }) => {
       }
       <img
         onClick={() => handleDetail(value._id)}
-        className="mb-2 rounded-tl-[80px] h-[250px] "
+        className="mb-2 rounded-tl-[80px] h-[250px] object-cover w-full"
         src={`http://localhost:5000/file/${value.image}`}
         alt=""
       />
