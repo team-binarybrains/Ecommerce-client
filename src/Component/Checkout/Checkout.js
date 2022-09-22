@@ -23,12 +23,12 @@ const Checkout = ({ drawer }) => {
 
   useEffect(() => {
     getData();
-    setDeliveryCost(dCost.current || 0);
+    setDeliveryCost(dCost?.current?.cost || 0);
   }, [drawer]);
 
   const confirmingOrder = (e) => {
     e.preventDefault();
-
+    
     const t = new Date();
     t.setTime(t.getTime());
 
@@ -37,8 +37,11 @@ const Checkout = ({ drawer }) => {
       address: e.target.address.value,
       phone: e.target.phone.value,
       products: bookedData,
+      delivery: dCost.current,
       time: t.toString(),
     };
+
+    console.log(order);
 
     if (getCookie(order.phone)) {
       toast.error(`আপনি ৭২ ঘন্টার মধ্যে অর্ডার করতে পারবেন না |`, {
@@ -128,7 +131,10 @@ const Checkout = ({ drawer }) => {
                         required
                         onClick={(e) => {
                           setDeliveryCost(parseInt(e.target.value));
-                          dCost.current = parseInt(e.target.value);
+                          dCost.current = {
+                            cost:parseInt(e.target.value),
+                            place:e.target.parentNode.innerText.split(':')[0].trim()
+                          }
                         }}
                         className="mr-2 font-bold cursor-pointer"
                         type="radio"
@@ -154,7 +160,10 @@ const Checkout = ({ drawer }) => {
                         required
                         onClick={(e) => {
                           setDeliveryCost(parseInt(e.target.value));
-                          dCost.current = parseInt(e.target.value);
+                          dCost.current = {
+                            cost:parseInt(e.target.value),
+                            place:e.target.parentNode.innerText.split(':')[0].trim()
+                          }
                         }}
                         className="mr-2 font-bold cursor-pointer"
                         type="radio"
@@ -334,7 +343,10 @@ const Checkout = ({ drawer }) => {
                           disabled={!totalPrice()}
                           onClick={(e) => {
                             setDeliveryCost(parseInt(e.target.value));
-                            dCost.current = parseInt(e.target.value);
+                            dCost.current = {
+                              cost:parseInt(e.target.value),
+                              place:e.target.parentNode.innerText.split(':')[0].trim()
+                            }
                           }}
                         />
                         ঢাকার বাহিরে :
@@ -359,7 +371,10 @@ const Checkout = ({ drawer }) => {
                           disabled={!totalPrice()}
                           onClick={(e) => {
                             setDeliveryCost(parseInt(e.target.value));
-                            dCost.current = parseInt(e.target.value);
+                            dCost.current = {
+                              cost:parseInt(e.target.value),
+                              place:e.target.parentNode.innerText.split(':')[0].trim()
+                            }
                           }}
                         />
                         ঢাকার ভিতর:
