@@ -8,7 +8,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   const setDeleteproducts = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      axios.delete(`http://localhost:5000/product/${id}`).then(({ data }) => {
+      axios.delete(`https://vip-bazar.onrender.com/product/${id}`).then(({ data }) => {
         // console.log(data);
         refetch();
         toast.success("Successfully delete the user.");
@@ -19,7 +19,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   return (
     <div className="card w-[98%] mx-auto lg:w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className="max-w-[450px] h-[270px] mx-auto" src={`http://localhost:5000/file/${product?.image}`} alt="Shoes" />
+        <img className="max-w-[450px] h-[270px] mx-auto" src={`https://vip-bazar.onrender.com/file/${product?.image}`} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.name}</h2>

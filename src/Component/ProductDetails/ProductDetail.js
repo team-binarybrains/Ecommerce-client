@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
-      fetch(`http://localhost:5000/product/${productId}`)
+      fetch(`https://vip-bazar.onrender.com/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -55,49 +55,49 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src={`http://localhost:5000/file/${pic.pic1}`}
+                src={`https://vip-bazar.onrender.com/file/${pic.pic1}`}
                 alt={name}
               />
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img onClick={()=> setPic({
+                <img onClick={() => setPic({
                   ...pic,
-                  pic1:pic.pic2,
-                  pic2:pic.pic1
-                })} className="object-cover" src={`http://localhost:5000/file/${pic.pic2}`} alt={name} />
+                  pic1: pic.pic2,
+                  pic2: pic.pic1
+                })} className="object-cover" src={`https://vip-bazar.onrender.com/file/${pic.pic2}`} alt={name} />
               </div >
-  <div className=" flex justify-center  ">
-    <img
-      onClick={() => setPic({
-        ...pic,
-        pic1: pic.pic3,
-        pic3: pic.pic1
-      })}
-      className="object-cover"
-                  src={`http://localhost:5000/file/${pic.pic3}`}
-      alt={name}
-    />
-  </div>
+              <div className=" flex justify-center  ">
+                <img
+                  onClick={() => setPic({
+                    ...pic,
+                    pic1: pic.pic3,
+                    pic3: pic.pic1
+                  })}
+                  className="object-cover"
+                  src={`https://vip-bazar.onrender.com/file/${pic.pic3}`}
+                  alt={name}
+                />
+              </div>
             </div >
           </div >
 
-  <div className=" p-2 lg:p-0 w-full sm:w-96 md:w-8/12 lg:w-5/12 items-center">
-    <h2 className=" font-semibold lg:text-3xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4 h-auto lg:w-full">
-      {name}
-    </h2>
+          <div className=" p-2 lg:p-0 w-full sm:w-96 md:w-8/12 lg:w-5/12 items-center">
+            <h2 className=" font-semibold lg:text-3xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4 h-auto lg:w-full">
+              {name}
+            </h2>
 
-    <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
-      মূল্য : <span className="text-3xl font-bold">৳ </span>{newPrice}
-    </p>
+            <p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
+              মূল্য : <span className="text-3xl font-bold">৳ </span>{newPrice}
+            </p>
 
-    <button
-      onClick={() => checking(products)}
-      className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-20 mt-6"
-    >
-      অর্ডার করুন
-    </button>
-  </div>
+            <button
+              onClick={() => checking(products)}
+              className="focus:outline-none focus:ring-2 hover:bg-clr/70 hover:text-gray-700 transition-all duration-300 focus:ring-offset-2 focus:ring-white font-medium text-base leading-4 text-white bg-clr w-full py-5 lg:mt-20 mt-6"
+            >
+              অর্ডার করুন
+            </button>
+          </div>
         </div >
         <p className="mt-10 font-semibold lg:text-xl text-xl lg:leading-6 leading-5 lg:mt-9 ">
           পণ্য বিবরণী :

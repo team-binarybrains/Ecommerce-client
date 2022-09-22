@@ -28,7 +28,7 @@ const Checkout = ({ drawer }) => {
 
   const confirmingOrder = (e) => {
     e.preventDefault();
-    
+
     const t = new Date();
     t.setTime(t.getTime());
 
@@ -48,7 +48,7 @@ const Checkout = ({ drawer }) => {
         theme: "colored",
       });
     } else {
-      axios.post("http://localhost:5000/order", order).then(({ data }) => {
+      axios.post("https://vip-bazar.onrender.com/order", order).then(({ data }) => {
         if (data.acknowledged) {
           setCookie(order.phone);
           clear();
@@ -132,8 +132,8 @@ const Checkout = ({ drawer }) => {
                         onClick={(e) => {
                           setDeliveryCost(parseInt(e.target.value));
                           dCost.current = {
-                            cost:parseInt(e.target.value),
-                            place:e.target.parentNode.innerText.split(':')[0].trim()
+                            cost: parseInt(e.target.value),
+                            place: e.target.parentNode.innerText.split(':')[0].trim()
                           }
                         }}
                         className="mr-2 font-bold cursor-pointer"
@@ -161,8 +161,8 @@ const Checkout = ({ drawer }) => {
                         onClick={(e) => {
                           setDeliveryCost(parseInt(e.target.value));
                           dCost.current = {
-                            cost:parseInt(e.target.value),
-                            place:e.target.parentNode.innerText.split(':')[0].trim()
+                            cost: parseInt(e.target.value),
+                            place: e.target.parentNode.innerText.split(':')[0].trim()
                           }
                         }}
                         className="mr-2 font-bold cursor-pointer"
@@ -344,8 +344,8 @@ const Checkout = ({ drawer }) => {
                           onClick={(e) => {
                             setDeliveryCost(parseInt(e.target.value));
                             dCost.current = {
-                              cost:parseInt(e.target.value),
-                              place:e.target.parentNode.innerText.split(':')[0].trim()
+                              cost: parseInt(e.target.value),
+                              place: e.target.parentNode.innerText.split(':')[0].trim()
                             }
                           }}
                         />
@@ -372,8 +372,8 @@ const Checkout = ({ drawer }) => {
                           onClick={(e) => {
                             setDeliveryCost(parseInt(e.target.value));
                             dCost.current = {
-                              cost:parseInt(e.target.value),
-                              place:e.target.parentNode.innerText.split(':')[0].trim()
+                              cost: parseInt(e.target.value),
+                              place: e.target.parentNode.innerText.split(':')[0].trim()
                             }
                           }}
                         />

@@ -11,7 +11,7 @@ function AllUser() {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("http://localhost:5000/alluser", {
+    fetch("https://vip-bazar.onrender.com/alluser", {
       method: "GET",
     }).then((res) => res.json())
   );
