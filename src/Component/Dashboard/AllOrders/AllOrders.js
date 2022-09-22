@@ -38,10 +38,7 @@ function AllOrders() {
                   </th>
                   <th className="py-3 px-6 text-left min-w-[8rem]">Address</th>
                   <th className="py-3 px-6 text-left min-w-[8rem]">time</th>
-                  <th className="py-3 px-6 text-center min-w-[10rem]">
-                    Mobile
-                  </th>
-                  <th className="py-3 px-6 text-center min-w-[12rem]">
+                  <th className="py-3 px-6 text-center min-w-[15rem]">
                     Product & Quantity
                   </th>
                   <th className="py-3 px-6 text-center min-w-[9rem]">
