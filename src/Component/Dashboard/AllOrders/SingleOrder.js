@@ -32,10 +32,10 @@ const SingleOrder = ({ order, refetch, i }) => {
       });
   };
 
-  const holding = ()=> {
+  const holding = () => {
     const confirmed = window.confirm('Are you sure ?');
     if (confirmed) {
-      axios.put(`http://localhost:5000/order/${order._id}`, { hold: true }).then(({ data }) => {
+      axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { hold: true }).then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order hold", { theme: "dark" })
           refetch();
@@ -49,7 +49,7 @@ const SingleOrder = ({ order, refetch, i }) => {
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-4 text-left whitespace-nowrap">
-        <div className="flex items-center"><span className="mr-2 font-bold">{i+1}.</span> {order?.name}</div>
+        <div className="flex items-center"><span className="mr-2 font-bold">{i + 1}.</span> {order?.name}</div>
       </td>
       <td className="py-3 px-6 text-left">
         <div className="flex gap-0 flex-col">
@@ -91,13 +91,13 @@ const SingleOrder = ({ order, refetch, i }) => {
               <FaCheck className="h-6 w-10 py-1 rounded-full text-white bg-clr" />
               {
                 order?.hold ?
-                <FaDotCircle
-                className="h-6 w-6 rounded-full bg-white text-yellow-500" />:
-                <button
-                  onClick={holding}
-                  className="btn btn-xs bg-yellow-500 hover:bg-yellow-500 border-0">
-                  Hold
-                </button>
+                  <FaDotCircle
+                    className="h-6 w-6 rounded-full bg-white text-yellow-500" /> :
+                  <button
+                    onClick={holding}
+                    className="btn btn-xs bg-yellow-500 hover:bg-yellow-500 border-0">
+                    Hold
+                  </button>
               }
             </>
           ) : (

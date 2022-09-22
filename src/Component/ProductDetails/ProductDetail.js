@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useProductStore from "../Hooks/useProductStorage";
@@ -7,8 +8,13 @@ const ProductDetail = () => {
   const { productId } = useParams();
   const { data, upserting } = useProductStore();
   const [products, setProducts] = useState({});
+  const [pic,setPic] = useState({
+    pic1:'',
+    pic2:'',
+    pic3:''
+  });
 
-  const { name, image, newPrice, details, img1, img2 } = products;
+  const { name, newPrice, details } = products;
 
   useEffect(() => {
     if (productId) {
@@ -17,6 +23,11 @@ const ProductDetail = () => {
         .then((data) => {
           console.log(data);
           setProducts(data);
+          setPic({
+            pic1:data?.image,
+            pic2:data?.img1,
+            pic3:data?.img2
+          });
         });
     }
   }, [productId]);
@@ -44,18 +55,27 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src={`https://vip-bazar.onrender.com/file/${image}`}
+                src={`https://vip-bazar.onrender.com/file/${pic.pic1}`}
                 alt={name}
               />
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img className="object-cover" src={`https://vip-bazar.onrender.com/file/${img1}`} alt={name} />
+                <img onClick={()=> setPic({
+                  ...pic,
+                  pic1:pic.pic2,
+                  pic2:pic.pic1
+                })} className="object-cover" src={`https://vip-bazar.onrender.com/file/${pic.pic2}`} alt={name} />
               </div>
               <div className=" flex justify-center  ">
                 <img
+                  onClick={()=> setPic({
+                    ...pic,
+                    pic1: pic.pic3,
+                    pic3: pic.pic1
+                  })}
                   className="object-cover"
-                  src={`https://vip-bazar.onrender.com/file/${img2}`}
+                  src={`https://vip-bazar.onrender.com/file/${pic.pic3}`}
                   alt={name}
                 />
               </div>
