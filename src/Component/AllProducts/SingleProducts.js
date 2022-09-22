@@ -30,7 +30,7 @@ const SingleProducts = ({ value }) => {
   return (
     <div className="bg-white border relative  shadow-lg p-3 rounded-lg rounded-tl-[90px] w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition">
       {
-        value?.newPrice && <div className="w-24 h-16 rounded-full rounded-t-md rounded-r-md absolute -right-2 -top-2 bg-dark flex flex-col justify-center items-end pr-3 text-white gap-0 font-bold">
+        value?.newPrice && value?.newPrice<value?.oldPrice && <div className="min-w-[6rem] h-16 rounded-md rounded-bl-[5rem] absolute -right-1.5 -top-1.5 bg-dark flex flex-col justify-center items-end pr-3 text-white gap-0 font-bold">
           <p className="text-2xl">{parseInt(((parseInt(value?.oldPrice) - parseInt(value?.newPrice)) / parseInt(value?.oldPrice)) * 100)}%</p>
           <p className="text-center text-sm mr-3">Off</p>
         </div>
