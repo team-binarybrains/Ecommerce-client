@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
-    "https://vip-bazar.onrender.com/all-order"
+    "https://quickinun.com/all-order"
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostPerPage] = useState(10);
@@ -51,12 +51,11 @@ function AllOrders() {
             <table className="table-auto mx-auto" id="table-to-xls">
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                  <th className="py-3 px-6 text-left min-w-[12rem]">
-                    Customer Details
+                  <th className="py-3 px-6 text-left min-w-[18rem]">
+                    Customer Info
                   </th>
-                  {/* <th className="py-3 px-6 text-left min-w-[8rem]">Address</th> */}
                   <th className="py-3 px-6 text-left min-w-[8rem]">time</th>
-                  <th className="py-3 px-6 text-center min-w-[15rem]">
+                  <th className="py-3 px-6 text-center min-w-[12rem]">
                     Product & Quantity
                   </th>
                   <th className="py-3 px-6 text-center min-w-[9rem]">

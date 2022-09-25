@@ -32,13 +32,13 @@ function AddProduct() {
     };
 
     try {
-      const { data } = await axios.post("https://vip-bazar.onrender.com/upload", form);
+      const { data } = await axios.post("https://quickinun.com/upload", form);
       // console.log(data);
 
       if (data?.uploaded) {
         const { productImg, productImg1, productImg2 } = data;
         const { data: productData } = await axios.post(
-          "https://vip-bazar.onrender.com/add-product",
+          "https://quickinun.com/add-product",
           { ...productinfo, image: productImg?.[0]?.filename, img1: productImg1?.[0]?.filename, img2: productImg2?.[0]?.filename }
         );
 

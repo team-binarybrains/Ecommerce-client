@@ -11,7 +11,7 @@ const useAdmin = user => {
         const email = user[0]?.email
         // console.log(email);
         if (email) {
-            fetch(`https://vip-bazar.onrender.com/admin/${email}`)
+            fetch(`https://quickinun.com/admin/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data);

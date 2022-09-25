@@ -48,7 +48,7 @@ const Checkout = ({ drawer }) => {
         theme: "colored",
       });
     } else {
-      axios.post("https://vip-bazar.onrender.com/order", order).then(({ data }) => {
+      axios.post("https://quickinun.com/order", order).then(({ data }) => {
         if (data.acknowledged) {
           setCookie(order.phone);
           clear();

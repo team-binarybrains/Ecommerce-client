@@ -6,26 +6,21 @@ import { toast } from "react-toastify";
 
 const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   const confirming = () => {
-    const confirmed = window.confirm("Are you sure ?");
-    if (confirmed) {
-      axios
-        .put(`http://localhost:5000/order/${order._id}`, { confirm: true })
-        .then(({ data }) => {
-          if (data?.acknowledged) {
-            toast.success("Order confirmed", { theme: "dark" });
-            refetch();
-          }
-        });
-    } else {
-      return 0;
-    }
+    axios
+      .put(`https://quickinun.com/order/${order._id}`, { confirm: true })
+      .then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order confirmed", { theme: "dark" });
+          refetch();
+        }
+      });
   };
 
   const deleting = () => {
     const confirmed = window.confirm("Are you sure to delete ?");
     if (confirmed) {
       axios
-        .delete(`http://localhost:5000/cancel-order/${order._id}`)
+        .delete(`https://quickinun.com/cancel-order/${order._id}`)
         .then(({ data }) => {
           if (data?.acknowledged) {
             toast.error("Order deleted successfully", { theme: "dark" });
@@ -38,41 +33,30 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   };
 
   const holding = () => {
-    const confirmed = window.confirm("Are you sure ?");
-    if (confirmed) {
-      axios
-        .put(`http://localhost:5000/order/${order._id}`, { hold: true })
-        .then(({ data }) => {
-          if (data?.acknowledged) {
-            toast.success("Order hold", { theme: "dark" });
-            refetch();
-          }
-        });
-    } else {
-      return 0;
-    }
+    axios
+      .put(`https://quickinun.com/order/${order._id}`, { hold: true })
+      .then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order hold", { theme: "dark" });
+          refetch();
+        }
+      });
   };
 
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
-      <td className="py-3 px-4 text-left whitespace-nowrap">
-        <div className="flex items-center">
+      <td className="py-3 px-6 text-left">
+        <div className="flex items-center gap-x-2">
           <span className="mr-2 font-bold">
             {(currentPage - 1) * postsPerPage + (i + 1)}.
-          </span>{" "}
-          <div className="flex gap-0 flex-col">
-            {order?.name}
+          </span>
+          <div className="flex gap-2 flex-col">
+            <span>{order?.name}</span>
             <span>{order?.address};</span>
             <p>{order?.phone}</p>
           </div>
         </div>
-      </td>
-      {/* <td className="py-3 px-6 text-left">
-        <div className="flex gap-0 flex-col">
-          <span>{order?.address};</span>
-          <p>{order?.phone}</p>
-        </div>
-      </td> */}
+      </td>{" "}
       <td className="py-3 px-6 text-left">
         <div className="flex items-center">
           <span>{order?.time?.split("GMT")[0]}</span>
