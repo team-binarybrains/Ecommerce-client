@@ -21,6 +21,7 @@ import axios from "axios";
 import useAdmin from "./Component/Hooks/useAdmin";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "./firebase.init";
+import CallButton from "./Component/CallButton/CallButton";
 
 function App() {
   const user = useAuthState(auth);
@@ -66,7 +67,7 @@ function App() {
           {/*-------------- dashboard end ------------------*/}
         </Routes>
       </section>
-
+      <CallButton />
       <Footer />
       <ToastContainer />
     </div>

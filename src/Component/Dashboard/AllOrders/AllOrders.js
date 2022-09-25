@@ -7,7 +7,6 @@ import { useState } from "react";
 import "./allorder.css";
 import Pagination from "./Pagination";
 
-
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
     "https://vip-bazar.onrender.com/all-order"
@@ -27,13 +26,17 @@ function AllOrders() {
           <section className="flex justify-between items-center flex-row-reverse flex-wrap-reverse max-w-7xl mb-4 gap-x-5 gap-y-3 pl-10 lg:pl-0">
             <select
               onChange={(e) => setPostPerPage(parseInt(e.target.value))}
-              className="w-20 py-3 text-center text-lg font-bold text-white bg-clr rounded-lg border-none outline-none" >
-              {
-                post.map((p, i) =>
-                  <option key={i} value={p} className="text-lg outline-none border-none">
-                    {p}
-                  </option>)
-              }
+              className="w-20 py-3 text-center text-lg font-bold text-white bg-clr rounded-lg border-none outline-none"
+            >
+              {post.map((p, i) => (
+                <option
+                  key={i}
+                  value={p}
+                  className="text-lg outline-none border-none"
+                >
+                  {p}
+                </option>
+              ))}
             </select>
             <ReactHTMLTableToExcel
               id="test-table-xls-button"
@@ -49,9 +52,9 @@ function AllOrders() {
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left min-w-[12rem]">
-                    Customer Name
+                    Customer Details
                   </th>
-                  <th className="py-3 px-6 text-left min-w-[8rem]">Address</th>
+                  {/* <th className="py-3 px-6 text-left min-w-[8rem]">Address</th> */}
                   <th className="py-3 px-6 text-left min-w-[8rem]">time</th>
                   <th className="py-3 px-6 text-center min-w-[15rem]">
                     Product & Quantity
