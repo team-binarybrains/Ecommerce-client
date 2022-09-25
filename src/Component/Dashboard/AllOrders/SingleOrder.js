@@ -8,19 +8,19 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
 
 
   const confirming = () => {
-      axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { confirm: true }).then(({ data }) => {
-        if (data?.acknowledged) {
-          toast.success("Order confirmed", { theme: "dark" });
-          refetch();
-        }
-      })
+    axios.put(`https://quickinun.com/order/${order._id}`, { confirm: true }).then(({ data }) => {
+      if (data?.acknowledged) {
+        toast.success("Order confirmed", { theme: "dark" });
+        refetch();
+      }
+    })
   };
 
   const deleting = () => {
     const confirmed = window.confirm('Are you sure to delete ?');
     if (confirmed) {
       axios
-        .delete(`https://vip-bazar.onrender.com/cancel-order/${order._id}`)
+        .delete(`https://quickinun.com/cancel-order/${order._id}`)
         .then(({ data }) => {
           if (data?.acknowledged) {
             toast.error("Order deleted successfully", { theme: "dark" });
@@ -33,12 +33,12 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   };
 
   const holding = () => {
-      axios.put(`https://vip-bazar.onrender.com/order/${order._id}`, { hold: true }).then(({ data }) => {
-        if (data?.acknowledged) {
-          toast.success("Order hold", { theme: "dark" })
-          refetch();
-        }
-      })
+    axios.put(`https://quickinun.com/order/${order._id}`, { hold: true }).then(({ data }) => {
+      if (data?.acknowledged) {
+        toast.success("Order hold", { theme: "dark" })
+        refetch();
+      }
+    })
   }
 
   return (

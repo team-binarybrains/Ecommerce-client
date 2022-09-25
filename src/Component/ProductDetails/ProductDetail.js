@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
-      fetch(`https://vip-bazar.onrender.com/product/${productId}`)
+      fetch(`https://quickinun.com/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
@@ -55,7 +55,7 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src={`https://vip-bazar.onrender.com/file/${pic.pic1}`}
+                src={`https://quickinun.com/file/${pic.pic1}`}
                 alt={name}
               />
             </div>
@@ -65,7 +65,7 @@ const ProductDetail = () => {
                   ...pic,
                   pic1: pic.pic2,
                   pic2: pic.pic1
-                })} className="object-cover" src={`https://vip-bazar.onrender.com/file/${pic.pic2}`} alt={name} />
+                })} className="object-cover" src={`https://quickinun.com/file/${pic.pic2}`} alt={name} />
               </div >
               <div className=" flex justify-center  ">
                 <img
@@ -75,7 +75,7 @@ const ProductDetail = () => {
                     pic3: pic.pic1
                   })}
                   className="object-cover"
-                  src={`https://vip-bazar.onrender.com/file/${pic.pic3}`}
+                  src={`https://quickinun.com/file/${pic.pic3}`}
                   alt={name}
                 />
               </div>

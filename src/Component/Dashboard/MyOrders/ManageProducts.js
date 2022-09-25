@@ -12,7 +12,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("https://vip-bazar.onrender.com/all-product", {
+    fetch("https://quickinun.com/all-product", {
       method: "GET",
     }).then((res) => res.json())
   );

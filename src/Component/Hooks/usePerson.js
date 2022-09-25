@@ -8,7 +8,7 @@ const usePerson = (user) => {
     const currentUser = { email: email, displayName: displayName };
     // console.log(currentUser);
     if (email) {
-      fetch(`https://vip-bazar.onrender.com/user/${email}`, {
+      fetch(`https://quickinun.com/user/${email}`, {
         method: "PUT",
         body: JSON.stringify(currentUser),
         headers: {
