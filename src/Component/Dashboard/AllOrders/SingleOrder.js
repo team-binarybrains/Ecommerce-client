@@ -5,19 +5,19 @@ import { FaDotCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
-
-
   const confirming = () => {
-    axios.put(`https://quickinun.com/order/${order._id}`, { confirm: true }).then(({ data }) => {
-      if (data?.acknowledged) {
-        toast.success("Order confirmed", { theme: "dark" });
-        refetch();
-      }
-    })
+    axios
+      .put(`https://quickinun.com/order/${order._id}`, { confirm: true })
+      .then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order confirmed", { theme: "dark" });
+          refetch();
+        }
+      });
   };
 
   const deleting = () => {
-    const confirmed = window.confirm('Are you sure to delete ?');
+    const confirmed = window.confirm("Are you sure to delete ?");
     if (confirmed) {
       axios
         .delete(`https://quickinun.com/cancel-order/${order._id}`)
@@ -33,26 +33,30 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   };
 
   const holding = () => {
-    axios.put(`https://quickinun.com/order/${order._id}`, { hold: true }).then(({ data }) => {
-      if (data?.acknowledged) {
-        toast.success("Order hold", { theme: "dark" })
-        refetch();
-      }
-    })
-  }
+    axios
+      .put(`https://quickinun.com/order/${order._id}`, { hold: true })
+      .then(({ data }) => {
+        if (data?.acknowledged) {
+          toast.success("Order hold", { theme: "dark" });
+          refetch();
+        }
+      });
+  };
 
   return (
     <tr className="border-b border-gray-200 hover:bg-gray-100">
       <td className="py-3 px-6 text-left">
         <div className="flex items-center gap-x-2">
-          <span className="mr-2 font-bold">{(currentPage - 1) * postsPerPage + (i + 1)}.</span>
+          <span className="mr-2 font-bold">
+            {(currentPage - 1) * postsPerPage + (i + 1)}.
+          </span>
           <div className="flex gap-2 flex-col">
             <span>{order?.name}</span>
             <span>{order?.address};</span>
             <p>{order?.phone}</p>
           </div>
         </div>
-      </td>
+      </td>{" "}
       <td className="py-3 px-6 text-left">
         <div className="flex items-center">
           <span>{order?.time?.split("GMT")[0]}</span>
@@ -89,21 +93,22 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
           {order?.confirm ? (
             <>
               <FaCheck className="h-6 w-10 py-1 rounded-full text-white bg-clr" />
-              {
-                order?.hold ?
-                  <FaDotCircle
-                    className="h-6 w-6 rounded-full bg-white text-yellow-500" /> :
-                  <button
-                    onClick={holding}
-                    className="btn btn-xs bg-yellow-500 hover:bg-yellow-500 border-0">
-                    Hold
-                  </button>
-              }
+              {order?.hold ? (
+                <FaDotCircle className="h-6 w-6 rounded-full bg-white text-yellow-500" />
+              ) : (
+                <button
+                  onClick={holding}
+                  className="btn btn-xs bg-yellow-500 hover:bg-yellow-500 border-0"
+                >
+                  Hold
+                </button>
+              )}
             </>
           ) : (
             <button
               onClick={confirming}
-              className="btn btn-xs bg-clr hover:bg-clr border-0">
+              className="btn btn-xs bg-clr hover:bg-clr border-0"
+            >
               Confirm
             </button>
           )}
