@@ -61,14 +61,17 @@ const ProductDetail = () => {
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                <img onClick={() => setPic({
-                  ...pic,
-                  pic1: pic.pic2,
-                  pic2: pic.pic1
-                })} className="object-cover" src={`https://quickinun.com/file/${pic.pic2}`} alt={name} />
+                { products?.img1 &&
+                  <img onClick={() => setPic({
+                    ...pic,
+                    pic1: pic.pic2,
+                    pic2: pic.pic1
+                  })} className="object-cover" src={`https://quickinun.com/file/${pic.pic2}`} alt={name} />
+                }
               </div >
               <div className=" flex justify-center  ">
-                <img
+                { products?.img2 &&
+                  <img
                   onClick={() => setPic({
                     ...pic,
                     pic1: pic.pic3,
@@ -78,6 +81,7 @@ const ProductDetail = () => {
                   src={`https://quickinun.com/file/${pic.pic3}`}
                   alt={name}
                 />
+                }
               </div>
             </div >
           </div >

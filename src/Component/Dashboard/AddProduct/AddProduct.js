@@ -95,7 +95,7 @@ function AddProduct() {
                     className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                     {...register("img1", {
                       required: {
-                        value: true,
+                        value: false,
                         message: "Image is Required",
                       },
                     })}
@@ -112,7 +112,7 @@ function AddProduct() {
                     className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                     {...register("img2", {
                       required: {
-                        value: true,
+                        value: false,
                         message: "Image is Required",
                       },
                     })}

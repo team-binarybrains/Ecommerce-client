@@ -44,7 +44,7 @@ const Checkout = ({ drawer }) => {
     // console.log(order);
 
     if (getCookie(order.phone)) {
-      toast.error(`আপনি ৭২ ঘন্টার মধ্যে অর্ডার করতে পারবেন না |`, {
+      toast.error(`আপনি অলরেডি অর্ডার করেছেন । বিস্তারিত জানতে কল করুন ।`, {
         theme: "colored",
       });
     } else {
