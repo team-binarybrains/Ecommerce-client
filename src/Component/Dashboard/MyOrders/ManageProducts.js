@@ -12,7 +12,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("https://quickinun.com/all-product", {
+    fetch("https://quickinun.com/server/all-product", {
       method: "GET",
     }).then((res) => res.json())
   );

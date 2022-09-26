@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
-      fetch(`https://quickinun.com/product/${productId}`)
+      fetch(`https://quickinun.com/server/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);
@@ -55,32 +55,32 @@ const ProductDetail = () => {
             <div className=" w-full lg:w-12/12  flex justify-center ">
               <img
                 className="lg:h-[495px]  object-cover"
-                src={`https://quickinun.com/file/${pic.pic1}`}
+                src={`https://quickinun.com/server/file/${pic.pic1}`}
                 alt={name}
               />
             </div>
             <div className="  w-full lg:w-6/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-2">
               <div className=" flex justify-center ">
-                { products?.img1 &&
+                {products?.img1 &&
                   <img onClick={() => setPic({
                     ...pic,
                     pic1: pic.pic2,
                     pic2: pic.pic1
-                  })} className="object-cover" src={`https://quickinun.com/file/${pic.pic2}`} alt={name} />
+                  })} className="object-cover" src={`https://quickinun.com/server/file/${pic.pic2}`} alt={name} />
                 }
               </div >
               <div className=" flex justify-center  ">
-                { products?.img2 &&
+                {products?.img2 &&
                   <img
-                  onClick={() => setPic({
-                    ...pic,
-                    pic1: pic.pic3,
-                    pic3: pic.pic1
-                  })}
-                  className="object-cover"
-                  src={`https://quickinun.com/file/${pic.pic3}`}
-                  alt={name}
-                />
+                    onClick={() => setPic({
+                      ...pic,
+                      pic1: pic.pic3,
+                      pic3: pic.pic1
+                    })}
+                    className="object-cover"
+                    src={`https://quickinun.com/server/file/${pic.pic3}`}
+                    alt={name}
+                  />
                 }
               </div>
             </div >

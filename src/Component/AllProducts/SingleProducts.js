@@ -43,7 +43,7 @@ const SingleProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] object-cover w-full"
-        src={`https://quickinun.com/file/${value.image}`}
+        src={`https://quickinun.com/server/file/${value.image}`}
         alt=""
       />
 
