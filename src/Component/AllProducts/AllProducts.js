@@ -47,7 +47,8 @@ const AllProducts = () => {
         {products
           .filter((val) => val.name.toLowerCase().includes(sesrch))
           ?.map((value) => (
-            <SingleProducts key={value.id} value={value} />
+            <SingleProducts key={value._id} value={value} />
+            // <SingleProducts key={value.id} value={value} />
           ))}
       </div>
     </div>
