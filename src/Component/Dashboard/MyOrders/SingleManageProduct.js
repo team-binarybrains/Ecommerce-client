@@ -8,7 +8,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   const setDeleteproducts = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      axios.delete(`https://quickinun.com/server/product/${id}`).then(({ data }) => {
+      axios.delete(`https://api.com.quickinun.com/server/product/${id}`).then(({ data }) => {
         // console.log(data);
         refetch();
         toast.success("Successfully delete the user.");
@@ -19,7 +19,7 @@ const SingleManageProduct = ({ product, refetch }) => {
   return (
     <div className="card w-[98%] mx-auto lg:w-96 bg-base-100 shadow-xl">
       <figure>
-        <img className="max-w-[450px] h-[270px] mx-auto" src={`https://quickinun.com/server/file/${product?.image}`} alt="Shoes" />
+        <img className="max-w-[450px] h-[270px] mx-auto" src={`https://api.com.quickinun.com/server/file/${product?.image}`} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{product.name}</h2>

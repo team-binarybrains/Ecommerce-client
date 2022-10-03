@@ -32,13 +32,13 @@ function AddProduct() {
     };
 
     try {
-      const { data } = await axios.post("https://quickinun.com/server/upload", form);
+      const { data } = await axios.post("https://api.com.quickinun.com/server/upload", form);
       // console.log(data);
 
       if (data?.uploaded) {
         const { productImg, productImg1, productImg2 } = data;
         const { data: productData } = await axios.post(
-          "https://quickinun.com/server/add-product",
+          "https://api.com.quickinun.com/server/add-product",
           { ...productinfo, image: productImg?.[0]?.filename, img1: productImg1?.[0]?.filename, img2: productImg2?.[0]?.filename }
         );
 

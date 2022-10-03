@@ -11,7 +11,7 @@ function AllUser() {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("https://quickinun.com/server/alluser", {
+    fetch("https://api.com.quickinun.com/server/alluser", {
       method: "GET",
     }).then((res) => res.json())
   );

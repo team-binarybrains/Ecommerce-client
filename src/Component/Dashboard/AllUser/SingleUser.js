@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const SingleUser = ({ user, refetch }) => {
   const makeAdmin = () => {
     axios
-      .patch(`https://quickinun.com/server/make-admin/${user.email}`)
+      .patch(`https://api.com.quickinun.com/server/make-admin/${user.email}`)
       .then((res) => {
         const { data } = res;
         // console.log(data);
@@ -17,7 +17,7 @@ const SingleUser = ({ user, refetch }) => {
   const handleDeleteUser = (id) => {
     const proceed = window.confirm("Are you sure?");
     if (proceed) {
-      axios.delete(`https://quickinun.com/server/delete-user/${id}`).then((res) => {
+      axios.delete(`https://api.com.quickinun.com/server/delete-user/${id}`).then((res) => {
         const { data } = res;
         // console.log(data);
         refetch();

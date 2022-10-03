@@ -48,7 +48,7 @@ const Checkout = ({ drawer }) => {
         theme: "colored",
       });
     } else {
-      axios.post("https://quickinun.com/server/order", order).then(({ data }) => {
+      axios.post("https://api.com.quickinun.com/server/order", order).then(({ data }) => {
         if (data.acknowledged) {
           setCookie(order.phone);
           clear();
