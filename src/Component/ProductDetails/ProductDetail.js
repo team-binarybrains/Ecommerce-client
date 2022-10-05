@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useProductStore from "../Hooks/useProductStorage";
+import Loading from "../Share/Loading";
 
 const ProductDetail = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const { data, upserting } = useProductStore();
   const [products, setProducts] = useState({});
+  const [loading,setLoading] = useState(false);
   const [pic, setPic] = useState({
     pic1: '',
     pic2: '',
@@ -18,6 +20,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     if (productId) {
+      setLoading(true);
       fetch(`https://api.com.quickinun.com/server/product/${productId}`)
         .then((res) => res.json())
         .then((data) => {
@@ -28,6 +31,7 @@ const ProductDetail = () => {
             pic2: data?.img1,
             pic3: data?.img2
           });
+          setLoading(false);
         });
     }
   }, [productId]);
@@ -48,6 +52,7 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen">
+      {loading && <Loading/>}
       <div className="2xl:container 2xl:mx-auto lg:py-16  md:py-12 md:px-6 py-9 px-1 ">
         <div className="flex justify-center items-center lg:flex-row flex-col gap-8">
           {/* <!-- Description Div --> */}
