@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const useAllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -11,7 +11,7 @@ const useAllProducts = () => {
         setLoading(false);
       });
   }, []);
-  return [products];
+  return [products,loading];
 };
 
 export default useAllProducts;

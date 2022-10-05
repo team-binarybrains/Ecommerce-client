@@ -11,7 +11,6 @@ const HomePageProducts = () => {
       {loading && <Loading />}
       {products.map((value) => (
         <SingleProducts key={value._id} value={value} />
-        // <SingleProducts key={value.id} value={value} />
       ))}
     </div>
   );
