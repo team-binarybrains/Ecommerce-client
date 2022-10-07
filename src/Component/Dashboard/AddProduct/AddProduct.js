@@ -158,7 +158,7 @@ function AddProduct() {
               <input
                 aria-label="enter email adress"
                 role="input"
-                type="text"
+                type="number"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 {...register("oldprice", {
                   required: {
@@ -182,7 +182,7 @@ function AddProduct() {
               <input
                 aria-label="enter email adress"
                 role="input"
-                type="text"
+                type="number"
                 className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2"
                 {...register("newprice", {
                   required: {

@@ -50,7 +50,16 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
           <span className="mr-2 font-bold">
             {(currentPage - 1) * postsPerPage + (i + 1)}.
           </span>
-          <div className="flex gap-2 flex-col">
+          <div 
+            onClick={() => {
+              navigator.clipboard.writeText(`
+${order?.name}
+${order?.address}
+${order?.phone}`);
+              toast.success("copyDetail");
+            }}
+          className="flex gap-2 flex-col cursor-pointer">
+
             <span>{order?.name}</span>
             <span>{order?.address};</span>
             <p>{order?.phone}</p>

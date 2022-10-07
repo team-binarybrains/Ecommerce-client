@@ -140,14 +140,14 @@ const Checkout = ({ drawer }) => {
                         type="radio"
                         name="place"
                         id="outSideDhaka"
-                        value={200}
+                        value={100}
                         disabled={!totalPrice()}
                       />
                       ঢাকার বাহিরে :
                     </label>
                     <p>
                       <span className="text-xl font-bold">৳ </span>
-                      200
+                      100
                     </p>
                   </section>
 
@@ -169,14 +169,14 @@ const Checkout = ({ drawer }) => {
                         type="radio"
                         name="place"
                         id="inSideDhaka"
-                        value={100}
+                        value={50}
                         disabled={!totalPrice()}
                       />
                       ঢাকার ভিতর:
                     </label>
                     <p>
                       <span className="text-xl font-bold">৳ </span>
-                      100
+                      50
                     </p>
                   </section>
                   <hr />
@@ -243,7 +243,7 @@ const Checkout = ({ drawer }) => {
                     <input
                       required
                       className="border border-gray-300 p-4 rounded w-full text-base leading-4 placeholder-gray-600 text-gray-600 mt-3"
-                      type="text"
+                      type="number"
                       placeholder="আপনার মোবাইল"
                       id="phone"
                       name="phone"

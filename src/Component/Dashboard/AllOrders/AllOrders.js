@@ -51,7 +51,7 @@ function AllOrders() {
             <table className="table-auto mx-auto" id="table-to-xls">
               <thead>
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                  <th className="py-3 px-6 text-left min-w-[18rem]">
+                  <th  className="py-3 px-6 text-left min-w-[18rem]">
                     Customer Info
                   </th>
                   <th className="py-3 px-6 text-left min-w-[8rem]">time</th>

@@ -50,12 +50,16 @@ const SingleProducts = ({ value }) => {
       <div className="text-xl font-semibold max-w-screen h-[50px]">
         {value.name}
       </div>
-      <div className="text-lg font-semibold text-violet-600  mt-2">
+      <div className="text-lg font-semibold text-violet-600   mt-2">
         <span className="text-3xl font-bold">৳</span> {value.newPrice}
+
+        
+        <span className="text-md pl-20 font-semibold text-red-500 line-through mb-4 ">৳ {value.oldPrice}</span> 
+     
       </div>
-      <div className="text-md font-semibold text-gray-400 line-through mb-4 ">
+      {/* <div className="text-md font-semibold text-gray-400 line-through mb-4 ">
         <span className="text-xl font-bold">৳</span> {value.oldPrice}
-      </div>
+      </div> */}
       <div>
         <h1>
           <span className="font-bold">বিবরণ : </span>

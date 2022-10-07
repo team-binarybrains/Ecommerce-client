@@ -44,7 +44,10 @@ const AllProducts = () => {
       </div>
       <div className="grid grid-cols-1 p-4 lg:p-0 lg:grid-cols-3 gap-8 mt-16 mb-20">
         {loading && <Loading />}
-        {products
+        {
+        // products
+        [...products]
+        .reverse()
           .filter((val) => val.name.toLowerCase().includes(sesrch))
           ?.map((value) => (
             <SingleProducts key={value._id} value={value} />
