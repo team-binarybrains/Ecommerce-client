@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import useProductStore from "../Hooks/useProductStorage";
-import { getCookie, setCookie } from "../Hooks/useCookie";
+// import { getCookie, setCookie } from "../Hooks/useCookie";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -43,14 +43,14 @@ const Checkout = ({ drawer }) => {
 
     // console.log(order);
 
-    if (getCookie(order.phone)) {
+  axios.get(`https://api.com.quickinun.com/server/order/${e.target.phone.value}`).then(({data})=> {
+    if (data?.ordered) {
       toast.error(`আপনি অলরেডি অর্ডার করেছেন । বিস্তারিত জানতে কল করুন ।`, {
         theme: "colored",
       });
     } else {
       axios.post("https://api.com.quickinun.com/server/order", order).then(({ data }) => {
         if (data.acknowledged) {
-          setCookie(order.phone);
           clear();
           e.target.reset();
           toast.success(`Order successfully booked`);
@@ -59,6 +59,8 @@ const Checkout = ({ drawer }) => {
         }
       });
     }
+  })
+    
   };
 
   return (
