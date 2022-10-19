@@ -31,7 +31,7 @@ const SingleHomepageProducts = ({ value }) => {
         <img
           onClick={() => handleDetail(value._id)}
           className="mb-2 rounded-tl-[80px] h-[250px] -z-50"
-          src={`https://api.com.quickinun.com/server/file/${value.image}`}
+          src={`http://localhost:5000/server/file/${value.image}`}
           alt=""
         />
 

@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const useAdmin = user => {
-    // console.log(user);
-    const [admin, setAdmin] = useState()
-    // console.log(admin);
-    // const [adminLoading, setAdminLoading] = useState(true)
+const useAdmin = (user) => {
+  // console.log(user);
+  const [admin, setAdmin] = useState();
+  // console.log(admin);
+  // const [adminLoading, setAdminLoading] = useState(true)
 
-    useEffect(() => {
+  useEffect(() => {
+    const email = user[0]?.email;
+    // console.log(email);
+    if (email) {
+      fetch(`http://localhost:5000/server/admin/${email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          setAdmin(data.admin);
+          // setAdminLoading(false)
+        });
+    }
+  }, [user]);
 
-        const email = user[0]?.email
-        // console.log(email);
-        if (email) {
-            fetch(`https://api.com.quickinun.com/server/admin/${email}`)
-                .then(res => res.json())
-                .then(data => {
-                    // console.log(data);
-                    setAdmin(data.admin)
-                    // setAdminLoading(false)
-                })
-        }
-
-    }, [user])
-
-    return [admin]
+  return [admin];
 };
 
 export default useAdmin;

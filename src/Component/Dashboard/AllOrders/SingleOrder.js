@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   const confirming = () => {
     axios
-      .put(`https://api.com.quickinun.com/server/order/${order._id}`, { confirm: true })
+      .put(`http://localhost:5000/server/order/${order._id}`, { confirm: true })
       .then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order confirmed", { theme: "dark" });
@@ -20,7 +20,7 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
     const confirmed = window.confirm("Are you sure to delete ?");
     if (confirmed) {
       axios
-        .delete(`https://api.com.quickinun.com/server/cancel-order/${order._id}`)
+        .delete(`http://localhost:5000/server/cancel-order/${order._id}`)
         .then(({ data }) => {
           if (data?.acknowledged) {
             toast.error("Order deleted successfully", { theme: "dark" });
@@ -34,7 +34,7 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
 
   const holding = () => {
     axios
-      .put(`https://api.com.quickinun.com/server/order/${order._id}`, { hold: true })
+      .put(`http://localhost:5000/server/order/${order._id}`, { hold: true })
       .then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order hold", { theme: "dark" });
@@ -50,7 +50,7 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
           <span className="mr-2 font-bold">
             {(currentPage - 1) * postsPerPage + (i + 1)}.
           </span>
-          <div 
+          <div
             onClick={() => {
               navigator.clipboard.writeText(`
 ${order?.name}
@@ -58,8 +58,8 @@ ${order?.address}
 ${order?.phone}`);
               toast.success("copyDetail");
             }}
-          className="flex gap-2 flex-col cursor-pointer">
-
+            className="flex gap-2 flex-col cursor-pointer"
+          >
             <span>{order?.name}</span>
             <span>{order?.address};</span>
             <p>{order?.phone}</p>

@@ -4,14 +4,14 @@ const useAllProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("https://api.com.quickinun.com/server/all-product")
+    fetch("http://localhost:5000/server/all-product")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
         setLoading(false);
       });
   }, []);
-  return [products,loading];
+  return [products, loading];
 };
 
 export default useAllProducts;

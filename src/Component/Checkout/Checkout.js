@@ -43,24 +43,27 @@ const Checkout = ({ drawer }) => {
 
     // console.log(order);
 
-  axios.get(`https://api.com.quickinun.com/server/order/${e.target.phone.value}`).then(({data})=> {
-    if (data?.ordered) {
-      toast.error(`আপনি অলরেডি অর্ডার করেছেন । বিস্তারিত জানতে কল করুন ।`, {
-        theme: "colored",
-      });
-    } else {
-      axios.post("https://api.com.quickinun.com/server/order", order).then(({ data }) => {
-        if (data.acknowledged) {
-          clear();
-          e.target.reset();
-          toast.success(`Order successfully booked`);
+    axios
+      .get(`http://localhost:5000/server/order/${e.target.phone.value}`)
+      .then(({ data }) => {
+        if (data?.ordered) {
+          toast.error(`আপনি অলরেডি অর্ডার করেছেন । বিস্তারিত জানতে কল করুন ।`, {
+            theme: "colored",
+          });
         } else {
-          toast.error(`Order unsuccessfull`, { theme: "colored" });
+          axios
+            .post("http://localhost:5000/server/order", order)
+            .then(({ data }) => {
+              if (data.acknowledged) {
+                clear();
+                e.target.reset();
+                toast.success(`Order successfully booked`);
+              } else {
+                toast.error(`Order unsuccessfull`, { theme: "colored" });
+              }
+            });
         }
       });
-    }
-  })
-    
   };
 
   return (
@@ -92,8 +95,9 @@ const Checkout = ({ drawer }) => {
                     {bookedData?.map((product) => (
                       <div
                         key={product._id}
-                        className={`justify-between items-center h-16 snap-start ${product.quantity > 0 ? "flex" : "hidden"
-                          }`}
+                        className={`justify-between items-center h-16 snap-start ${
+                          product.quantity > 0 ? "flex" : "hidden"
+                        }`}
                       >
                         <p className="text-clr font-bold inline-flex items-center text-xl">
                           <span className="text-dark text-base">
@@ -135,8 +139,10 @@ const Checkout = ({ drawer }) => {
                           setDeliveryCost(parseInt(e.target.value));
                           dCost.current = {
                             cost: parseInt(e.target.value),
-                            place: e.target.parentNode.innerText.split(':')[0].trim()
-                          }
+                            place: e.target.parentNode.innerText
+                              .split(":")[0]
+                              .trim(),
+                          };
                         }}
                         className="mr-2 font-bold cursor-pointer"
                         type="radio"
@@ -164,8 +170,10 @@ const Checkout = ({ drawer }) => {
                           setDeliveryCost(parseInt(e.target.value));
                           dCost.current = {
                             cost: parseInt(e.target.value),
-                            place: e.target.parentNode.innerText.split(':')[0].trim()
-                          }
+                            place: e.target.parentNode.innerText
+                              .split(":")[0]
+                              .trim(),
+                          };
                         }}
                         className="mr-2 font-bold cursor-pointer"
                         type="radio"
@@ -347,8 +355,10 @@ const Checkout = ({ drawer }) => {
                             setDeliveryCost(parseInt(e.target.value));
                             dCost.current = {
                               cost: parseInt(e.target.value),
-                              place: e.target.parentNode.innerText.split(':')[0].trim()
-                            }
+                              place: e.target.parentNode.innerText
+                                .split(":")[0]
+                                .trim(),
+                            };
                           }}
                         />
                         ঢাকার বাহিরে :
@@ -375,8 +385,10 @@ const Checkout = ({ drawer }) => {
                             setDeliveryCost(parseInt(e.target.value));
                             dCost.current = {
                               cost: parseInt(e.target.value),
-                              place: e.target.parentNode.innerText.split(':')[0].trim()
-                            }
+                              place: e.target.parentNode.innerText
+                                .split(":")[0]
+                                .trim(),
+                            };
                           }}
                         />
                         ঢাকার ভিতর:
@@ -422,8 +434,9 @@ const Checkout = ({ drawer }) => {
                     {bookedData?.map((product) => (
                       <div
                         key={product._id}
-                        className={`justify-between items-start h-16 snap-start gap-x-3 ${product.quantity > 0 ? "flex" : "hidden"
-                          }`}
+                        className={`justify-between items-start h-16 snap-start gap-x-3 ${
+                          product.quantity > 0 ? "flex" : "hidden"
+                        }`}
                       >
                         <p className="text-clr font-bold inline-flex items-start grow-0 shrink basis-[80%]">
                           <span>{product.quantity}</span>

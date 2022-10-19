@@ -32,14 +32,22 @@ function AddProduct() {
     };
 
     try {
-      const { data } = await axios.post("https://api.com.quickinun.com/server/upload", form);
+      const { data } = await axios.post(
+        "http://localhost:5000/server/upload",
+        form
+      );
       // console.log(data);
 
       if (data?.uploaded) {
         const { productImg, productImg1, productImg2 } = data;
         const { data: productData } = await axios.post(
-          "https://api.com.quickinun.com/server/add-product",
-          { ...productinfo, image: productImg?.[0]?.filename, img1: productImg1?.[0]?.filename, img2: productImg2?.[0]?.filename }
+          "http://localhost:5000/server/add-product",
+          {
+            ...productinfo,
+            image: productImg?.[0]?.filename,
+            img1: productImg1?.[0]?.filename,
+            img2: productImg2?.[0]?.filename,
+          }
         );
 
         productData?.acknowledged
@@ -48,7 +56,7 @@ function AddProduct() {
       } else {
         toast.error("Unable to upload image");
       }
-    } catch (err) { }
+    } catch (err) {}
 
     reset();
   };
@@ -66,10 +74,13 @@ function AddProduct() {
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <section className='flex flex-col gap-5'>
+              <section className="flex flex-col gap-5">
                 <lable className="text-sm font-medium leading-none text-gray-800">
                   Product Main Image <br />
-                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <small className="text-green-600 leading-6">
+                    {" "}
+                    please choose a file
+                  </small>
                   <input
                     aria-label="enter email adress"
                     role="input"
@@ -86,7 +97,10 @@ function AddProduct() {
                 </lable>
                 <lable className="text-sm font-medium leading-none text-gray-800">
                   Product Secondary Image - 1 <br />
-                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <small className="text-green-600 leading-6">
+                    {" "}
+                    please choose a file
+                  </small>
                   <input
                     aria-label="enter email adress"
                     role="input"
@@ -103,7 +117,10 @@ function AddProduct() {
                 </lable>
                 <lable className="text-sm font-medium leading-none text-gray-800">
                   Product Secondary Image - 2 <br />
-                  <small className="text-green-600 leading-6"> please choose a file</small>
+                  <small className="text-green-600 leading-6">
+                    {" "}
+                    please choose a file
+                  </small>
                   <input
                     aria-label="enter email adress"
                     role="input"

@@ -8,7 +8,7 @@ const usePerson = (user) => {
     const currentUser = { email: email, displayName: displayName };
     // console.log(currentUser);
     if (email) {
-      fetch(`https://api.com.quickinun.com/server/user/${email}`, {
+      fetch(`http://localhost:5000/server/user/${email}`, {
         method: "PUT",
         body: JSON.stringify(currentUser),
         headers: {

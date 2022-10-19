@@ -12,7 +12,7 @@ const ManageProducts = () => {
     isLoading,
     refetch,
   } = useQuery("user", () =>
-    fetch("https://api.com.quickinun.com/server/all-product", {
+    fetch("http://localhost:5000/server/all-product", {
       method: "GET",
     }).then((res) => res.json())
   );
@@ -27,7 +27,7 @@ const ManageProducts = () => {
             key={product._id}
             product={product}
             refetch={refetch}
-          //   setDeleteproducts={setDeleteproducts}
+            //   setDeleteproducts={setDeleteproducts}
           ></SingleManageProduct>
         ))}
       </div>

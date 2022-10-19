@@ -33,7 +33,7 @@ const SingleProducts = ({ value }) => {
             {parseInt(
               ((parseInt(value?.oldPrice) - parseInt(value?.newPrice)) /
                 parseInt(value?.oldPrice)) *
-              100
+                100
             )}
             %
           </p>
@@ -43,7 +43,7 @@ const SingleProducts = ({ value }) => {
       <img
         onClick={() => handleDetail(value._id)}
         className="mb-2 rounded-tl-[80px] h-[250px] object-cover w-full"
-        src={`https://api.com.quickinun.com/server/file/${value.image}`}
+        src={`http://localhost:5000/server/file/${value.image}`}
         alt=""
       />
 
@@ -52,10 +52,9 @@ const SingleProducts = ({ value }) => {
       </div>
       <div className="text-lg font-semibold text-violet-600   mt-2">
         <span className="text-3xl font-bold">৳</span> {value.newPrice}
-
-        
-        <span className="text-md pl-20 font-semibold text-red-500 line-through mb-4 ">৳ {value.oldPrice}</span> 
-     
+        <span className="text-md pl-20 font-semibold text-red-500 line-through mb-4 ">
+          ৳ {value.oldPrice}
+        </span>
       </div>
       {/* <div className="text-md font-semibold text-gray-400 line-through mb-4 ">
         <span className="text-xl font-bold">৳</span> {value.oldPrice}
