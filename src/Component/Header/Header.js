@@ -36,7 +36,8 @@ const Header = ({ drawer, setDrawer }) => {
           to={"/"}
           className="cairo text-white font-extrabold text-3xl cursor-pointer selection:bg-white selection:text-dark"
         >
-          <span className="text-dark selection:text-clr">VIP</span> Bazar
+          <span className="text-dark selection:text-clr">Great
+</span> Bazar
         </NavLink>
 
         <Nav className="hidden lg:flex items-center justify-center gap-8 select-none" />

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
   const confirming = () => {
     axios
-      .put(`https://api.com.quickinun.com/server/order/${order._id}`, { confirm: true })
+      .put(`http://api.com.quickinun.com/server/order/${order._id}`, { confirm: true })
       .then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order confirmed", { theme: "dark" });
@@ -20,7 +20,7 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
     const confirmed = window.confirm("Are you sure to delete ?");
     if (confirmed) {
       axios
-        .delete(`https://api.com.quickinun.com/server/cancel-order/${order._id}`)
+        .delete(`http://api.com.quickinun.com/server/cancel-order/${order._id}`)
         .then(({ data }) => {
           if (data?.acknowledged) {
             toast.error("Order deleted successfully", { theme: "dark" });
@@ -34,7 +34,7 @@ const SingleOrder = ({ order, refetch, i, currentPage, postsPerPage }) => {
 
   const holding = () => {
     axios
-      .put(`https://api.com.quickinun.com/server/order/${order._id}`, { hold: true })
+      .put(`http://api.com.quickinun.com/server/order/${order._id}`, { hold: true })
       .then(({ data }) => {
         if (data?.acknowledged) {
           toast.success("Order hold", { theme: "dark" });

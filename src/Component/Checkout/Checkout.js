@@ -43,13 +43,13 @@ const Checkout = ({ drawer }) => {
 
     // console.log(order);
 
-  axios.get(`https://api.com.quickinun.com/server/order/${e.target.phone.value}`).then(({data})=> {
+  axios.get(`http://api.com.quickinun.com/server/order/${e.target.phone.value}`).then(({data})=> {
     if (data?.ordered) {
       toast.error(`আপনি অলরেডি অর্ডার করেছেন । বিস্তারিত জানতে কল করুন ।`, {
         theme: "colored",
       });
     } else {
-      axios.post("https://api.com.quickinun.com/server/order", order).then(({ data }) => {
+      axios.post("http://api.com.quickinun.com/server/order", order).then(({ data }) => {
         if (data.acknowledged) {
           clear();
           e.target.reset();

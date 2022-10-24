@@ -15,7 +15,7 @@ const CartProduct = ({ product, upserting, deleting }) => {
     return (
         <div key={product._id} className={`min-h-32 border-2 flex justify-between gap-x-3 sm:gap-x-8 p-3 rounded-md`}>
 
-            <img src={`https://api.com.quickinun.com/server/file/${product?.image}`} alt="" className="w-[40%] max-w-[10rem] self-center sm:self-stretch h-full rounded-md object-scale-down sm:object-cover select-none" />
+            <img src={`http://api.com.quickinun.com/server/file/${product?.image}`} alt="" className="w-[40%] max-w-[10rem] self-center sm:self-stretch h-full rounded-md object-scale-down sm:object-cover select-none" />
 
             <section className="grow shrink basis-[70%] flex flex-wrap justify-between items-center gap-y-2">
                 <h3 className='basis-full select-none text-sm sm:text-base'>{product.name}</h3>

@@ -9,7 +9,7 @@ import Pagination from "./Pagination";
 
 function AllOrders() {
   const [orders, loading, refetch] = useRefetch(
-    "https://api.com.quickinun.com/server/all-order"
+    "http://api.com.quickinun.com/server/all-order"
   );
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostPerPage] = useState(10);

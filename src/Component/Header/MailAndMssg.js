@@ -4,9 +4,9 @@ import { BsFillTelephoneForwardFill } from "react-icons/bs";
 const MailAndMssg = ({ className }) => {
   return (
     <div className={className}>
-     <a href='tel:+8801735047626' className="flex items-center gap-2 font-bold">
+     <a href='tel:+8801967313329' className="flex items-center gap-2 font-bold">
         <BsFillTelephoneForwardFill className="h-5 w-5 text-clr" />
-        +8801735047626
+        +8801967313329
       </a>
 
      {/* <a href='tel:0177358821' className="flex items-center hidden gap-2">
