@@ -369,7 +369,7 @@ const Checkout = ({ drawer }) => {
                           type="radio"
                           name="place"
                           id="inDhaka"
-                          value={100}
+                          value={50}
                           disabled={!totalPrice()}
                           onClick={(e) => {
                             setDeliveryCost(parseInt(e.target.value));
@@ -385,7 +385,7 @@ const Checkout = ({ drawer }) => {
                         <p>
                           {" "}
                           <span className="text-xl font-bold">৳ </span>
-                          100
+                          50
                         </p>
                       </div>
                     </div>
